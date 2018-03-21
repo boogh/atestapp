@@ -27,8 +27,8 @@ function processV1Request (request, response) {
   // Create handlers for Dialogflow actions as well as a 'default' handler
   const actionHandlers = {
     // The default welcome intent has been matched, welcome the user (https://dialogflow.com/docs/events#default_welcome_intent)
-    'test1' :() => {
-        sendResponse(" your infos: name =  " + parameters['name'] + " company=  " + parameters["company"] + " optional= " + parameters["optional"] );
+    'HRA' :() => {
+        sendResponse(" your infos: name =  " + parameters['type'] + " company=  " + parameters["company"] + " optional= " + parameters["cost"] + parameters ["cost"] );
 
     },
     
