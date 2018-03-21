@@ -28,7 +28,7 @@ function processV1Request (request, response) {
   const actionHandlers = {
     // The default welcome intent has been matched, welcome the user (https://dialogflow.com/docs/events#default_welcome_intent)
     'HRA' :() => {
-        sendResponse(" your infos: name =  " + parameters['type'] + " company=  " + parameters["company"] + " optional= " + parameters["cost"] + parameters ["cost"] );
+        sendResponse(" your infos: type =  " + parameters['type'] + " company=  " + parameters["company"] + " cost= " + parameters["cost"] + "other params" + parameters ["registerNr"] );
 
     },
     
