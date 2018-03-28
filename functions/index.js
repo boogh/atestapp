@@ -1,5 +1,8 @@
 'use strict';
 
+var { google } = require('googleapis');
+let privatekey = require("./mainserviceaccount.json");
+
 const functions = require('firebase-functions'); // Cloud Functions for Firebase library
 const DialogflowApp = require('actions-on-google').DialogflowApp; // Google Assistant helper library
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
@@ -14,29 +17,95 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     return response.status(400).end('Invalid Webhook Request (expecting v1 or v2 webhook request)');
   }
 });
+
+
+/**
+ * Authentication through a server account
+ */
+var id = "1nQSH7koEA6WVpVbfLFcvMSHEuPpRTgeP0JCRo40dnuY"
+var id2 = "1ZVSn6T99XdWIWi_G5uZc6adS_-kIUI6ReF2lCH-Wcmg"
+var id_dev = "1c4w5pz6k9fEt7KdzyRjjMNy_6sC9Re1TVOxNkzcJQXk"
+let spreadsheetId = id2;
+let sheetName = 'Sheet1'
+let sheets = google.sheets('v4');
+let range = "Sheet1";
+
+let jwtClient = new google.auth.JWT(
+  privatekey.client_email,
+  null,
+  privatekey.private_key,
+  ['https://www.googleapis.com/auth/spreadsheets',
+    'https://www.googleapis.com/auth/drive',
+  ]);
+
+//authenticate request
+jwtClient.authorize(function (err, tokens) {
+  if (err) {
+    console.log(err);
+    return;
+  } else {
+    console.log("Successfully connected!");
+  }
+});
+
+
+
 /*
 * Function to handle v1 webhook requests from Dialogflow
 */
-function processV1Request (request, response) {
+function processV1Request(request, response) {
   let action = request.body.result.action; // https://dialogflow.com/docs/actions-and-parameters
   let parameters = request.body.result.parameters; // https://dialogflow.com/docs/actions-and-parameters
   let inputContexts = request.body.result.contexts; // https://dialogflow.com/docs/contexts
   let requestSource = (request.body.originalRequest) ? request.body.originalRequest.source : undefined;
   const googleAssistantRequest = 'google'; // Constant to identify Google Assistant requests
-  const app = new DialogflowApp({request: request, response: response});
+  const app = new DialogflowApp({ request: request, response: response });
   // Create handlers for Dialogflow actions as well as a 'default' handler
+
+
+
   const actionHandlers = {
     // The default welcome intent has been matched, welcome the user (https://dialogflow.com/docs/events#default_welcome_intent)
-    'HRA' :() => {
-        sendResponse(" your infos: type =  " + parameters['type'] + " company=  " + parameters["company"] + " cost= " + parameters["cost"] + "other params" + parameters ["registerNr"] );
+    'HRA': () => {
+
+
+      var values = [
+        [
+          "time", "name" , parameters['which'], parameters["company"],  parameters["cost"] , parameters["registerNr"]
+        ],
+
+      ];
+
+      var body = {
+        values: values
+      };
+      sheets.spreadsheets.values.append({
+        auth: jwtClient,
+        spreadsheetId: spreadsheetId,
+        range: range,
+        valueInputOption: "RAW",
+        resource: body
+      }, function (err, result) {
+        if (err) {
+          // Handle error
+          console.log(err);
+        } else {
+          console.log('%d cells updated.', result.updatedCells);
+        }
+      });
+
+      sendResponse(" your infos: type =  " + parameters['which'] +
+        " company= " + parameters["company"] +
+        " cost= " + parameters["cost"] +
+        " other params: " + parameters["registerNr"]);
 
     },
-    
 
-    'test2' :() => {
+
+    'test2': () => {
       sendResponse('The second Test was successfull!')
-  },
-  
+    },
+
     'input.welcome': () => {
       // Use the Actions on Google lib to respond to Google requests; for other requests use JSON
       if (requestSource === googleAssistantRequest) {
@@ -82,8 +151,8 @@ function processV1Request (request, response) {
   }
   // Run the proper handler function to handle the request from Dialogflow
   actionHandlers[action]();
-    // Function to send correctly formatted Google Assistant responses to Dialogflow which are then sent to the user
-  function sendGoogleResponse (responseToUser) {
+  // Function to send correctly formatted Google Assistant responses to Dialogflow which are then sent to the user
+  function sendGoogleResponse(responseToUser) {
     if (typeof responseToUser === 'string') {
       app.ask(responseToUser); // Google Assistant response
     } else {
@@ -105,7 +174,7 @@ function processV1Request (request, response) {
     }
   }
   // Function to send correctly formatted responses to Dialogflow which are then sent to the user
-  function sendResponse (responseToUser) {
+  function sendResponse(responseToUser) {
     // if the response is a string send it as a response to the user
     if (typeof responseToUser === 'string') {
       let responseJson = {};
@@ -133,21 +202,23 @@ const googleRichResponse = app.buildRichResponse()
   .addSimpleResponse('This is the first simple response for Google Assistant')
   .addSuggestions(
     ['Suggestion Chip', 'Another Suggestion Chip'])
-    // Create a basic card and add it to the rich response
+  // Create a basic card and add it to the rich response
   .addBasicCard(app.buildBasicCard(`This is a basic card.  Text in a
  basic card can include "quotes" and most other unicode characters
  including emoji 📱.  Basic cards also support some markdown
  formatting like *emphasis* or _italics_, **strong** or __bold__,
  and ***bold itallic*** or ___strong emphasis___ as well as other things
  like line  \nbreaks`) // Note the two spaces before '\n' required for a
-                        // line break to be rendered in the card
+    // line break to be rendered in the card
     .setSubtitle('This is a subtitle')
     .setTitle('Title: this is a title')
     .addButton('This is a button', 'https://assistant.google.com/')
     .setImage('https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png',
       'Image alternate text'))
-  .addSimpleResponse({ speech: 'This is another simple response',
-    displayText: 'This is the another simple response 💁' });
+  .addSimpleResponse({
+    speech: 'This is another simple response',
+    displayText: 'This is the another simple response 💁'
+  });
 // Rich responses for Slack and Facebook for v1 webhook requests
 const richResponsesV1 = {
   'slack': {
@@ -192,7 +263,7 @@ const richResponsesV1 = {
 /*
 * Function to handle v2 webhook requests from Dialogflow
 */
-function processV2Request (request, response) {
+function processV2Request(request, response) {
   // An action is a string used to identify what needs to be done in fulfillment
   let action = (request.body.queryResult.action) ? request.body.queryResult.action : 'default';
   // Parameters are any entites that Dialogflow has extracted from the request.
@@ -231,10 +302,10 @@ function processV2Request (request, response) {
   // Run the proper handler function to handle the request from Dialogflow
   actionHandlers[action]();
   // Function to send correctly formatted responses to Dialogflow which are then sent to the user
-  function sendResponse (responseToUser) {
+  function sendResponse(responseToUser) {
     // if the response is a string send it as a response to the user
     if (typeof responseToUser === 'string') {
-      let responseJson = {fulfillmentText: responseToUser}; // displayed response
+      let responseJson = { fulfillmentText: responseToUser }; // displayed response
       response.json(responseJson); // Send response to Dialogflow
     } else {
       // If the response to the user includes rich responses or contexts send them to Dialogflow
