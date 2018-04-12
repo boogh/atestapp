@@ -103,20 +103,14 @@
                                 <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                               </ActivityAction.Argument>
                               <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_37">
-                                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Double Click" sap2010:WorkflowViewState.IdRef="Click_28" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  main.search'" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
                                   <ui:Click.CursorPosition>
-                                    <ui:CursorPosition Position="Center">
-                                      <ui:CursorPosition.OffsetX>
-                                        <InArgument x:TypeArguments="x:Int32" />
-                                      </ui:CursorPosition.OffsetX>
-                                      <ui:CursorPosition.OffsetY>
-                                        <InArgument x:TypeArguments="x:Int32" />
-                                      </ui:CursorPosition.OffsetY>
-                                    </ui:CursorPosition>
+                                    <ui:CursorPosition OffsetX="68" OffsetY="5" Position="TopLeft" />
                                   </ui:Click.CursorPosition>
                                   <ui:Click.Target>
-                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="9b6f04c14691c1bd7e0e324002b79976" Selector="&lt;webctrl id='main.search' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d8b7c8a4dfd6d395308de6ef5d3a42d8" Selector="&lt;webctrl id='main.search' tag='A' /&gt;" WaitForReady="COMPLETE" />
                                   </ui:Click.Target>
+                                  <sap2010:WorkflowViewState.IdRef>Click_30</sap2010:WorkflowViewState.IdRef>
                                 </ui:Click>
                                 <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'SELECT'" sap2010:WorkflowViewState.IdRef="SelectItem_8" Item="HRA">
                                   <ui:SelectItem.Items>
@@ -133,7 +127,7 @@
                                     <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e6da8eb0fc444f93612adc2705b5a218" Selector="&lt;webctrl name='registerArt' tag='SELECT' /&gt;" WaitForReady="COMPLETE" />
                                   </ui:SelectItem.Target>
                                 </ui:SelectItem>
-                                <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TEXTAREA'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_12" SendWindowMessages="False" SimulateType="True" Text="[companyName]">
+                                <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TEXTAREA'" EmptyField="True" sap2010:WorkflowViewState.IdRef="TypeInto_12" SendWindowMessages="False" SimulateType="True" Text="[companyName]">
                                   <ui:TypeInto.Target>
                                     <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f10c7a027c1d82044327731ef928ed15" Selector="&lt;webctrl tag='TEXTAREA' /&gt;" WaitForReady="COMPLETE" />
                                   </ui:TypeInto.Target>
@@ -652,7 +646,30 @@
       </ui:CloseApplication>
     </FlowStep>
     <x:Reference>__ReferenceID20</x:Reference>
-    <sads:DebugSymbol.Symbol>dyVEOlxwb2NcUkVGcmFtZXdvcmtUZXN0XHByb2Nlc3MtMS54YW1sYj8DkAUPAgEBQTRBaQIBBUI0QlECAQRDNENFAgECRwlSGgIBdFUNgQUZAgEGR78BR8YBAgF3TQ9PGgIBdVs+W0ICAQdgE5oCHwIBP5wCRpwCWwIBPZQDG5QDmAECATufAhufArEBAgE2ogIfqQIoAgEyrAIjrAK+AQIBL64CVq4CbAIBLYIDWoIDcwIBK4UDL4UD3gECASmxAiuxAp8BAgEntAIv/AI6AgEIThFOiQECAXZjGaABKwIBYKMBHacBMgIBW6kBT6kBZAIBWdQBU9QBmAECAVbXASnhATQCAUysASXQATcCAUCUA3KUA5UBAgE8nwKdAZ8CrgECATmfAjmfAkgCATenAkmnAmECATWkAkqkAloCATOsAnqsArsBAgEwhQOGAYUD2wECASqxAoIBsQKcAQIBKLYCYLYCawIBCrcCYLcCbQIBCbkCMe4CQwIBEu8CMfsCQwIBC2OoAmPPAgIBc2kfnQEqAgFhpQGbAaUB8QECAV+lAfwBpQGCAgIBXqMBXaMBcgIBXNgBK98BNAIBUOABK+ABvAECAU2sAasCrAHSAgIBS7IBK80BNgIBQbkCyQK5AvACAgEmvwI36wJCAgET7wLVAu8C/AICARH1Ajf4AkICAQxqIXgsAgFxeSGHATECAW6IASGMAS8CAWqNASGUASwCAWaVASGcASwCAWLdAVbdAY8BAgFT2gFX2gFkAgFR4AGDAeABuQECAU6zAS23AT4CAUO4AS3MAT0CAULDAjnKAkQCASHLAjnPAkcCAR3QAjnUAkcCARnVAjncAkQCARXdAjnqAkkCART2Ajn2AsYBAgEP9wI59wKkAgIBDXa0AXbgAQIBcnnPAXnUAQIBb4UBtAGFAecBAgFwigG0AYoB1gECAW2IAbYCiAHFAgIBa5IBtAGSAeoBAgFpjwFMjwFPAgFojwFAjwFDAgFnmgG0AZoB4wECAWWXAU2XAVECAWSXAUCXAUQCAWOzAeIDswHnAwIBSrUBwAG1AfEBAgFJswGeAbMBowECAUizAWmzAW8CAUezAXqzAYkBAgFFswHiAbMBngMCAUTIAswByAKuAgIBJMUCZcUCaAIBI8UCWMUCXAIBIs0CzAHNAoUCAgEgywLKAssC3AICAR7SAswB0gKEAgIBHNACywLQAtkCAgEa2gLMAdoCigICARjXAmTXAmcCARfXAljXAlsCARb2ApAB9gLDAQIBEPcCzgH3ApICAgEO</sads:DebugSymbol.Symbol>
+    <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_37">
+      <Sequence DisplayName="Recording Sequence" sap2010:WorkflowViewState.IdRef="Sequence_43">
+        <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'Registerp Page'" sap2010:WorkflowViewState.IdRef="BrowserScope_21" InformativeScreenshot="d2866a7bdac3fcdfeb52dfcd47641406" Selector="&lt;html title='Registerportal' /&gt;">
+          <ui:BrowserScope.Body>
+            <ActivityAction x:TypeArguments="x:Object">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  main.search'" sap2010:WorkflowViewState.IdRef="Click_29" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                  <ui:Click.CursorPosition>
+                    <ui:CursorPosition OffsetX="68" OffsetY="5" Position="TopLeft" />
+                  </ui:Click.CursorPosition>
+                  <ui:Click.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d8b7c8a4dfd6d395308de6ef5d3a42d8" Selector="&lt;webctrl id='main.search' tag='A' /&gt;" WaitForReady="COMPLETE" />
+                  </ui:Click.Target>
+                </ui:Click>
+              </Sequence>
+            </ActivityAction>
+          </ui:BrowserScope.Body>
+        </ui:BrowserScope>
+      </Sequence>
+    </FlowStep>
+    <sads:DebugSymbol.Symbol>dyVEOlxwb2NcUkVGcmFtZXdvcmtUZXN0XHByb2Nlc3MtMS54YW1sZD8DoQUPAgEBQTRBaQIBBUI0QlECAQRDNENFAgECRwlSGgIBdlUN+wQZAgEGR78BR8YBAgF5TQ9PGgIBd1s+W0ICAQdgE5QCHwIBP5YCRpYCWwIBPY4DG44DmAECATuZAhuZArEBAgE2nAIfowIoAgEypgIjpgK+AQIBL6gCVqgCbAIBLfwCWvwCcwIBK/8CL/8C3gECASmrAiurAp8BAgEnrgIv9gI6AgEIThFOiQECAXhjGZoBKwIBYJ0BHaEBMgIBW6MBT6MBZAIBWc4BU84BmAECAVbRASnbATQCAUymASXKATcCAUCOA3KOA5UBAgE8mQKdAZkCrgECATmZAjmZAkgCATehAkmhAmECATWeAkqeAloCATOmAnqmArsBAgEw/wKGAf8C2wECASqrAoIBqwKcAQIBKLACYLACawIBCrECYLECbQIBCbMCMegCQwIBEukCMfUCQwIBC2OoAmPPAgIBdWkflwEqAgFhnwGbAZ8B8QECAV+fAfwBnwGCAgIBXp0BXZ0BcgIBXNIBK9kBNAIBUNoBK9oBvAECAU2mAasCpgHSAgIBS6wBK8cBNgIBQbMCyQKzAvACAgEmuQI35QJCAgET6QLVAukC/AICARHvAjfyAkICAQxqIXIsAgFxcyGBATECAW6CASGGAS8CAWqHASGOASwCAWaPASGWASwCAWLXAVbXAY8BAgFT1AFX1AFkAgFR2gGDAdoBuQECAU6tAS2xAT4CAUOyAS3GAT0CAUK9AjnEAkQCASHFAjnJAkcCAR3KAjnOAkcCARnPAjnWAkQCARXXAjnkAkkCARTwAjnwAsYBAgEP8QI58QKkAgIBDW+0AW/gAQIBdGxNbFACAXNsQGxEAgFyc88Bc9QBAgFvf7QBf+cBAgFwhAG0AYQB1gECAW2CAbUCggHEAgIBa4wBtAGMAeoBAgFpiQFMiQFPAgFoiQFAiQFDAgFnlAG0AZQB4wECAWWRAU2RAVECAWSRAUCRAUQCAWOtAeIDrQHnAwIBSq8BwAGvAfEBAgFJrQGeAa0BowECAUitAWmtAW8CAUetAXqtAYkBAgFFrQHiAa0BngMCAUTCAswBwgKuAgIBJL8CZb8CaAIBI78CWL8CXAIBIscCzAHHAoUCAgEgxQLKAsUC3AICAR7MAswBzAKEAgIBHMoCywLKAtkCAgEa1ALMAdQCigICARjRAmTRAmcCARfRAljRAlsCARbwApAB8ALDAQIBEPECzgHxApICAgEO</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -670,14 +687,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="OpenBrowser_2" sap:VirtualizedContainerService.HintSize="200,52">
+      <sap2010:ViewStateData Id="OpenBrowser_2" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Click_28" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Click_30" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="SelectItem_8" sap:VirtualizedContainerService.HintSize="314,134" />
       <sap2010:ViewStateData Id="TypeInto_12" sap:VirtualizedContainerService.HintSize="314,134" />
       <sap2010:ViewStateData Id="Click_25" sap:VirtualizedContainerService.HintSize="314,106" />
@@ -689,7 +706,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_19" sap:VirtualizedContainerService.HintSize="200,52">
+      <sap2010:ViewStateData Id="BrowserScope_19" sap:VirtualizedContainerService.HintSize="414,1016">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -697,7 +714,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="UiElementExists_2" sap:VirtualizedContainerService.HintSize="200,52" />
+      <sap2010:ViewStateData Id="UiElementExists_2" sap:VirtualizedContainerService.HintSize="200,51" />
       <sap2010:ViewStateData Id="ExtractData_9" sap:VirtualizedContainerService.HintSize="416,106" />
       <sap2010:ViewStateData Id="Click_27" sap:VirtualizedContainerService.HintSize="314,106" />
       <sap2010:ViewStateData Id="Sequence_41" sap:VirtualizedContainerService.HintSize="336,230">
@@ -715,18 +732,18 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_20" sap:VirtualizedContainerService.HintSize="200,52" />
+      <sap2010:ViewStateData Id="BrowserScope_20" sap:VirtualizedContainerService.HintSize="200,51" />
       <sap2010:ViewStateData Id="FlowStep_35">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">10,454</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="WriteLine_12" sap:VirtualizedContainerService.HintSize="242,62" />
-      <sap2010:ViewStateData Id="Sequence_40" sap:VirtualizedContainerService.HintSize="200,52">
+      <sap2010:ViewStateData Id="WriteLine_12" sap:VirtualizedContainerService.HintSize="242,61" />
+      <sap2010:ViewStateData Id="Sequence_40" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -737,7 +754,7 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">90,604</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">290,630 515,630 515,200 430,200</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -767,7 +784,7 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">230,284</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">330,336 330,366 310,366 310,416.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -776,7 +793,7 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">230,174</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">330,226 330,284</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -791,16 +808,16 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="BrowserScope_18" sap:VirtualizedContainerService.HintSize="414,522" />
-      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="200,52" />
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="200,51" />
       <sap2010:ViewStateData Id="FlowStep_31">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">50,724</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Flowchart_6" sap:VirtualizedContainerService.HintSize="200,52">
+      <sap2010:ViewStateData Id="Flowchart_6" sap:VirtualizedContainerService.HintSize="618,902">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -820,8 +837,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_3" sap:VirtualizedContainerService.HintSize="210,62" />
-      <sap2010:ViewStateData Id="WriteLine_4" sap:VirtualizedContainerService.HintSize="210,62">
+      <sap2010:ViewStateData Id="WriteLine_3" sap:VirtualizedContainerService.HintSize="210,61" />
+      <sap2010:ViewStateData Id="WriteLine_4" sap:VirtualizedContainerService.HintSize="210,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -866,7 +883,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="BrowserScope_15" sap:VirtualizedContainerService.HintSize="414,430" />
-      <sap2010:ViewStateData Id="Sequence_22" sap:VirtualizedContainerService.HintSize="200,52">
+      <sap2010:ViewStateData Id="Sequence_22" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -877,7 +894,7 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">10,534</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -885,12 +902,12 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">25,429</av:Point>
-            <av:Size x:Key="ShapeSize">210,62</av:Size>
+            <av:Size x:Key="ShapeSize">210,61</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">130,491 130,521 110,521 110,534</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_6" sap:VirtualizedContainerService.HintSize="210,62">
+      <sap2010:ViewStateData Id="WriteLine_6" sap:VirtualizedContainerService.HintSize="210,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -901,16 +918,16 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">565,519</av:Point>
-            <av:Size x:Key="ShapeSize">210,62</av:Size>
+            <av:Size x:Key="ShapeSize">210,61</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowDecision_2" sap:VirtualizedContainerService.HintSize="71,87">
+      <sap2010:ViewStateData Id="FlowDecision_2" sap:VirtualizedContainerService.HintSize="70,87">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <av:Point x:Key="ShapeLocation">434.5,546.5</av:Point>
-            <av:Size x:Key="ShapeSize">71,87</av:Size>
+            <av:Size x:Key="ShapeSize">70,87</av:Size>
             <av:PointCollection x:Key="FalseConnector">505.5,590 535.5,590 535.5,550 565,550</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -930,7 +947,7 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">405,379</av:Point>
-            <av:Size x:Key="ShapeSize">210,62</av:Size>
+            <av:Size x:Key="ShapeSize">210,61</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">510,441 510,471 350,471 350,476.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -953,7 +970,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_5" sap:VirtualizedContainerService.HintSize="210,62">
+      <sap2010:ViewStateData Id="WriteLine_5" sap:VirtualizedContainerService.HintSize="210,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -964,7 +981,7 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">105,319</av:Point>
-            <av:Size x:Key="ShapeSize">210,62</av:Size>
+            <av:Size x:Key="ShapeSize">210,61</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -983,7 +1000,7 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">40,74</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">140,126 140,156 137.5,156 137.5,216.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -1082,7 +1099,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="CommentOut_2" sap:VirtualizedContainerService.HintSize="539,254" />
-      <sap2010:ViewStateData Id="Sequence_18" sap:VirtualizedContainerService.HintSize="200,52">
+      <sap2010:ViewStateData Id="Sequence_18" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1093,12 +1110,12 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">430,124</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="SendMail_1" sap:VirtualizedContainerService.HintSize="314,145" />
-      <sap2010:ViewStateData Id="Sequence_21" sap:VirtualizedContainerService.HintSize="200,52">
+      <sap2010:ViewStateData Id="Sequence_21" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1109,12 +1126,12 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">560,674</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="SendMail_2" sap:VirtualizedContainerService.HintSize="314,145" />
-      <sap2010:ViewStateData Id="Sequence_27" sap:VirtualizedContainerService.HintSize="200,52">
+      <sap2010:ViewStateData Id="Sequence_27" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1125,11 +1142,11 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">40,694.5</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_28" sap:VirtualizedContainerService.HintSize="200,52">
+      <sap2010:ViewStateData Id="Sequence_28" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1140,7 +1157,7 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">40,604.02</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -1155,7 +1172,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="While_1" sap:VirtualizedContainerService.HintSize="464,446" />
-      <sap2010:ViewStateData Id="Sequence_30" sap:VirtualizedContainerService.HintSize="200,52">
+      <sap2010:ViewStateData Id="Sequence_30" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1166,12 +1183,12 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">250,814.5</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="WriteLine_10" sap:VirtualizedContainerService.HintSize="210,61" />
-      <sap2010:ViewStateData Id="Sequence_32" sap:VirtualizedContainerService.HintSize="200,52">
+      <sap2010:ViewStateData Id="Sequence_32" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1182,7 +1199,7 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">500,814</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -1202,7 +1219,7 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">190,284</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -1210,12 +1227,12 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">200,164.5</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">300,216.5 300,246.5 290,246.5 290,284</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CloseApplication_1" sap:VirtualizedContainerService.HintSize="200,52">
+      <sap2010:ViewStateData Id="CloseApplication_1" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1226,7 +1243,31 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">190,384</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Click_29" sap:VirtualizedContainerService.HintSize="314,106" />
+      <sap2010:ViewStateData Id="Sequence_42" sap:VirtualizedContainerService.HintSize="336,230">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="BrowserScope_21" sap:VirtualizedContainerService.HintSize="414,376" />
+      <sap2010:ViewStateData Id="Sequence_43" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_37">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">190,484</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
