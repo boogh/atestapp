@@ -121,7 +121,7 @@
       <Variable x:TypeArguments="x:Boolean" Default="False" Name="debug" />
     </Flowchart.Variables>
     <Flowchart.StartNode>
-      <FlowStep x:Name="__ReferenceID16" sap2010:WorkflowViewState.IdRef="FlowStep_34">
+      <FlowStep x:Name="__ReferenceID14" sap2010:WorkflowViewState.IdRef="FlowStep_34">
         <Flowchart DisplayName="Search and scraping data" sap2010:WorkflowViewState.IdRef="Flowchart_6">
           <Flowchart.StartNode>
             <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_33">
@@ -619,12 +619,12 @@
           <x:Reference>__ReferenceID6</x:Reference>
         </Flowchart>
         <FlowStep.Next>
-          <FlowDecision x:Name="__ReferenceID17" Condition="[resultTableExists]" sap2010:WorkflowViewState.IdRef="FlowDecision_6">
+          <FlowDecision x:Name="__ReferenceID15" Condition="[resultTableExists]" sap2010:WorkflowViewState.IdRef="FlowDecision_6">
             <FlowDecision.True>
-              <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_18">
+              <FlowStep x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="FlowStep_18">
                 <ui:OutputDataTable DataTable="[extractedDT]" DisplayName="Output names" sap2010:WorkflowViewState.IdRef="OutputDataTable_3" Text="[resultedNames]" />
                 <FlowStep.Next>
-                  <FlowStep x:Name="__ReferenceID12" sap2010:WorkflowViewState.IdRef="FlowStep_19">
+                  <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_19">
                     <Assign DisplayName="Assign : Number of results" sap2010:WorkflowViewState.IdRef="Assign_1">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:Int32">[numberOfResult]</OutArgument>
@@ -634,12 +634,12 @@
                       </Assign.Value>
                     </Assign>
                     <FlowStep.Next>
-                      <FlowStep x:Name="__ReferenceID9" sap2010:WorkflowViewState.IdRef="FlowStep_17">
+                      <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_17">
                         <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[&quot;Number of Results are :  &quot;+numberOfResult.ToString + Environment.NewLine + &quot; The results are: &quot; + resultedNames]" />
                         <FlowStep.Next>
-                          <FlowDecision x:Name="__ReferenceID13" Condition="[numberOfResult &gt; 1]" DisplayName="if multiple results" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+                          <FlowDecision x:Name="__ReferenceID11" Condition="[numberOfResult &gt; 1]" DisplayName="if multiple results" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
                             <FlowDecision.True>
-                              <FlowStep x:Name="__ReferenceID18" sap2010:WorkflowViewState.IdRef="FlowStep_38">
+                              <FlowStep x:Name="__ReferenceID16" sap2010:WorkflowViewState.IdRef="FlowStep_38">
                                 <Sequence DisplayName="Handling Multiple Results" sap2010:WorkflowViewState.IdRef="Sequence_47">
                                   <Sequence.Variables>
                                     <Variable x:TypeArguments="x:String" Default="Hamrisaac" Name="userNameHandel" />
@@ -663,9 +663,9 @@
                               </FlowStep>
                             </FlowDecision.True>
                             <FlowDecision.False>
-                              <FlowDecision x:Name="__ReferenceID11" Condition="[numberOfResult = 1]" DisplayName="if one result" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+                              <FlowDecision x:Name="__ReferenceID9" Condition="[numberOfResult = 1]" DisplayName="if one result" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
                                 <FlowDecision.True>
-                                  <FlowStep x:Name="__ReferenceID15" sap2010:WorkflowViewState.IdRef="FlowStep_24">
+                                  <FlowStep x:Name="__ReferenceID13" sap2010:WorkflowViewState.IdRef="FlowStep_24">
                                     <Sequence DisplayName="Downloading" sap2010:WorkflowViewState.IdRef="Sequence_22">
                                       <Sequence.Variables>
                                         <Variable x:TypeArguments="x:String" Default="Hamrisaac" Name="userNameHandel" />
@@ -771,7 +771,7 @@
               </FlowStep>
             </FlowDecision.True>
             <FlowDecision.False>
-              <FlowStep x:Name="__ReferenceID14" sap2010:WorkflowViewState.IdRef="FlowStep_21">
+              <FlowStep x:Name="__ReferenceID12" sap2010:WorkflowViewState.IdRef="FlowStep_21">
                 <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="Result is zero refining the query" />
               </FlowStep>
             </FlowDecision.False>
@@ -779,394 +779,17 @@
         </FlowStep.Next>
       </FlowStep>
     </Flowchart.StartNode>
-    <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_14">
-      <Sequence DisplayName="Search &amp; scraping data from website" sap2010:WorkflowViewState.IdRef="Sequence_18">
-        <Sequence.Variables>
-          <Variable x:TypeArguments="x:Boolean" Name="resultTableExists" />
-        </Sequence.Variables>
-        <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Entering search params" sap2010:WorkflowViewState.IdRef="BrowserScope_17" InformativeScreenshot="8168a323bb8cb63723666c41a5672258" Selector="&lt;html title='Registerportal' /&gt;">
-          <ui:BrowserScope.Body>
-            <ActivityAction x:TypeArguments="x:Object">
-              <ActivityAction.Argument>
-                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-              </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_34">
-                <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'SELECT'" sap2010:WorkflowViewState.IdRef="SelectItem_7" Item="HRA">
-                  <ui:SelectItem.Items>
-                    <scg:List x:TypeArguments="x:String" Capacity="8">
-                      <x:String>alle</x:String>
-                      <x:String>HRA</x:String>
-                      <x:String>HRB</x:String>
-                      <x:String>GnR</x:String>
-                      <x:String>PR</x:String>
-                      <x:String>VR</x:String>
-                    </scg:List>
-                  </ui:SelectItem.Items>
-                  <ui:SelectItem.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e6da8eb0fc444f93612adc2705b5a218" Selector="&lt;webctrl name='registerArt' tag='SELECT' /&gt;" WaitForReady="COMPLETE" />
-                  </ui:SelectItem.Target>
-                </ui:SelectItem>
-                <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TEXTAREA'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_11" SendWindowMessages="False" SimulateType="True" Text="[companyName]">
-                  <ui:TypeInto.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f10c7a027c1d82044327731ef928ed15" Selector="&lt;webctrl tag='TEXTAREA' /&gt;" WaitForReady="COMPLETE" />
-                  </ui:TypeInto.Target>
-                </ui:TypeInto>
-                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  schlagwortOption1'" sap2010:WorkflowViewState.IdRef="Click_20" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                  <ui:Click.CursorPosition>
-                    <ui:CursorPosition OffsetX="4" OffsetY="5" Position="TopLeft" />
-                  </ui:Click.CursorPosition>
-                  <ui:Click.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3760de42e20d1e5c3e3dcb507364ef10" Selector="&lt;webctrl id='schlagwortOption1' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                  </ui:Click.Target>
-                </ui:Click>
-                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT'" sap2010:WorkflowViewState.IdRef="Click_21" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                  <ui:Click.CursorPosition>
-                    <ui:CursorPosition OffsetX="23" OffsetY="11" Position="TopLeft" />
-                  </ui:Click.CursorPosition>
-                  <ui:Click.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d1ddcc03f54e0185362840751a32c476" Selector="&lt;webctrl name='btnSuche' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                  </ui:Click.Target>
-                </ui:Click>
-              </Sequence>
-            </ActivityAction>
-          </ui:BrowserScope.Body>
-        </ui:BrowserScope>
-        <ui:UiElementExists DisplayName="Element Exists 'TABLE'" Exists="[resultTableExists]" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
-          <ui:UiElementExists.Target>
-            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="539778e36caaabf1624f63e99c543127" Selector="&lt;html title='Registerportal' /&gt;&lt;webctrl parentid='inhalt' tag='TABLE' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
-          </ui:UiElementExists.Target>
-        </ui:UiElementExists>
-        <If Condition="[resultTableExists]" sap2010:WorkflowViewState.IdRef="If_1">
-          <If.Then>
-            <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="ScrapingNames" sap2010:WorkflowViewState.IdRef="BrowserScope_16" InformativeScreenshot="43d9dca05176d7b296d18cba37dfd5af" Selector="&lt;html title='Registerportal' /&gt;">
-              <ui:BrowserScope.Body>
-                <ActivityAction x:TypeArguments="x:Object">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                  </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_33">
-                    <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[extractedDT]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;column attr='text' name='Column1' exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' class='RegPortErg_FirmaKopf' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap2010:WorkflowViewState.IdRef="ExtractData_7" MaxNumberOfResults="100">
-                      <ui:ExtractData.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d8c5d8e06a70e3a8ea23e499c5c37d43" Selector="&lt;webctrl parentid='inhalt' tag='TBODY' /&gt;" WaitForReady="COMPLETE" />
-                      </ui:ExtractData.Target>
-                    </ui:ExtractData>
-                    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Double Click" sap2010:WorkflowViewState.IdRef="Click_23" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
-                      <ui:Click.CursorPosition>
-                        <ui:CursorPosition Position="Center">
-                          <ui:CursorPosition.OffsetX>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:CursorPosition.OffsetX>
-                          <ui:CursorPosition.OffsetY>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:CursorPosition.OffsetY>
-                        </ui:CursorPosition>
-                      </ui:Click.CursorPosition>
-                      <ui:Click.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="9b6f04c14691c1bd7e0e324002b79976" Selector="&lt;webctrl id='main.search' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
-                      </ui:Click.Target>
-                    </ui:Click>
-                  </Sequence>
-                </ActivityAction>
-              </ui:BrowserScope.Body>
-            </ui:BrowserScope>
-          </If.Then>
-        </If>
-        <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_2">
-          <ui:CommentOut.Body>
-            <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_35">
-              <Flowchart DisplayName="Flowchart_search_eachQuery" sap2010:WorkflowViewState.IdRef="Flowchart_5">
-                <Flowchart.StartNode>
-                  <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_16">
-                    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Entering search params" sap2010:WorkflowViewState.IdRef="BrowserScope_11" InformativeScreenshot="8168a323bb8cb63723666c41a5672258" Selector="&lt;html title='Registerportal' /&gt;">
-                      <ui:BrowserScope.Body>
-                        <ActivityAction x:TypeArguments="x:Object">
-                          <ActivityAction.Argument>
-                            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                          </ActivityAction.Argument>
-                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_19">
-                            <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'SELECT'" sap2010:WorkflowViewState.IdRef="SelectItem_6" Item="HRA">
-                              <ui:SelectItem.Items>
-                                <scg:List x:TypeArguments="x:String" Capacity="8">
-                                  <x:String>alle</x:String>
-                                  <x:String>HRA</x:String>
-                                  <x:String>HRB</x:String>
-                                  <x:String>GnR</x:String>
-                                  <x:String>PR</x:String>
-                                  <x:String>VR</x:String>
-                                </scg:List>
-                              </ui:SelectItem.Items>
-                              <ui:SelectItem.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e6da8eb0fc444f93612adc2705b5a218" Selector="&lt;webctrl name='registerArt' tag='SELECT' /&gt;" WaitForReady="COMPLETE" />
-                              </ui:SelectItem.Target>
-                            </ui:SelectItem>
-                            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TEXTAREA'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_6" SendWindowMessages="False" SimulateType="True" Text="[companyName]">
-                              <ui:TypeInto.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f10c7a027c1d82044327731ef928ed15" Selector="&lt;webctrl tag='TEXTAREA' /&gt;" WaitForReady="COMPLETE" />
-                              </ui:TypeInto.Target>
-                            </ui:TypeInto>
-                            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  schlagwortOption1'" sap2010:WorkflowViewState.IdRef="Click_12" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                              <ui:Click.CursorPosition>
-                                <ui:CursorPosition OffsetX="4" OffsetY="5" Position="TopLeft" />
-                              </ui:Click.CursorPosition>
-                              <ui:Click.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3760de42e20d1e5c3e3dcb507364ef10" Selector="&lt;webctrl id='schlagwortOption1' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                              </ui:Click.Target>
-                            </ui:Click>
-                            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT'" sap2010:WorkflowViewState.IdRef="Click_13" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                              <ui:Click.CursorPosition>
-                                <ui:CursorPosition OffsetX="23" OffsetY="11" Position="TopLeft" />
-                              </ui:Click.CursorPosition>
-                              <ui:Click.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d1ddcc03f54e0185362840751a32c476" Selector="&lt;webctrl name='btnSuche' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                              </ui:Click.Target>
-                            </ui:Click>
-                          </Sequence>
-                        </ActivityAction>
-                      </ui:BrowserScope.Body>
-                    </ui:BrowserScope>
-                    <FlowStep.Next>
-                      <FlowStep x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="FlowStep_15">
-                        <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="ScrapingNames" sap2010:WorkflowViewState.IdRef="BrowserScope_12" InformativeScreenshot="43d9dca05176d7b296d18cba37dfd5af" Selector="&lt;html title='Registerportal' /&gt;">
-                          <ui:BrowserScope.Body>
-                            <ActivityAction x:TypeArguments="x:Object">
-                              <ActivityAction.Argument>
-                                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                              </ActivityAction.Argument>
-                              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_20">
-                                <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[extractedDT]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;column attr='text' name='Column1' exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' class='RegPortErg_FirmaKopf' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap2010:WorkflowViewState.IdRef="ExtractData_6" MaxNumberOfResults="100">
-                                  <ui:ExtractData.Target>
-                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d8c5d8e06a70e3a8ea23e499c5c37d43" Selector="&lt;webctrl parentid='inhalt' tag='TBODY' /&gt;" WaitForReady="COMPLETE" />
-                                  </ui:ExtractData.Target>
-                                </ui:ExtractData>
-                              </Sequence>
-                            </ActivityAction>
-                          </ui:BrowserScope.Body>
-                        </ui:BrowserScope>
-                      </FlowStep>
-                    </FlowStep.Next>
-                  </FlowStep>
-                </Flowchart.StartNode>
-                <x:Reference>__ReferenceID7</x:Reference>
-                <x:Reference>__ReferenceID8</x:Reference>
-              </Flowchart>
-            </Sequence>
-          </ui:CommentOut.Body>
-        </ui:CommentOut>
-      </Sequence>
-    </FlowStep>
+    <x:Reference>__ReferenceID7</x:Reference>
+    <x:Reference>__ReferenceID8</x:Reference>
     <x:Reference>__ReferenceID9</x:Reference>
     <x:Reference>__ReferenceID10</x:Reference>
     <x:Reference>__ReferenceID11</x:Reference>
     <x:Reference>__ReferenceID12</x:Reference>
     <x:Reference>__ReferenceID13</x:Reference>
     <x:Reference>__ReferenceID14</x:Reference>
-    <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_23">
-      <Sequence DisplayName="TODO:SendingEmail_MultipleResults" sap2010:WorkflowViewState.IdRef="Sequence_21">
-        <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="bla bla" DisplayName="Send SMTP Mail Message" Email="Chatbotpoctestemail@gmail.com" EnableSSL="True" From="boogh313@gmail.com" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="False" Name="me" Password="lwmknbksptvwqfgn" Port="465" SecureConnection="SslOnConnect" Server="smtp.gmail.com" Subject="Result of your HRA request" To="uitestemail@mailinator.com">
-          <ui:SendMail.Files>
-            <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
-          </ui:SendMail.Files>
-        </ui:SendMail>
-      </Sequence>
-    </FlowStep>
     <x:Reference>__ReferenceID15</x:Reference>
-    <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_27">
-      <Sequence DisplayName="TODO:SendingEmail_AttachedFile" sap2010:WorkflowViewState.IdRef="Sequence_27">
-        <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="bla bla" DisplayName="Send SMTP Mail Message" Email="Chatbotpoctestemail@gmail.com" EnableSSL="True" From="boogh313@gmail.com" sap2010:WorkflowViewState.IdRef="SendMail_2" IsBodyHtml="False" Name="me" Password="lwmknbksptvwqfgn" Port="465" SecureConnection="SslOnConnect" Server="smtp.gmail.com" Subject="Result of your HRA request" To="uitestemail@mailinator.com">
-          <ui:SendMail.Files>
-            <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
-          </ui:SendMail.Files>
-        </ui:SendMail>
-      </Sequence>
-    </FlowStep>
-    <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_28">
-      <Sequence DisplayName="TODO: UpdatingSheet" sap2010:WorkflowViewState.IdRef="Sequence_28" />
-    </FlowStep>
-    <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_30">
-      <Sequence DisplayName="TODO: Sending Email with no result" sap2010:WorkflowViewState.IdRef="Sequence_32">
-        <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_10" Text=" YOUR REQUEST HAD NO RESULTS!" />
-      </Sequence>
-    </FlowStep>
     <x:Reference>__ReferenceID16</x:Reference>
-    <x:Reference>__ReferenceID17</x:Reference>
-    <x:Reference>__ReferenceID18</x:Reference>
-    <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_41">
-      <Sequence DisplayName="Recording Sequence" sap2010:WorkflowViewState.IdRef="Sequence_51">
-        <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'Registerp Page'" sap2010:WorkflowViewState.IdRef="BrowserScope_21" InformativeScreenshot="03fd1587a69b5737638eda1a978aa4ad" Selector="&lt;html title='Registerportal' /&gt;">
-          <ui:BrowserScope.Body>
-            <ActivityAction x:TypeArguments="x:Object">
-              <ActivityAction.Argument>
-                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-              </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_50">
-                <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select item 'SELECT'" sap2010:WorkflowViewState.IdRef="SelectItem_9" Item="Aachen">
-                  <ui:SelectItem.Items>
-                    <scg:List x:TypeArguments="x:String" Capacity="256">
-                      <x:String>alle</x:String>
-                      <x:String>Aachen</x:String>
-                      <x:String>Altenburg</x:String>
-                      <x:String>Amberg</x:String>
-                      <x:String>Ansbach</x:String>
-                      <x:String>Apolda</x:String>
-                      <x:String>Arnsberg</x:String>
-                      <x:String>Arnstadt</x:String>
-                      <x:String>Arnstadt Zweigstelle Ilmenau</x:String>
-                      <x:String>Aschaffenburg</x:String>
-                      <x:String>Augsburg</x:String>
-                      <x:String>Aurich</x:String>
-                      <x:String>Bad Hersfeld</x:String>
-                      <x:String>Bad Homburg v.d.H.</x:String>
-                      <x:String>Bad Kreuznach</x:String>
-                      <x:String>Bad Oeynhausen</x:String>
-                      <x:String>Bad Salzungen</x:String>
-                      <x:String>Bamberg</x:String>
-                      <x:String>Bayreuth</x:String>
-                      <x:String>Berlin (Charlottenburg)</x:String>
-                      <x:String>Bielefeld</x:String>
-                      <x:String>Bochum</x:String>
-                      <x:String>Bonn</x:String>
-                      <x:String>Braunschweig</x:String>
-                      <x:String>Bremen</x:String>
-                      <x:String>Chemnitz</x:String>
-                      <x:String>Coburg</x:String>
-                      <x:String>Coesfeld</x:String>
-                      <x:String>Cottbus</x:String>
-                      <x:String>Darmstadt</x:String>
-                      <x:String>Deggendorf</x:String>
-                      <x:String>Dortmund</x:String>
-                      <x:String>Dresden</x:String>
-                      <x:String>Duisburg</x:String>
-                      <x:String>Düren</x:String>
-                      <x:String>Düsseldorf</x:String>
-                      <x:String>Eisenach</x:String>
-                      <x:String>Erfurt</x:String>
-                      <x:String>Eschwege</x:String>
-                      <x:String>Essen</x:String>
-                      <x:String>Flensburg</x:String>
-                      <x:String>Frankfurt am Main</x:String>
-                      <x:String>Frankfurt/Oder</x:String>
-                      <x:String>Freiburg</x:String>
-                      <x:String>Friedberg</x:String>
-                      <x:String>Fritzlar</x:String>
-                      <x:String>Fulda</x:String>
-                      <x:String>Fürth</x:String>
-                      <x:String>Gelsenkirchen</x:String>
-                      <x:String>Gera</x:String>
-                      <x:String>Gießen</x:String>
-                      <x:String>Gotha</x:String>
-                      <x:String>Göttingen</x:String>
-                      <x:String>Greiz</x:String>
-                      <x:String>Gütersloh</x:String>
-                      <x:String>Hagen</x:String>
-                      <x:String>Hamburg</x:String>
-                      <x:String>Hamm</x:String>
-                      <x:String>Hanau</x:String>
-                      <x:String>Hannover</x:String>
-                      <x:String>Heilbad Heiligenstadt</x:String>
-                      <x:String>Hildburghausen</x:String>
-                      <x:String>Hildesheim</x:String>
-                      <x:String>Hof</x:String>
-                      <x:String>Homburg</x:String>
-                      <x:String>Ingolstadt</x:String>
-                      <x:String>Iserlohn</x:String>
-                      <x:String>Jena</x:String>
-                      <x:String>Kaiserslautern</x:String>
-                      <x:String>Kassel</x:String>
-                      <x:String>Kempten (Allgäu)</x:String>
-                      <x:String>Kiel</x:String>
-                      <x:String>Kleve</x:String>
-                      <x:String>Koblenz</x:String>
-                      <x:String>Köln</x:String>
-                      <x:String>Königstein</x:String>
-                      <x:String>Korbach</x:String>
-                      <x:String>Krefeld</x:String>
-                      <x:String>Landau</x:String>
-                      <x:String>Landshut</x:String>
-                      <x:String>Langenfeld</x:String>
-                      <x:String>Lebach</x:String>
-                      <x:String>Leipzig</x:String>
-                      <x:String>Lemgo</x:String>
-                      <x:String>Limburg</x:String>
-                      <x:String>Lübeck</x:String>
-                      <x:String>Ludwigshafen a.Rhein (Ludwigshafen)</x:String>
-                      <x:String>Lüneburg</x:String>
-                      <x:String>Mainz</x:String>
-                      <x:String>Mannheim</x:String>
-                      <x:String>Marburg</x:String>
-                      <x:String>Meiningen</x:String>
-                      <x:String>Memmingen</x:String>
-                      <x:String>Merzig</x:String>
-                      <x:String>Mönchengladbach</x:String>
-                      <x:String>Montabaur</x:String>
-                      <x:String>Mühlhausen</x:String>
-                      <x:String>München</x:String>
-                      <x:String>Münster</x:String>
-                      <x:String>Neubrandenburg</x:String>
-                      <x:String>Neunkirchen</x:String>
-                      <x:String>Neuruppin</x:String>
-                      <x:String>Neuss</x:String>
-                      <x:String>Nordhausen</x:String>
-                      <x:String>Nürnberg</x:String>
-                      <x:String>Offenbach am Main</x:String>
-                      <x:String>Oldenburg (Oldenburg)</x:String>
-                      <x:String>Osnabrück</x:String>
-                      <x:String>Ottweiler</x:String>
-                      <x:String>Paderborn</x:String>
-                      <x:String>Passau</x:String>
-                      <x:String>Pinneberg</x:String>
-                      <x:String>Pößneck</x:String>
-                      <x:String>Pößneck Zweigstelle Bad Lobenstein</x:String>
-                      <x:String>Potsdam</x:String>
-                      <x:String>Recklinghausen</x:String>
-                      <x:String>Regensburg</x:String>
-                      <x:String>Rostock</x:String>
-                      <x:String>Rudolstadt</x:String>
-                      <x:String>Rudolstadt Zweigstelle Saalfeld</x:String>
-                      <x:String>Saarbrücken</x:String>
-                      <x:String>Saarlouis</x:String>
-                      <x:String>Schweinfurt</x:String>
-                      <x:String>Schwerin</x:String>
-                      <x:String>Siegburg</x:String>
-                      <x:String>Siegen</x:String>
-                      <x:String>Sömmerda</x:String>
-                      <x:String>Sondershausen</x:String>
-                      <x:String>Sonneberg</x:String>
-                      <x:String>Stadthagen</x:String>
-                      <x:String>Stadtroda</x:String>
-                      <x:String>Steinfurt</x:String>
-                      <x:String>Stendal</x:String>
-                      <x:String>St. Ingbert (St Ingbert)</x:String>
-                      <x:String>Stralsund</x:String>
-                      <x:String>Straubing</x:String>
-                      <x:String>Stuttgart</x:String>
-                      <x:String>St. Wendel (St Wendel)</x:String>
-                      <x:String>Suhl</x:String>
-                      <x:String>Tostedt</x:String>
-                      <x:String>Traunstein</x:String>
-                      <x:String>Ulm</x:String>
-                      <x:String>Völklingen</x:String>
-                      <x:String>Walsrode</x:String>
-                      <x:String>Weiden i. d. OPf.</x:String>
-                      <x:String>Weimar</x:String>
-                      <x:String>Wetzlar</x:String>
-                      <x:String>Wiesbaden</x:String>
-                      <x:String>Wittlich</x:String>
-                      <x:String>Wuppertal</x:String>
-                      <x:String>Würzburg</x:String>
-                      <x:String>Zweibrücken</x:String>
-                    </scg:List>
-                  </ui:SelectItem.Items>
-                  <ui:SelectItem.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e7d8a9a055de9cedbc075f646e0a7a97" Selector="&lt;webctrl name='registergericht' tag='SELECT' /&gt;" WaitForReady="COMPLETE" />
-                  </ui:SelectItem.Target>
-                </ui:SelectItem>
-              </Sequence>
-            </ActivityAction>
-          </ui:BrowserScope.Body>
-        </ui:BrowserScope>
-      </Sequence>
-    </FlowStep>
-    <sads:DebugSymbol.Symbol>dzVEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XFNlYXJjaGluZ1Byb2Nlc3MueGFtbHlxA5IJDwIBAXY0dj0CAQR3NHc4AgEDeTV5PAIBAn0J7AQVAgFF7gQ87gRRAgFDhwYRhwaOAQIBQfEEEfEEpwECATz0BBX7BB4CATj+BBn+BPsBAgE2gAVMgAVlAgE0mgVQmgVmAgEynQUl+AUwAgETgwUhlgUsAgEFgAEPhAQhAgFthwQTiwQoAgFojQRFjQRaAgFmuARJuASOAQIBY8wEH9oEKgIBWbsEH8QEKgIBUpAEG7QELQIBRocGaIcGiwECAULxBJMB8QSkAQIBP/EEL/EEPgIBPfkEP/kEVwIBO/YEQPYEUAIBOf4EcP4E+AECATefBVafBWECARWgBVagBWMCARSiBSepBTACAS6qBSeqBZwBAgEsqwUn4AU5AgEX4QUn9wU3AgEWhQVShQVdAgEHhgVShgVfAgEGiAUjjwUsAgEPkAUjkAXTAQIBDZEFI5UFKAIBCIABngKAAcUCAwGVAYYBFYEEIAIBbokEkQGJBOcBAgFsiQTyAYkE+AECAWuHBFOHBGgCAWnNBCHUBCoCAV/VBCHZBCYCAVq8BCHDBCoCAVOQBKECkATIAgIBUZYEIbEELAIBR6QFU6QFYgIBL6oFf6oFmQECAS2rBb8CqwXmAgIBK7EFLd0FOAIBGI0FTo0FZgIBEooFT4oFXgIBEJAFe5AF0AECAQ6RBTGRBToCAQmTBSeTBaICAgELhwEXjgEiAwGRAY8BF5MBJQMBjQGUAReoARwDAYMBqQEX8AMcAgF38QMX+AMiAgFz+QMXgAQiAgFv0gRM0gRhAgFizwRNzwRcAgFg1QQv1QQ4AgFb1wQl1wTbAQIBXcEETMEEhQECAVa+BE2+BFoCAVSXBCObBDQCAUmcBCOwBDMCAUi1BS+8BToCASa9BS/BBT0CASLCBS/GBT0CAR7HBS/OBToCARrPBS/cBT8CARmTBbwBkwWQAgIBDIwBqgGMAdYBAwGUAYkBQ4kBRgMBkwGJATaJAToDAZIBkQGqAZEBzAEDAZABjwGrAo8BugIDAY4BlAEllAFEAwGEAZYBG5oBKQMBiQGdARumASkDAYYBqQElqQFHAgF4qwEbywIrAgF+zgIb7gMrAgF69gOqAfYD4AECAXbzA0LzA0UCAXXzAzbzAzkCAXT+A6oB/gPZAQIBcvsDQ/sDRwIBcfsDNvsDOgIBcNcEugHXBMkBAgFelwTYA5cE3QMCAVCZBLYBmQTnAQIBT5cElAGXBJkBAgFOlwRflwRlAgFNlwRwlwR/AgFLlwTYAZcElAMCAUq6BcIBugWkAgIBKbcFW7cFXgIBKLcFTrcFUgIBJ78FwgG/BfsBAgElvQXAAr0F0gICASPEBcIBxAX6AQIBIcIFwQLCBc8CAgEfzAXCAcwFgAICAR3JBVrJBV0CARzJBU7JBVECARuYAa4BmAHjAQMBjAGWAbAClgG5AgMBigGfAa4BnwHjAQMBiAGjASGjAVADAYcBqwFnqwFtAwGBAasBxgGrAfABAgF/yQKuAckC5QEDAYIBzgJnzgJtAgF8zgLGAc4CzAECAXvsA64B7APlAQIBfQ==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dzVEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XFNlYXJjaGluZ1Byb2Nlc3MueGFtbHlxA5kGDwIBAXY0dj0CAQR3NHc4AgEDeTV5PAIBAn0J7AQVAgFF7gQ87gRRAgFDhwYRhwaOAQIBQfEEEfEEpwECATz0BBX7BB4CATj+BBn+BPsBAgE2gAVMgAVlAgE0mgVPmgVlAgEynQUl+AUwAgETgwUhlgUsAgEFgAEPhAQhAgFthwQTiwQoAgFojQRFjQRaAgFmuARJuASOAQIBY8wEH9oEKgIBWbsEH8QEKgIBUpAEG7QELQIBRocGaIcGiwECAULxBJMB8QSkAQIBP/EEL/EEPgIBPfkEP/kEVwIBO/YEQPYEUAIBOf4EcP4E+AECATefBVafBWECARWgBVagBWMCARSiBSepBTACAS6qBSeqBZwBAgEsqwUn4AU5AgEX4QUn9wU3AgEWhQVShQVdAgEHhgVShgVfAgEGiAUjjwUsAgEPkAUjkAXTAQIBDZEFI5UFKAIBCIABngKAAcUCAwGVAYYBFYEEIAIBbokEkQGJBOcBAgFsiQTyAYkE+AECAWuHBFOHBGgCAWnNBCHUBCoCAV/VBCHZBCYCAVq8BCHDBCoCAVOQBKECkATIAgIBUZYEIbEELAIBR6QFU6QFYgIBL6oFf6oFmQECAS2rBb8CqwXmAgIBK7EFLd0FOAIBGI0FTo0FZgIBEooFT4oFXgIBEJAFe5AF0AECAQ6RBTGRBToCAQmTBSeTBaICAgELhwEXjgEiAwGRAY8BF5MBJQMBjQGUAReoARwDAYMBqQEX8AMcAgF38QMX+AMiAgFz+QMXgAQiAgFv0gRM0gRhAgFizwRNzwRcAgFg1QQv1QQ4AgFb1wQl1wTbAQIBXcEETMEEhQECAVa+BE2+BFoCAVSXBCObBDQCAUmcBCOwBDMCAUi1BS+8BToCASa9BS/BBT0CASLCBS/GBT0CAR7HBS/OBToCARrPBS/cBT8CARmTBbwBkwWQAgIBDIwBqgGMAdYBAwGUAYkBQ4kBRgMBkwGJATaJAToDAZIBkQGqAZEBzAEDAZABjwGrAo8BugIDAY4BlAEllAFEAwGEAZYBG5oBKQMBiQGdARumASkDAYYBqQElqQFHAgF4qwEbywIrAgF+zgIb7gMrAgF69gOqAfYD4AECAXbzA0LzA0UCAXXzAzbzAzkCAXT+A6oB/gPZAQIBcvsDQ/sDRwIBcfsDNvsDOgIBcNcEugHXBMkBAgFelwTYA5cE3QMCAVCZBLYBmQTnAQIBT5cElAGXBJkBAgFOlwRflwRlAgFNlwRwlwR/AgFLlwTYAZcElAMCAUq6BcIBugWkAgIBKbcFW7cFXgIBKLcFTrcFUgIBJ78FwgG/BfsBAgElvQXAAr0F0gICASPEBcIBxAX6AQIBIcIFwQLCBc8CAgEfzAXCAcwFgAICAR3JBVrJBV0CARzJBU7JBVECARuYAa4BmAHjAQMBjAGWAbAClgG5AgMBigGfAa4BnwHjAQMBiAGjASGjAVADAYcBqwFnqwFtAwGBAasBxgGrAfABAgF/yQKuAckC5QEDAYIBzgJnzgJtAgF8zgLGAc4CzAECAXvsA64B7APlAQIBfQ==</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -1398,7 +1021,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="CommentOut_5" sap:VirtualizedContainerService.HintSize="538,780" />
-      <sap2010:ViewStateData Id="Sequence_22" sap:VirtualizedContainerService.HintSize="560,1196">
+      <sap2010:ViewStateData Id="Sequence_22" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1496,202 +1119,6 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="SelectItem_7" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="TypeInto_11" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="Click_20" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Click_21" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Sequence_34" sap:VirtualizedContainerService.HintSize="336,724">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_17" sap:VirtualizedContainerService.HintSize="539,52">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="UiElementExists_1" sap:VirtualizedContainerService.HintSize="539,106" />
-      <sap2010:ViewStateData Id="ExtractData_7" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Click_23" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Sequence_33" sap:VirtualizedContainerService.HintSize="336,376">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_16" sap:VirtualizedContainerService.HintSize="414,522" />
-      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="539,672" />
-      <sap2010:ViewStateData Id="SelectItem_6" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="TypeInto_6" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="Click_12" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Click_13" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Sequence_19" sap:VirtualizedContainerService.HintSize="336,724">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_11" sap:VirtualizedContainerService.HintSize="200,52">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ExtractData_6" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Sequence_20" sap:VirtualizedContainerService.HintSize="336,230">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_12" sap:VirtualizedContainerService.HintSize="200,52" />
-      <sap2010:ViewStateData Id="FlowStep_15">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">200,228.5</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_16">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">190,124.5</av:Point>
-            <av:Size x:Key="ShapeSize">200,52</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">290,175.5 290,205.5 300,205.5 300,228.5</av:PointCollection>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Flowchart_5" sap:VirtualizedContainerService.HintSize="200,52">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
-            <av:Size x:Key="ShapeSize">60,75</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,107.5 290,107.5 290,124.5</av:PointCollection>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_35" sap:VirtualizedContainerService.HintSize="222,176">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_2" sap:VirtualizedContainerService.HintSize="539,254" />
-      <sap2010:ViewStateData Id="Sequence_18" sap:VirtualizedContainerService.HintSize="200,51">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_14">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">430,124</av:Point>
-            <av:Size x:Key="ShapeSize">200,51</av:Size>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="SendMail_1" sap:VirtualizedContainerService.HintSize="314,145" />
-      <sap2010:ViewStateData Id="Sequence_21" sap:VirtualizedContainerService.HintSize="200,51">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_23">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">550,744.5</av:Point>
-            <av:Size x:Key="ShapeSize">200,51</av:Size>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="SendMail_2" sap:VirtualizedContainerService.HintSize="314,145" />
-      <sap2010:ViewStateData Id="Sequence_27" sap:VirtualizedContainerService.HintSize="200,51">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_27">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">20,794.5</av:Point>
-            <av:Size x:Key="ShapeSize">200,51</av:Size>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_28" sap:VirtualizedContainerService.HintSize="200,51">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_28">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">0,724.5</av:Point>
-            <av:Size x:Key="ShapeSize">200,51</av:Size>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_10" sap:VirtualizedContainerService.HintSize="210,61" />
-      <sap2010:ViewStateData Id="Sequence_32" sap:VirtualizedContainerService.HintSize="200,51">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_30">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">500,814</av:Point>
-            <av:Size x:Key="ShapeSize">200,51</av:Size>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="SelectItem_9" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="Sequence_50" sap:VirtualizedContainerService.HintSize="336,258">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_21" sap:VirtualizedContainerService.HintSize="414,404" />
-      <sap2010:ViewStateData Id="Sequence_51" sap:VirtualizedContainerService.HintSize="200,51">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_41">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">500,914</av:Point>
-            <av:Size x:Key="ShapeSize">200,51</av:Size>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Flowchart_3" sap:VirtualizedContainerService.HintSize="1048,1001">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1704,7 +1131,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="SearchingProcess_1" sap:VirtualizedContainerService.HintSize="1088,1081" />
+      <sap2010:ViewStateData Id="SearchingProcess_1" sap:VirtualizedContainerService.HintSize="1088,1201" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
