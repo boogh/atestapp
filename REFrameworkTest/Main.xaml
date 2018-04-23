@@ -167,6 +167,7 @@
                                   <OutArgument x:TypeArguments="x:String" x:Key="type">[type]</OutArgument>
                                   <OutArgument x:TypeArguments="x:String" x:Key="regNr">[regNr]</OutArgument>
                                   <OutArgument x:TypeArguments="x:String" x:Key="regCourt">[regCourt]</OutArgument>
+                                  <OutArgument x:TypeArguments="x:String" x:Key="email">[email]</OutArgument>
                                 </ui:InvokeWorkflowFile.Arguments>
                               </ui:InvokeWorkflowFile>
                             </Sequence>
@@ -220,6 +221,7 @@
                                     <InArgument x:TypeArguments="x:String" x:Key="regNr">[regNr]</InArgument>
                                     <InArgument x:TypeArguments="x:String" x:Key="type">[type]</InArgument>
                                     <InArgument x:TypeArguments="x:String" x:Key="regCourt">[regCourt]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="email">[email]</InArgument>
                                   </ui:InvokeWorkflowFile.Arguments>
                                 </ui:InvokeWorkflowFile>
                               </Sequence>
@@ -382,8 +384,9 @@
       <Variable x:TypeArguments="sd:DataTable" Name="TransactionData" />
       <Variable x:TypeArguments="x:String" Name="regNr" />
       <Variable x:TypeArguments="x:String" Name="regCourt" />
+      <Variable x:TypeArguments="x:String" Name="email" />
     </StateMachine.Variables>
-    <sads:DebugSymbol.Symbol>dylEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XE1haW4ueGFtbHdGA4MDEgIBAfgCM/gCNgMBtgH6AjP6AjYDAbUBiQEP4AIXAgF3ygEXpwIfAgE5sAIXzwIfAgEsSAfuAg8CAQKLARPFAR4DAYYBrAIrrAJKAwGEAaoCF6oC4QEDAYAB1AIr1AI+AgF+0gIX0gK6AQIBfNoCK9oCYAIBe9gCF9gCXgIBecwBG6ACJgIBQKMClgGjArMBAgE9pAKfAaQCxgECATylAooCpQLJAgIBO7ICG80CJgIBLkoLhAEWAgEO5QIj5QI7AgEL4wIP4wKdAQIBCusCI+sCPgIBCOkCD+kC9gECAQSMARWMAYsBAwGyAY0BFcQBGgMBhwGqAoUBqgLeAQMBgQHSAoUB0gK3AQIBfdgCJ9gCMQIBes4BH+EBKgIBZIQCH54CKgIBS+kBI/ABLAIBRvgBI/8BLAIBQbQCH7oCKgIBNsICI8kCLgIBL0wPcRoCARR5E4ABHAIBD+kCfekC8wECAQWMAXqMAYgBAwGzAY0BI40BMQMBiAGPARmZASQDAasBnAEZwgEkAwGKAc8BIdYBKgIBc9cBIeABOQIBZYYCI5ICOwIBUJoCJ5oChwICAUzuAV7uAWkCAUnrAV/rAXYCAUf9AVH9AVwCAUT6AVL6AV8CAUK1AiG5AjkCATfDAiXDAokCAgEyxAIlyAI9AgEwTRFUGgIBKFURaxYCARlsEXApAgEVfkF+TAIBEntCe08CARCQARuQAakBAwGwAZEBG5gBJAMBrAGeAR2sASgDAZYBtAEhvgEsAwGLAdQBXNQBZQIBdtEBXdEBdAIBdNsBYNsBbQIBcdwBWtwBYQIBb90BWd0BXwIBbdoBeNoBgAECAWvZAWvZAXwCAWnXAdsB1wHpAQIBaN4BXd4BZwIBZokCaIkCdQIBYooCf4oClgECAWCPAmuPAngCAV6OAmuOAnECAVyMAmeMAnQCAVqIAnqIAoIBAgFYiwJtiwJ+AgFWjQJtjQKAAQIBVJACZ5ACdgIBUoYC4AGGAoUCAgFRmgKWAZoChAICAU21At0BtQKCAgIBOMMCkwHDAoYCAgEzxALdAcQC/gECATFSP1JIAgErT0BPTQIBKVUfVTQCARpXFWkgAgEcbmhucAIBF2zNAWzxAQIBFpABjgGQAaYBAwGxAZYBSpYBUwMBrwGTAUuTAVwDAa0BnwEfqwE3AwGXAbUBI7UBvgIDAZABtgEjvQEsAwGMAVgXXi8CASJfF2MvAgEgZBdoKQIBHaQBZaQBdAMBqQGjAWujAXwDAacBoQFmoQF5AwGlAaYBX6YBbAMBowGoAVmoAWADAaEBpwFYpwFeAwGfAaIBdqIBfgMBnQGlAWylAX0DAZsBnwHaAZ8B/QEDAZoBqQFcqQFmAwGYAbUBkgG1AbsCAwGRAbsBUrsBWwMBjwG4AVO4AWQDAY0BXHBceAIBJljPAVjvAQIBJVtcW3cCASRaWFpoAgEjX9ABX/EBAgEhZmNmkAECAR4=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dylEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XE1haW4ueGFtbHlGA4YDEgIBAfoCM/oCNgMBugH8AjP8AjYDAbkBiQEP4gIXAgF5ywEXqQIfAgE5sgIX0QIfAgEsSAfwAg8CAQKLARPGAR4DAYgBrgIrrgJKAwGGAawCF6wC4QEDAYIB1gIr1gI+AwGAAdQCF9QCugECAX7cAivcAmACAX3aAhfaAl4CAXvNARuiAiYCAUClApYBpQKzAQIBPaYCnwGmAsYBAgE8pwKKAqcCyQICATu0AhvPAiYCAS5KC4QBFgIBDucCI+cCOwIBC+UCD+UCnQECAQrtAiPtAj4CAQjrAg/rAvYBAgEEjAEVjAGLAQMBtgGNARXFARoDAYkBrAKFAawC3gEDAYMB1AKFAdQCtwECAX/aAifaAjECAXzPAR/jASoCAWSGAh+gAioCAUvrASPyASwCAUb6ASOBAiwCAUG2Ah+8AioCATbEAiPLAi4CAS9MD3EaAgEUeROAARwCAQ/rAn3rAvMBAgEFjAF6jAGIAQMBtwGNASONATEDAYoBjwEZmQEkAwGvAZwBGcMBJAMBjAHQASHXASoCAXXYASHiATkCAWWIAiOUAjsCAVCcAiecAocCAgFM8AFe8AFpAgFJ7QFf7QF2AgFH/wFR/wFcAgFE/AFS/AFfAgFCtwIhuwI5AgE3xQIlxQKJAgIBMsYCJcoCPQIBME0RVBoCAShVEWsWAgEZbBFwKQIBFX5BfkwCARJ7QntPAgEQkAEbkAGpAQMBtAGRARuYASQDAbABngEdrQEoAwGYAbUBIb8BLAMBjQHVAVzVAWUCAXjSAV3SAXQCAXbgAVrgAWECAXPcAWDcAW0CAXHdAVrdAWECAW/eAVneAV8CAW3bAXjbAYABAgFr2gFr2gF8AgFp2AHbAdgB6QECAWjfAV3fAWcCAWaLAmiLAnUCAWKMAn+MApYBAgFgkQJrkQJ4AgFekAJrkAJxAgFcjgJnjgJ0AgFaigJ6igKCAQIBWI0CbY0CfgIBVo8CbY8CgAECAVSSAmeSAnYCAVKIAuABiAKFAgIBUZwClgGcAoQCAgFNtwLdAbcCggICATjFApMBxQKGAgIBM8YC3QHGAv4BAgExUj9SSAIBK09AT00CASlVH1U0AgEaVxVpIAIBHG5obnACARdszQFs8QECARaQAY4BkAGmAQMBtQGWAUqWAVMDAbMBkwFLkwFcAwGxAZ8BH6wBNwMBmQG2ASO2Ab4CAwGSAbcBI74BLAMBjgFYF14vAgEiXxdjLwIBIGQXaCkCAR2kAWWkAXQDAa0BowFrowF8AwGrAaoBWaoBYAMBqQGhAWahAXkDAacBpgFfpgFsAwGlAagBWagBYAMBowGnAVinAV4DAaEBogF2ogF+AwGfAaUBbKUBfQMBnQGfAdoBnwH9AQMBnAGpAVypAWYDAZoBtgGSAbYBuwIDAZMBvAFSvAFbAwGRAbkBU7kBZAMBjwFccFx4AgEmWM8BWO8BAgElW1xbdwIBJFpYWmgCASNf0AFf8QECASFmY2aQAQIBHg==</sads:DebugSymbol.Symbol>
   </StateMachine>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -430,7 +433,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_2" sap:VirtualizedContainerService.HintSize="504,1154">
+      <sap2010:ViewStateData Id="TryCatch_2" sap:VirtualizedContainerService.HintSize="504,1274">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -530,7 +533,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="TryCatch_6" sap:VirtualizedContainerService.HintSize="417.6,320" />
-      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="418,560">
+      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="418,600">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -569,7 +572,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_3" sap:VirtualizedContainerService.HintSize="444,1018">
+      <sap2010:ViewStateData Id="State_3" sap:VirtualizedContainerService.HintSize="211,142">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">285,380</av:Point>
@@ -643,7 +646,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Delay_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Transition_8" sap:VirtualizedContainerService.HintSize="430,505">
+      <sap2010:ViewStateData Id="Transition_8" sap:VirtualizedContainerService.HintSize="430,580">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:PointCollection x:Key="ConnectorLocation">493.95,278.5 493.95,298.8 535.5,298.8 535.5,268.8 505.5,268.8</av:PointCollection>
@@ -652,7 +655,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_4" sap:VirtualizedContainerService.HintSize="231,97">
+      <sap2010:ViewStateData Id="State_4" sap:VirtualizedContainerService.HintSize="827,1312">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">274.5,181.5</av:Point>
@@ -664,8 +667,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Comment_1" sap:VirtualizedContainerService.HintSize="314.4,75.2" />
-      <sap2010:ViewStateData Id="Transition_2" sap:VirtualizedContainerService.HintSize="430,537">
+      <sap2010:ViewStateData Id="Comment_1" sap:VirtualizedContainerService.HintSize="314,74" />
+      <sap2010:ViewStateData Id="Transition_2" sap:VirtualizedContainerService.HintSize="430,796">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Int32 x:Key="SrcConnectionPointIndex">39</x:Int32>

@@ -17,6 +17,7 @@
     <x:Property Name="regNr" Type="InArgument(x:String)" />
     <x:Property Name="type" Type="InArgument(x:String)" />
     <x:Property Name="regCourt" Type="InArgument(x:String)" />
+    <x:Property Name="email" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -111,6 +112,7 @@
               <InArgument x:TypeArguments="x:String" x:Key="typeReq">[type]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="regNr">[regNr]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="regCourt">[regCourt]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="email">[email]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
           <ui:CloseApplication DisplayName="Close application 'iexplore.exe  ...'" sap2010:WorkflowViewState.IdRef="CloseApplication_1">
@@ -131,7 +133,7 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
-    <sads:DebugSymbol.Symbol>dyxEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XFByb2Nlc3MueGFtbBRJA4cBDgIBAU8FhQEQAgECVAl5FAIBBoEBDYEByQECAQNVC1wUAgEYXQtoHAIBE2kLcyMCAQl0C3ghAgEHgQGiAYEBtwECAQRaNlpRAgEbVzdXPAIBGV3BAV3IAQIBFmMRZRwCARRtSm1XAgERcERwSwIBD29Gb0wCAQ1ptwFpzgECAQxxR3FRAgEKdp4BdsUBAgEIZBNkiwECARU=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dyxEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XFByb2Nlc3MueGFtbBVKA4kBDgIBAVAFhwEQAgECVQl7FAIBBoMBDYMByQECAQNWC10UAgEaXgtpHAIBFWoLdSMCAQl2C3ohAgEHgwGiAYMBtwECAQRbNltRAgEdWDdYPAIBG17BAV7IAQIBGGQRZhwCARZzRHNLAgETbkpuVwIBEXFEcUsCAQ9wRnBMAgENarcBas4BAgEMckdyUQIBCnieAXjFAQIBCGUTZYsBAgEX</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
