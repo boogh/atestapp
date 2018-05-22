@@ -13,11 +13,7 @@
   <x:Members>
     <x:Property Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
-    <x:Property Name="companyName" Type="InArgument(x:String)" />
-    <x:Property Name="regNr" Type="InArgument(x:String)" />
-    <x:Property Name="type" Type="InArgument(x:String)" />
-    <x:Property Name="regCourt" Type="InArgument(x:String)" />
-    <x:Property Name="email" Type="InArgument(x:String)" />
+    <x:Property Name="status" Type="OutArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -76,50 +72,141 @@
       <Variable x:TypeArguments="ui:QueueItem" Name="currentTransactionItem" />
       <Variable x:TypeArguments="ui:UiElement" Name="searchUiElement" />
       <Variable x:TypeArguments="x:String" Name="url" />
+      <Variable x:TypeArguments="x:String" Name="companyName" />
+      <Variable x:TypeArguments="x:String" Name="type" />
+      <Variable x:TypeArguments="x:String" Name="regNr" />
+      <Variable x:TypeArguments="x:String" Name="regCourt" />
+      <Variable x:TypeArguments="x:String" Name="email" />
+      <Variable x:TypeArguments="x:String" Name="id" />
+      <Variable x:TypeArguments="x:String" Name="creation_date" />
+      <Variable x:TypeArguments="x:String" Name="regStatus" />
     </Sequence.Variables>
     <TryCatch DisplayName="Try catch" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Variables>
         <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="config" />
       </TryCatch.Variables>
       <TryCatch.Try>
-        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_4">
-          <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[url]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[in_Config("url").ToString]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open browser" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_2" NewSession="True" Private="False" Url="[url]">
-            <ui:OpenBrowser.Body>
-              <ActivityAction x:TypeArguments="x:Object">
-                <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                </ActivityAction.Argument>
-                <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                  <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize window" sap2010:WorkflowViewState.IdRef="MaximizeWindow_1" />
-                </Sequence>
-              </ActivityAction>
-            </ui:OpenBrowser.Body>
-          </ui:OpenBrowser>
-          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow file" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="SearchingProcess.xaml">
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence DisplayName="Searching_Process" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <Sequence DisplayName="Getting fields from TransactionItem" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <Assign DisplayName="Assign TransactionField1" sap2010:WorkflowViewState.IdRef="Assign_2">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[companyName]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("companyName").ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign TransactionField1" sap2010:WorkflowViewState.IdRef="Assign_3">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[type]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("type").ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign TransactionField1" sap2010:WorkflowViewState.IdRef="Assign_4">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[regNr]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("regNr").ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign TransactionField1" sap2010:WorkflowViewState.IdRef="Assign_5">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[regCourt]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("regCourt").ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[email]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("email").ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_7">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[id]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("id").ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_8">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[creation_date]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("creation_date").ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[regStatus]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("regStatus").ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[url]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_Config("url").ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open browser" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_2" NewSession="True" Private="False" Url="[url]">
+              <ui:OpenBrowser.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize window" sap2010:WorkflowViewState.IdRef="MaximizeWindow_1" />
+                  </Sequence>
+                </ActivityAction>
+              </ui:OpenBrowser.Body>
+            </ui:OpenBrowser>
+            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke workflow file" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="SearchingProcess.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <OutArgument x:TypeArguments="x:String" x:Key="resultedNames" />
+                <InArgument x:TypeArguments="x:String" x:Key="companyName">[companyName]</InArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="requestStatus">[status]</OutArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="typeReq">[type]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="regNr">[regNr]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="regCourt">[regCourt]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="email">[email]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="regStatus">[regStatus]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <ui:CloseApplication DisplayName="Close application 'iexplore.exe  ...'" sap2010:WorkflowViewState.IdRef="CloseApplication_1">
+              <ui:CloseApplication.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="b73d9abd913d9eb93dd9990bc0bf4280" Selector="&lt;html title='Registerportal' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:CloseApplication.Target>
+            </ui:CloseApplication>
+          </Sequence>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Updating google sheet" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="googleSheet.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <OutArgument x:TypeArguments="x:Int32" x:Key="numberOfResult" />
-              <OutArgument x:TypeArguments="x:String" x:Key="resultedNames" />
-              <InArgument x:TypeArguments="x:String" x:Key="companyName">[companyName]</InArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="requestStatus" />
-              <InArgument x:TypeArguments="x:String" x:Key="typeReq">[type]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="id">[id]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="creation_date">[creation_date]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="status">[status]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="email">[email]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="company">[companyName]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="regNr">[regNr]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="regCourt">[regCourt]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="email">[email]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="regStatus">[regStatus]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="type">[type]</InArgument>
+              <InArgument x:TypeArguments="ui:QueueItem" x:Key="transactionItem">[in_TransactionItem]</InArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="config">[in_Config]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
-          <ui:CloseApplication DisplayName="Close application 'iexplore.exe  ...'" sap2010:WorkflowViewState.IdRef="CloseApplication_1">
-            <ui:CloseApplication.Target>
-              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="b73d9abd913d9eb93dd9990bc0bf4280" Selector="&lt;html title='Registerportal' /&gt;" WaitForReady="INTERACTIVE" />
-            </ui:CloseApplication.Target>
-          </ui:CloseApplication>
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
@@ -133,10 +220,26 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
-    <sads:DebugSymbol.Symbol>dyxEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XFByb2Nlc3MueGFtbBVKA4kBDgIBAVAFhwEQAgECVQl7FAIBBoMBDYMByQECAQNWC10UAgEaXgtpHAIBFWoLdSMCAQl2C3ohAgEHgwGiAYMBtwECAQRbNltRAgEdWDdYPAIBG17BAV7IAQIBGGQRZhwCARZzRHNLAgETbkpuVwIBEXFEcUsCAQ9wRnBMAgENarcBas4BAgEMckdyUQIBCnieAXjFAQIBCGUTZYsBAgEX</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dyxEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XFByb2Nlc3MueGFtbD5GA+ABDgIBAVQF3gEQAgECWQnSARQCAQbaAQ3aAckBAgEDWgvCARYCAR/DAQvRASMCAQfaAaIB2gG3AQIBBFsNnAEYAgE8nQENpAEWAgE3pQENsAEeAgEysQENvAElAgEivQENwQEjAgEgyQFGyQFTAgEdyAFEyAFLAgEbzgFSzgFmAgEZzwFfzwFqAgEXzAFIzAFTAgEVxwFFxwFNAgETygFEygFLAgERzQFDzQFJAgEPxgFMxgFbAgENxQFBxQFFAgELwwG4AcMBygECAQrLAUfLAVECAQhcD2MYAgFZZA9rGAIBVWwPcxgCAVF0D3sYAgFNfA+DARgCAUmEAQ+LARgCAUWMAQ+TARgCAUGUAQ+bARgCAT2iATiiAVMCATqfATmfAT4CATilAcMBpQHKAQIBNasBE60BHgIBM7UBT7UBVwIBMLkBRrkBTQIBLrQBTLQBWQIBLLoBSroBVQIBKrcBRrcBTQIBKLYBSLYBTgIBJrEBuQGxAdABAgEluAFJuAFTAgEjvwGgAb8BxwECASFhOmF2AgFcXjteSAIBWmk6aW8CAVhmO2ZBAgFWcTpxcAIBVG47bkICAVJ5OnlzAgFQdjt2RQIBToEBOoEBcAIBTH47fkICAUqJATqJAW0CAUiGATuGAT8CAUaRATqRAXgCAUSOATuOAUoCAUKZATqZAXQCAUCWATuWAUYCAT6sARWsAY0BAgE0</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="314,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="314,60" />
       <sap2010:ViewStateData Id="MaximizeWindow_1" sap:VirtualizedContainerService.HintSize="200,22">
         <sap:WorkflowViewStateService.ViewState>
@@ -168,7 +271,16 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="336,548">
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="336,639">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_2" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="336,302">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -184,8 +296,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="418,775" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="440,956">
+      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="418,529" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="440,710">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -193,7 +305,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ProcessTransaction_1" sap:VirtualizedContainerService.HintSize="480,1196" />
+      <sap2010:ViewStateData Id="ProcessTransaction_1" sap:VirtualizedContainerService.HintSize="480,790" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

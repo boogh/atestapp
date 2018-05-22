@@ -16,11 +16,6 @@
     <x:Property Name="out_TransactionItem" Type="OutArgument(ui:QueueItem)" />
     <x:Property Name="out_TransactionID" Type="OutArgument(x:String)" />
     <x:Property Name="io_TransactionData" Type="InOutArgument(sd:DataTable)" />
-    <x:Property Name="companyName" Type="OutArgument(x:String)" />
-    <x:Property Name="type" Type="OutArgument(x:String)" />
-    <x:Property Name="regNr" Type="OutArgument(x:String)" />
-    <x:Property Name="regCourt" Type="OutArgument(x:String)" />
-    <x:Property Name="email" Type="OutArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -82,8 +77,7 @@
     <If Condition="[out_TransactionItem isNot Nothing]" DisplayName="If a new Item is fetched Grab it's significant data for logging" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
         <Sequence sap2010:Annotation.AnnotationText="Write data to the added fields that identify the Transaction" DisplayName="Write Transaction info in Logging Fields" sap2010:WorkflowViewState.IdRef="Sequence_2">
-          <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot; here  : &quot; +out_TransactionItem.ToString]" />
-          <Assign DisplayName="Assign TransactionID" sap2010:WorkflowViewState.IdRef="Assign_1">
+          <Assign sap2010:WorkflowViewState.IdRef="Assign_11">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[out_TransactionID]</OutArgument>
             </Assign.To>
@@ -91,62 +85,16 @@
               <InArgument x:TypeArguments="x:String">[now.ToString]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Assign TransactionField1" sap2010:WorkflowViewState.IdRef="Assign_2">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[companyName]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[out_TransactionItem.SpecificContent("companyName").ToString]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <Assign DisplayName="Assign TransactionField1" sap2010:WorkflowViewState.IdRef="Assign_4">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[type]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[out_TransactionItem.SpecificContent("type").ToString]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <Assign DisplayName="Assign TransactionField1" sap2010:WorkflowViewState.IdRef="Assign_5">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[regNr]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[out_TransactionItem.SpecificContent("regNr").ToString]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <Assign DisplayName="Assign TransactionField1" sap2010:WorkflowViewState.IdRef="Assign_6">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[regCourt]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[out_TransactionItem.SpecificContent("regCourt").ToString]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <Assign sap2010:WorkflowViewState.IdRef="Assign_7">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[email]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[out_TransactionItem.SpecificContent("email").ToString]</InArgument>
-            </Assign.Value>
-          </Assign>
         </Sequence>
       </If.Then>
     </If>
-    <sads:DebugSymbol.Symbol>d0FEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XEZyYW1ld29ya1xHZXRUcmFuc2FjdGlvbkRhdGEueGFtbBtQA4oBDgIBAVEFUe0BAgEfUgWIAQoCAQJRiQFRwgECASJR0wFR6gECASBSE1I4AgEDVAmGARQCAQRVC1WcAQIBHVYLXRQCARleC2UUAgEVZgttFAIBEW4LdRQCAQ12C30UAgEJfguFARQCAQVVYlWZAQIBHls2W0QCARxYN1hKAgEaYzZjcwIBGGA3YEQCARZrNmtsAgEUaDdoPQIBEnM2c20CARBwN3A+AgEOezZ7cAIBDHg3eEECAQqDATaDAW0CAQiAATeAAT4CAQY=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0FEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XEZyYW1ld29ya1xHZXRUcmFuc2FjdGlvbkRhdGEueGFtbApLA1wOAgEBTAVM7QECAQlNBVoKAgECTIkBTMIBAgEMTNMBTOoBAgEKTRNNOAIBA08JWBQCAQRQC1cUAgEFVTZVRAIBCFI3UkoCAQY=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
       <sap2010:ViewStateData Id="GetQueueItem_1" sap:VirtualizedContainerService.HintSize="464,22" />
-      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="242,61" />
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="264,827">
+      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="264,226">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -154,8 +102,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,975" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="486,1338">
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,374" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="486,737">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -163,7 +111,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="GetTransactionData_1" sap:VirtualizedContainerService.HintSize="526,1418" />
+      <sap2010:ViewStateData Id="GetTransactionData_1" sap:VirtualizedContainerService.HintSize="526,1217" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

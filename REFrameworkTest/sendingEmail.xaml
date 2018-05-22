@@ -104,15 +104,20 @@
           </Sequence>
         </ui:CommentOut.Body>
       </ui:CommentOut>
-      <Sequence DisplayName="Sending Email from outlook" sap2010:WorkflowViewState.IdRef="Sequence_2">
-        <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[body]" DisplayName="Send Outlook Mail Message" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="True" IsDraft="False" Subject="Results of your request " To="boogh313@gmail.com">
-          <ui:SendOutlookMail.Files>
-            <scg1:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
-          </ui:SendOutlookMail.Files>
-        </ui:SendOutlookMail>
-      </Sequence>
+      <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <Sequence DisplayName="Sending Email from outlook" sap2010:WorkflowViewState.IdRef="Sequence_2" />
+          </Sequence>
+        </ui:CommentOut.Body>
+      </ui:CommentOut>
+      <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[body]" DisplayName="Send Outlook Mail Message" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="True" IsDraft="False" Subject="Results of your request " To="boogh313@gmail.com">
+        <ui:SendOutlookMail.Files>
+          <scg1:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+        </ui:SendOutlookMail.Files>
+      </ui:SendOutlookMail>
     </Sequence>
-    <sads:DebugSymbol.Symbol>dzFEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XHNlbmRpbmdFbWFpbC54YW1sCRYHFjYBAk0DdA4CAQFRBXIQAgECUgdqFwIBCWsHcRICAQNsCXAeAgEEbKsCbL8CAgEIbH5shgECAQZsjQJspwICAQU=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dzFEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XHNlbmRpbmdFbWFpbC54YW1sCRYHFjYBAk0DeQ4CAQFRBXcQAgECUgdqFwIBCWsHcRcCAQhyB3YcAgEDcqkCcr0CAgEHcnxyhAECAQVyiwJypQICAQQ=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -135,29 +140,37 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="CommentOut_2" sap:VirtualizedContainerService.HintSize="456,574" />
-      <sap2010:ViewStateData Id="SendOutlookMail_1" sap:VirtualizedContainerService.HintSize="314,145" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="456,269">
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="200,99">
         <sap:WorkflowViewStateService.ViewState>
           <scg1:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg1:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="478,1007">
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="222,223">
         <sap:WorkflowViewStateService.ViewState>
           <scg1:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg1:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="500,1131">
+      <sap2010:ViewStateData Id="CommentOut_3" sap:VirtualizedContainerService.HintSize="456,301" />
+      <sap2010:ViewStateData Id="SendOutlookMail_1" sap:VirtualizedContainerService.HintSize="456,145" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="478,1224">
         <sap:WorkflowViewStateService.ViewState>
           <scg1:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg1:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="sendingEmail_1" sap:VirtualizedContainerService.HintSize="540,1451" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="500,1348">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg1:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="sendingEmail_1" sap:VirtualizedContainerService.HintSize="540,1428" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
