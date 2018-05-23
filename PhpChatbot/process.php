@@ -34,7 +34,7 @@ try{
 $headers = [
     'Accept: */*',
     'Content-Type: application/json',
-    'Authorization: Bearer 7850106a19344147a97d89af62bfd4b4'
+    'Authorization: Bearer e8c742654ff54aeaae6e555f2042fbb0'
 ];
 
 // open connection

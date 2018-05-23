@@ -1,14 +1,24 @@
+
+body {
+    background-color: #edeff2;
+    font-family: "Calibri", "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 450;
+  }
+  
 .topstrip{
-    width:99%;
-    overflow-y: scroll;
+    width:95%;
+    margin-left:10px;
+    /* overflow-y: scroll; */
     position:fixed;
     top:0px;
     height:50px;
-    background-color: black;
+    background-color: #9ca5fa;
     color:white;
-    text-align: right;
-    font-size: 16px;
+    text-align: center;
+    font-size: 20px;
     font-family: Georgia;
+    border-radius: 10px;
 }
 .topbar{
     display:block;
@@ -22,8 +32,7 @@
     display:block;
     width:80%;
     border-radius: 5px;
-    border:solid 1px black;
-    background-color: lightgreen;
+    background-color: rgb(207, 226, 169);
     float:right;
     margin: 10px;
     padding:5px;
@@ -35,14 +44,28 @@
     border-radius: 5px;
     margin: 10px;
     padding:5px;
-    border:solid 1px black;
     background-color: lightgray;
     float:left;
 }
 .inputbox{
-    outline:none;
-    width:98%;
-    height:98px;
-    position:fixed;
+    /* outline:; */
+    width:95%;
+    height:30px;
+    position: fixed;
     bottom:25px;
+    font-weight: 350;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: solid 2px #9ca5fa ; 
+    padding: 5px;
+}
+.list-group-item-css{
+    background-color: rgb(207, 226, 169);
+    border: 2px solid rgb(247, 253, 247);  
+    padding: 5px;
+    border-radius: 10px;
+}
+.scrolllist{
+    height: 200px ;
+    overflow-y: scroll;
 }
