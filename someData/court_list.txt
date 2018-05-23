@@ -1,0 +1,1097 @@
+{
+  "messages": [
+    {
+      "type": "simple_response",
+      "platform": "google",
+      "textToSpeech": "Please select the register court: (Select 'All' if unknown)"
+    },
+    {
+      "type": "list_card",
+      "platform": "google",
+      "title": "The possible registration court",
+      "items": [
+        {
+          "optionInfo": {
+            "key": "All",
+            "synonyms": []
+          },
+          "title": "All"
+        },
+        {
+          "optionInfo": {
+            "key": "Aachen",
+            "synonyms": []
+          },
+          "title": "Aachen"
+        },
+        {
+          "optionInfo": {
+            "key": "Altenburg",
+            "synonyms": []
+          },
+          "title": "Altenburg"
+        },
+        {
+          "optionInfo": {
+            "key": "Amberg",
+            "synonyms": []
+          },
+          "title": "Amberg"
+        },
+        {
+          "optionInfo": {
+            "key": "Ansbach",
+            "synonyms": []
+          },
+          "title": "Ansbach"
+        },
+        {
+          "optionInfo": {
+            "key": "Apolda",
+            "synonyms": []
+          },
+          "title": "Apolda"
+        },
+        {
+          "optionInfo": {
+            "key": "Arnsberg",
+            "synonyms": []
+          },
+          "title": "Arnsberg"
+        },
+        {
+          "optionInfo": {
+            "key": "Arnstadt",
+            "synonyms": []
+          },
+          "title": "Arnstadt"
+        },
+        {
+          "optionInfo": {
+            "key": "Arnstadt Zweigstelle Ilmenau",
+            "synonyms": []
+          },
+          "title": "Arnstadt Zweigstelle Ilmenau"
+        },
+        {
+          "optionInfo": {
+            "key": "Aschaffenburg",
+            "synonyms": []
+          },
+          "title": "Aschaffenburg"
+        },
+        {
+          "optionInfo": {
+            "key": "Augsburg",
+            "synonyms": []
+          },
+          "title": "Augsburg"
+        },
+        {
+          "optionInfo": {
+            "key": "Aurich",
+            "synonyms": []
+          },
+          "title": "Aurich"
+        },
+        {
+          "optionInfo": {
+            "key": "Bad Hersfeld",
+            "synonyms": []
+          },
+          "title": "Bad Hersfeld"
+        },
+        {
+          "optionInfo": {
+            "key": "Bad Homburg v.d.H.",
+            "synonyms": []
+          },
+          "title": "Bad Homburg v.d.H."
+        },
+        {
+          "optionInfo": {
+            "key": "Bad Oeynhausen",
+            "synonyms": []
+          },
+          "title": "Bad Oeynhausen"
+        },
+        {
+          "optionInfo": {
+            "key": "Bad Kreuznach",
+            "synonyms": []
+          },
+          "title": "Bad Kreuznach"
+        },
+        {
+          "optionInfo": {
+            "key": "Bad Salzungen",
+            "synonyms": []
+          },
+          "title": "Bad Salzungen"
+        },
+        {
+          "optionInfo": {
+            "key": "Bamberg",
+            "synonyms": []
+          },
+          "title": "Bamberg"
+        },
+        {
+          "optionInfo": {
+            "key": "Bayreuth",
+            "synonyms": []
+          },
+          "title": "Bayreuth"
+        },
+        {
+          "optionInfo": {
+            "key": "Berlin",
+            "synonyms": []
+          },
+          "title": "Berlin"
+        },
+        {
+          "optionInfo": {
+            "key": "Bielefeld",
+            "synonyms": []
+          },
+          "title": "Bielefeld"
+        },
+        {
+          "optionInfo": {
+            "key": "Bochum",
+            "synonyms": []
+          },
+          "title": "Bochum"
+        },
+        {
+          "optionInfo": {
+            "key": "Bonn",
+            "synonyms": []
+          },
+          "title": "Bonn"
+        },
+        {
+          "optionInfo": {
+            "key": "Braunschweig",
+            "synonyms": []
+          },
+          "title": "Braunschweig"
+        },
+        {
+          "optionInfo": {
+            "key": "Bremen",
+            "synonyms": []
+          },
+          "title": "Bremen"
+        },
+        {
+          "optionInfo": {
+            "key": "Chemnitz",
+            "synonyms": []
+          },
+          "title": "Chemnitz"
+        },
+        {
+          "optionInfo": {
+            "key": "Coburg",
+            "synonyms": []
+          },
+          "title": "Coburg"
+        },
+        {
+          "optionInfo": {
+            "key": "Coesfeld",
+            "synonyms": []
+          },
+          "title": "Coesfeld"
+        },
+        {
+          "optionInfo": {
+            "key": "Cottbus",
+            "synonyms": []
+          },
+          "title": "Cottbus"
+        },
+        {
+          "optionInfo": {
+            "key": "Darmstadt",
+            "synonyms": []
+          },
+          "title": "Darmstadt"
+        },
+        {
+          "optionInfo": {
+            "key": "Deggendorf",
+            "synonyms": []
+          },
+          "title": "Deggendorf"
+        },
+        {
+          "optionInfo": {
+            "key": "Dortmund",
+            "synonyms": []
+          },
+          "title": "Dortmund"
+        },
+        {
+          "optionInfo": {
+            "key": "Dresden",
+            "synonyms": []
+          },
+          "title": "Dresden"
+        },
+        {
+          "optionInfo": {
+            "key": "Duisburg",
+            "synonyms": []
+          },
+          "title": "Duisburg"
+        },
+        {
+          "optionInfo": {
+            "key": "Düren",
+            "synonyms": []
+          },
+          "title": "Düren"
+        },
+        {
+          "optionInfo": {
+            "key": "Düsseldorf",
+            "synonyms": []
+          },
+          "title": "Düsseldorf"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Eisenach"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Erfurt"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Eschwege"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Essen"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Flensburg"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Frankfurt am Main"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": ""
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Frankfurt/Oder"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Freiburg"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Friedberg"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Fritzlar"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Fulda"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Fürth"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Gelsenkirchen"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Gera"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Gießen"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Gotha"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Göttingen"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Greiz"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Gütersloh"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Hagen"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Hamburg"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Hamm"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Hanau"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Hannover"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Heilbad Heiligenstadt"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Hildburghausen"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Hildesheim"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Hof"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Homburg"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Ingolstadt"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Iserlohn"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Jena"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Kaiserslautern"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Kassel"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Kempten"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Kiel"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Kleve"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Koblenz"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Köln"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Königstein"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Korbach"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Krefeld"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Landau"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Landshut"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Langenfeld"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Lebach"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Leipzig"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Lemgo"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Limburg"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Lübeck"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Ludwigshafen a.Rhein"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Lüneburg"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Mainz"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Mannheim"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Marburg"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Meiningen"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Memmingen"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Merzig"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Mönchengladbach"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Montabaur"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Mühlhausen"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "München"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Münster"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Neubrandenburg"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Neunkirchen"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Neuruppin"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Neuss"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Nordhausen"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Nürnberg"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Offenbach am Main"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Oldenburg"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Osnabrück"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Ottweiler"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Paderborn"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Passau"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Pinneberg"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Pößneck"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Pößneck Zweigstelle Bad Lobenstein"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Potsdam"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Recklinghausen"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Regensburg "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Rostock "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Rudolstadt "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Rudolstadt Zweigstelle Saalfeld"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Saarbrücken "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Saarlouis "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Schweinfurt "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Schwerin "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Siegburg "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Siegen "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Sömmerda "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Sondershausen "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Sonneberg "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Stadthagen "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Stadtroda "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Steinfurt "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Stendal "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "St. Ingbert"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Stralsund "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Straubing "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Stuttgart "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "St. Wendel"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Suhl "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Tostedt "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Traunstein "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Ulm "
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Völklingen"
+        },
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Walsrode "
+        }
+		,
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Weiden i. d. OPf."
+        }
+		,
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Weimar "
+        }
+		,
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Wetzlar "
+        }
+		,
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Wiesbaden "
+        }
+		,
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Wittlich"
+        }
+		,
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Wuppertal "
+        }
+		,
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Würzburg "
+        }
+		,
+        {
+          "optionInfo": {
+            "key": "",
+            "synonyms": []
+          },
+          "title": "Zweibrücken"
+        }
+		
+      ]
+    }
+    
+  ]
+}
