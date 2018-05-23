@@ -1,2 +1,0 @@
-notasecret
-accessgs@cp100-199412.iam.gserviceaccount.com
