@@ -117,7 +117,6 @@
       <Variable x:TypeArguments="x:Int32" Name="numberOfResult" />
       <Variable x:TypeArguments="x:String" Name="EmailText" />
       <Variable x:TypeArguments="x:String" Default="Failed!" Name="status" />
-      <Variable x:TypeArguments="x:String" Default="AD" Name="typeHra" />
       <Variable x:TypeArguments="x:Boolean" Name="resultTableExists" />
       <Variable x:TypeArguments="x:Boolean" Default="False" Name="debug" />
       <Variable x:TypeArguments="x:String" Name="body" />
@@ -151,355 +150,190 @@
                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f10c7a027c1d82044327731ef928ed15" Selector="&lt;webctrl tag='TEXTAREA' /&gt;" WaitForReady="COMPLETE" />
                         </ui:TypeInto.Target>
                       </ui:TypeInto>
-                      <If Condition="[regNr &lt;&gt; &quot;&quot;]" sap2010:WorkflowViewState.IdRef="If_6">
+                      <If Condition="[regNr &lt;&gt; &quot;&quot; and regNr &lt;&gt;&quot;0&quot;]" sap2010:WorkflowViewState.IdRef="If_6">
                         <If.Then>
-                          <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TEXTAREA'" EmptyField="True" sap2010:WorkflowViewState.IdRef="TypeInto_13" SendWindowMessages="False" SimulateType="False" Text="[regNr]">
-                            <ui:TypeInto.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="948a5bd16f1b07ce49ce812ae31d8fd7" Selector="&lt;webctrl name='registerNummer' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                            </ui:TypeInto.Target>
-                          </ui:TypeInto>
+                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_59">
+                            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TEXTAREA'" EmptyField="True" sap2010:WorkflowViewState.IdRef="TypeInto_13" SendWindowMessages="False" SimulateType="False" Text="[regNr]">
+                              <ui:TypeInto.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="948a5bd16f1b07ce49ce812ae31d8fd7" Selector="&lt;webctrl name='registerNummer' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                              </ui:TypeInto.Target>
+                            </ui:TypeInto>
+                          </Sequence>
                         </If.Then>
-                        <If.Else>
-                          <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TEXTAREA'" EmptyField="True" sap2010:WorkflowViewState.IdRef="TypeInto_14" SendWindowMessages="False" SimulateType="False">
-                            <ui:TypeInto.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="948a5bd16f1b07ce49ce812ae31d8fd7" Selector="&lt;webctrl name='registerNummer' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                            </ui:TypeInto.Target>
-                            <ui:TypeInto.Text>
-                              <InArgument x:TypeArguments="x:String">
-                                <Literal x:TypeArguments="x:String" Value="" />
-                              </InArgument>
-                            </ui:TypeInto.Text>
-                          </ui:TypeInto>
-                        </If.Else>
                       </If>
-                      <If Condition="[regCourt &lt;&gt; &quot;&quot;]" sap2010:WorkflowViewState.IdRef="If_8">
+                      <If Condition="[regCourt = &quot;All&quot;or regCourt &lt;&gt; &quot;&quot;]" sap2010:WorkflowViewState.IdRef="If_12">
                         <If.Then>
-                          <ui:SelectItem DelayAfter="{x:Null}" DelayBefore="{x:Null}" ContinueOnError="True" DisplayName="Select item 'SELECT'" sap2010:WorkflowViewState.IdRef="SelectItem_10" Item="[regCourt +&quot;*&quot;]">
-                            <ui:SelectItem.Items>
-                              <scg:List x:TypeArguments="x:String" Capacity="256">
-                                <x:String>alle</x:String>
-                                <x:String>Aachen</x:String>
-                                <x:String>Altenburg</x:String>
-                                <x:String>Amberg</x:String>
-                                <x:String>Ansbach</x:String>
-                                <x:String>Apolda</x:String>
-                                <x:String>Arnsberg</x:String>
-                                <x:String>Arnstadt</x:String>
-                                <x:String>Arnstadt Zweigstelle Ilmenau</x:String>
-                                <x:String>Aschaffenburg</x:String>
-                                <x:String>Augsburg</x:String>
-                                <x:String>Aurich</x:String>
-                                <x:String>Bad Hersfeld</x:String>
-                                <x:String>Bad Homburg v.d.H.</x:String>
-                                <x:String>Bad Kreuznach</x:String>
-                                <x:String>Bad Oeynhausen</x:String>
-                                <x:String>Bad Salzungen</x:String>
-                                <x:String>Bamberg</x:String>
-                                <x:String>Bayreuth</x:String>
-                                <x:String>Berlin (Charlottenburg)</x:String>
-                                <x:String>Bielefeld</x:String>
-                                <x:String>Bochum</x:String>
-                                <x:String>Bonn</x:String>
-                                <x:String>Braunschweig</x:String>
-                                <x:String>Bremen</x:String>
-                                <x:String>Chemnitz</x:String>
-                                <x:String>Coburg</x:String>
-                                <x:String>Coesfeld</x:String>
-                                <x:String>Cottbus</x:String>
-                                <x:String>Darmstadt</x:String>
-                                <x:String>Deggendorf</x:String>
-                                <x:String>Dortmund</x:String>
-                                <x:String>Dresden</x:String>
-                                <x:String>Duisburg</x:String>
-                                <x:String>Düren</x:String>
-                                <x:String>Düsseldorf</x:String>
-                                <x:String>Eisenach</x:String>
-                                <x:String>Erfurt</x:String>
-                                <x:String>Eschwege</x:String>
-                                <x:String>Essen</x:String>
-                                <x:String>Flensburg</x:String>
-                                <x:String>Frankfurt am Main</x:String>
-                                <x:String>Frankfurt/Oder</x:String>
-                                <x:String>Freiburg</x:String>
-                                <x:String>Friedberg</x:String>
-                                <x:String>Fritzlar</x:String>
-                                <x:String>Fulda</x:String>
-                                <x:String>Fürth</x:String>
-                                <x:String>Gelsenkirchen</x:String>
-                                <x:String>Gera</x:String>
-                                <x:String>Gießen</x:String>
-                                <x:String>Gotha</x:String>
-                                <x:String>Göttingen</x:String>
-                                <x:String>Greiz</x:String>
-                                <x:String>Gütersloh</x:String>
-                                <x:String>Hagen</x:String>
-                                <x:String>Hamburg</x:String>
-                                <x:String>Hamm</x:String>
-                                <x:String>Hanau</x:String>
-                                <x:String>Hannover</x:String>
-                                <x:String>Heilbad Heiligenstadt</x:String>
-                                <x:String>Hildburghausen</x:String>
-                                <x:String>Hildesheim</x:String>
-                                <x:String>Hof</x:String>
-                                <x:String>Homburg</x:String>
-                                <x:String>Ingolstadt</x:String>
-                                <x:String>Iserlohn</x:String>
-                                <x:String>Jena</x:String>
-                                <x:String>Kaiserslautern</x:String>
-                                <x:String>Kassel</x:String>
-                                <x:String>Kempten (Allgäu)</x:String>
-                                <x:String>Kiel</x:String>
-                                <x:String>Kleve</x:String>
-                                <x:String>Koblenz</x:String>
-                                <x:String>Köln</x:String>
-                                <x:String>Königstein</x:String>
-                                <x:String>Korbach</x:String>
-                                <x:String>Krefeld</x:String>
-                                <x:String>Landau</x:String>
-                                <x:String>Landshut</x:String>
-                                <x:String>Langenfeld</x:String>
-                                <x:String>Lebach</x:String>
-                                <x:String>Leipzig</x:String>
-                                <x:String>Lemgo</x:String>
-                                <x:String>Limburg</x:String>
-                                <x:String>Lübeck</x:String>
-                                <x:String>Ludwigshafen a.Rhein (Ludwigshafen)</x:String>
-                                <x:String>Lüneburg</x:String>
-                                <x:String>Mainz</x:String>
-                                <x:String>Mannheim</x:String>
-                                <x:String>Marburg</x:String>
-                                <x:String>Meiningen</x:String>
-                                <x:String>Memmingen</x:String>
-                                <x:String>Merzig</x:String>
-                                <x:String>Mönchengladbach</x:String>
-                                <x:String>Montabaur</x:String>
-                                <x:String>Mühlhausen</x:String>
-                                <x:String>München</x:String>
-                                <x:String>Münster</x:String>
-                                <x:String>Neubrandenburg</x:String>
-                                <x:String>Neunkirchen</x:String>
-                                <x:String>Neuruppin</x:String>
-                                <x:String>Neuss</x:String>
-                                <x:String>Nordhausen</x:String>
-                                <x:String>Nürnberg</x:String>
-                                <x:String>Offenbach am Main</x:String>
-                                <x:String>Oldenburg (Oldenburg)</x:String>
-                                <x:String>Osnabrück</x:String>
-                                <x:String>Ottweiler</x:String>
-                                <x:String>Paderborn</x:String>
-                                <x:String>Passau</x:String>
-                                <x:String>Pinneberg</x:String>
-                                <x:String>Pößneck</x:String>
-                                <x:String>Pößneck Zweigstelle Bad Lobenstein</x:String>
-                                <x:String>Potsdam</x:String>
-                                <x:String>Recklinghausen</x:String>
-                                <x:String>Regensburg</x:String>
-                                <x:String>Rostock</x:String>
-                                <x:String>Rudolstadt</x:String>
-                                <x:String>Rudolstadt Zweigstelle Saalfeld</x:String>
-                                <x:String>Saarbrücken</x:String>
-                                <x:String>Saarlouis</x:String>
-                                <x:String>Schweinfurt</x:String>
-                                <x:String>Schwerin</x:String>
-                                <x:String>Siegburg</x:String>
-                                <x:String>Siegen</x:String>
-                                <x:String>Sömmerda</x:String>
-                                <x:String>Sondershausen</x:String>
-                                <x:String>Sonneberg</x:String>
-                                <x:String>Stadthagen</x:String>
-                                <x:String>Stadtroda</x:String>
-                                <x:String>Steinfurt</x:String>
-                                <x:String>Stendal</x:String>
-                                <x:String>St. Ingbert (St Ingbert)</x:String>
-                                <x:String>Stralsund</x:String>
-                                <x:String>Straubing</x:String>
-                                <x:String>Stuttgart</x:String>
-                                <x:String>St. Wendel (St Wendel)</x:String>
-                                <x:String>Suhl</x:String>
-                                <x:String>Tostedt</x:String>
-                                <x:String>Traunstein</x:String>
-                                <x:String>Ulm</x:String>
-                                <x:String>Völklingen</x:String>
-                                <x:String>Walsrode</x:String>
-                                <x:String>Weiden i. d. OPf.</x:String>
-                                <x:String>Weimar</x:String>
-                                <x:String>Wetzlar</x:String>
-                                <x:String>Wiesbaden</x:String>
-                                <x:String>Wittlich</x:String>
-                                <x:String>Wuppertal</x:String>
-                                <x:String>Würzburg</x:String>
-                                <x:String>Zweibrücken</x:String>
-                              </scg:List>
-                            </ui:SelectItem.Items>
-                            <ui:SelectItem.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e7d8a9a055de9cedbc075f646e0a7a97" Selector="&lt;webctrl name='registergericht' tag='SELECT' /&gt;" WaitForReady="COMPLETE" />
-                            </ui:SelectItem.Target>
-                          </ui:SelectItem>
+                          <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[regCourt]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">alle</InArgument>
+                            </Assign.Value>
+                          </Assign>
                         </If.Then>
-                        <If.Else>
-                          <ui:SelectItem DelayAfter="{x:Null}" DelayBefore="{x:Null}" ContinueOnError="True" DisplayName="Select item 'SELECT'" sap2010:WorkflowViewState.IdRef="SelectItem_11" Item="alle">
-                            <ui:SelectItem.Items>
-                              <scg:List x:TypeArguments="x:String" Capacity="256">
-                                <x:String>alle</x:String>
-                                <x:String>Aachen</x:String>
-                                <x:String>Altenburg</x:String>
-                                <x:String>Amberg</x:String>
-                                <x:String>Ansbach</x:String>
-                                <x:String>Apolda</x:String>
-                                <x:String>Arnsberg</x:String>
-                                <x:String>Arnstadt</x:String>
-                                <x:String>Arnstadt Zweigstelle Ilmenau</x:String>
-                                <x:String>Aschaffenburg</x:String>
-                                <x:String>Augsburg</x:String>
-                                <x:String>Aurich</x:String>
-                                <x:String>Bad Hersfeld</x:String>
-                                <x:String>Bad Homburg v.d.H.</x:String>
-                                <x:String>Bad Kreuznach</x:String>
-                                <x:String>Bad Oeynhausen</x:String>
-                                <x:String>Bad Salzungen</x:String>
-                                <x:String>Bamberg</x:String>
-                                <x:String>Bayreuth</x:String>
-                                <x:String>Berlin (Charlottenburg)</x:String>
-                                <x:String>Bielefeld</x:String>
-                                <x:String>Bochum</x:String>
-                                <x:String>Bonn</x:String>
-                                <x:String>Braunschweig</x:String>
-                                <x:String>Bremen</x:String>
-                                <x:String>Chemnitz</x:String>
-                                <x:String>Coburg</x:String>
-                                <x:String>Coesfeld</x:String>
-                                <x:String>Cottbus</x:String>
-                                <x:String>Darmstadt</x:String>
-                                <x:String>Deggendorf</x:String>
-                                <x:String>Dortmund</x:String>
-                                <x:String>Dresden</x:String>
-                                <x:String>Duisburg</x:String>
-                                <x:String>Düren</x:String>
-                                <x:String>Düsseldorf</x:String>
-                                <x:String>Eisenach</x:String>
-                                <x:String>Erfurt</x:String>
-                                <x:String>Eschwege</x:String>
-                                <x:String>Essen</x:String>
-                                <x:String>Flensburg</x:String>
-                                <x:String>Frankfurt am Main</x:String>
-                                <x:String>Frankfurt/Oder</x:String>
-                                <x:String>Freiburg</x:String>
-                                <x:String>Friedberg</x:String>
-                                <x:String>Fritzlar</x:String>
-                                <x:String>Fulda</x:String>
-                                <x:String>Fürth</x:String>
-                                <x:String>Gelsenkirchen</x:String>
-                                <x:String>Gera</x:String>
-                                <x:String>Gießen</x:String>
-                                <x:String>Gotha</x:String>
-                                <x:String>Göttingen</x:String>
-                                <x:String>Greiz</x:String>
-                                <x:String>Gütersloh</x:String>
-                                <x:String>Hagen</x:String>
-                                <x:String>Hamburg</x:String>
-                                <x:String>Hamm</x:String>
-                                <x:String>Hanau</x:String>
-                                <x:String>Hannover</x:String>
-                                <x:String>Heilbad Heiligenstadt</x:String>
-                                <x:String>Hildburghausen</x:String>
-                                <x:String>Hildesheim</x:String>
-                                <x:String>Hof</x:String>
-                                <x:String>Homburg</x:String>
-                                <x:String>Ingolstadt</x:String>
-                                <x:String>Iserlohn</x:String>
-                                <x:String>Jena</x:String>
-                                <x:String>Kaiserslautern</x:String>
-                                <x:String>Kassel</x:String>
-                                <x:String>Kempten (Allgäu)</x:String>
-                                <x:String>Kiel</x:String>
-                                <x:String>Kleve</x:String>
-                                <x:String>Koblenz</x:String>
-                                <x:String>Köln</x:String>
-                                <x:String>Königstein</x:String>
-                                <x:String>Korbach</x:String>
-                                <x:String>Krefeld</x:String>
-                                <x:String>Landau</x:String>
-                                <x:String>Landshut</x:String>
-                                <x:String>Langenfeld</x:String>
-                                <x:String>Lebach</x:String>
-                                <x:String>Leipzig</x:String>
-                                <x:String>Lemgo</x:String>
-                                <x:String>Limburg</x:String>
-                                <x:String>Lübeck</x:String>
-                                <x:String>Ludwigshafen a.Rhein (Ludwigshafen)</x:String>
-                                <x:String>Lüneburg</x:String>
-                                <x:String>Mainz</x:String>
-                                <x:String>Mannheim</x:String>
-                                <x:String>Marburg</x:String>
-                                <x:String>Meiningen</x:String>
-                                <x:String>Memmingen</x:String>
-                                <x:String>Merzig</x:String>
-                                <x:String>Mönchengladbach</x:String>
-                                <x:String>Montabaur</x:String>
-                                <x:String>Mühlhausen</x:String>
-                                <x:String>München</x:String>
-                                <x:String>Münster</x:String>
-                                <x:String>Neubrandenburg</x:String>
-                                <x:String>Neunkirchen</x:String>
-                                <x:String>Neuruppin</x:String>
-                                <x:String>Neuss</x:String>
-                                <x:String>Nordhausen</x:String>
-                                <x:String>Nürnberg</x:String>
-                                <x:String>Offenbach am Main</x:String>
-                                <x:String>Oldenburg (Oldenburg)</x:String>
-                                <x:String>Osnabrück</x:String>
-                                <x:String>Ottweiler</x:String>
-                                <x:String>Paderborn</x:String>
-                                <x:String>Passau</x:String>
-                                <x:String>Pinneberg</x:String>
-                                <x:String>Pößneck</x:String>
-                                <x:String>Pößneck Zweigstelle Bad Lobenstein</x:String>
-                                <x:String>Potsdam</x:String>
-                                <x:String>Recklinghausen</x:String>
-                                <x:String>Regensburg</x:String>
-                                <x:String>Rostock</x:String>
-                                <x:String>Rudolstadt</x:String>
-                                <x:String>Rudolstadt Zweigstelle Saalfeld</x:String>
-                                <x:String>Saarbrücken</x:String>
-                                <x:String>Saarlouis</x:String>
-                                <x:String>Schweinfurt</x:String>
-                                <x:String>Schwerin</x:String>
-                                <x:String>Siegburg</x:String>
-                                <x:String>Siegen</x:String>
-                                <x:String>Sömmerda</x:String>
-                                <x:String>Sondershausen</x:String>
-                                <x:String>Sonneberg</x:String>
-                                <x:String>Stadthagen</x:String>
-                                <x:String>Stadtroda</x:String>
-                                <x:String>Steinfurt</x:String>
-                                <x:String>Stendal</x:String>
-                                <x:String>St. Ingbert (St Ingbert)</x:String>
-                                <x:String>Stralsund</x:String>
-                                <x:String>Straubing</x:String>
-                                <x:String>Stuttgart</x:String>
-                                <x:String>St. Wendel (St Wendel)</x:String>
-                                <x:String>Suhl</x:String>
-                                <x:String>Tostedt</x:String>
-                                <x:String>Traunstein</x:String>
-                                <x:String>Ulm</x:String>
-                                <x:String>Völklingen</x:String>
-                                <x:String>Walsrode</x:String>
-                                <x:String>Weiden i. d. OPf.</x:String>
-                                <x:String>Weimar</x:String>
-                                <x:String>Wetzlar</x:String>
-                                <x:String>Wiesbaden</x:String>
-                                <x:String>Wittlich</x:String>
-                                <x:String>Wuppertal</x:String>
-                                <x:String>Würzburg</x:String>
-                                <x:String>Zweibrücken</x:String>
-                              </scg:List>
-                            </ui:SelectItem.Items>
-                            <ui:SelectItem.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e7d8a9a055de9cedbc075f646e0a7a97" Selector="&lt;webctrl name='registergericht' tag='SELECT' /&gt;" WaitForReady="COMPLETE" />
-                            </ui:SelectItem.Target>
-                          </ui:SelectItem>
-                        </If.Else>
                       </If>
+                      <ui:SelectItem DelayAfter="{x:Null}" DelayBefore="{x:Null}" ContinueOnError="True" DisplayName="Select item 'SELECT'" sap2010:WorkflowViewState.IdRef="SelectItem_10" Item="[regCourt +&quot;*&quot;]">
+                        <ui:SelectItem.Items>
+                          <scg:List x:TypeArguments="x:String" Capacity="256">
+                            <x:String>alle</x:String>
+                            <x:String>Aachen</x:String>
+                            <x:String>Altenburg</x:String>
+                            <x:String>Amberg</x:String>
+                            <x:String>Ansbach</x:String>
+                            <x:String>Apolda</x:String>
+                            <x:String>Arnsberg</x:String>
+                            <x:String>Arnstadt</x:String>
+                            <x:String>Arnstadt Zweigstelle Ilmenau</x:String>
+                            <x:String>Aschaffenburg</x:String>
+                            <x:String>Augsburg</x:String>
+                            <x:String>Aurich</x:String>
+                            <x:String>Bad Hersfeld</x:String>
+                            <x:String>Bad Homburg v.d.H.</x:String>
+                            <x:String>Bad Kreuznach</x:String>
+                            <x:String>Bad Oeynhausen</x:String>
+                            <x:String>Bad Salzungen</x:String>
+                            <x:String>Bamberg</x:String>
+                            <x:String>Bayreuth</x:String>
+                            <x:String>Berlin (Charlottenburg)</x:String>
+                            <x:String>Bielefeld</x:String>
+                            <x:String>Bochum</x:String>
+                            <x:String>Bonn</x:String>
+                            <x:String>Braunschweig</x:String>
+                            <x:String>Bremen</x:String>
+                            <x:String>Chemnitz</x:String>
+                            <x:String>Coburg</x:String>
+                            <x:String>Coesfeld</x:String>
+                            <x:String>Cottbus</x:String>
+                            <x:String>Darmstadt</x:String>
+                            <x:String>Deggendorf</x:String>
+                            <x:String>Dortmund</x:String>
+                            <x:String>Dresden</x:String>
+                            <x:String>Duisburg</x:String>
+                            <x:String>Düren</x:String>
+                            <x:String>Düsseldorf</x:String>
+                            <x:String>Eisenach</x:String>
+                            <x:String>Erfurt</x:String>
+                            <x:String>Eschwege</x:String>
+                            <x:String>Essen</x:String>
+                            <x:String>Flensburg</x:String>
+                            <x:String>Frankfurt am Main</x:String>
+                            <x:String>Frankfurt/Oder</x:String>
+                            <x:String>Freiburg</x:String>
+                            <x:String>Friedberg</x:String>
+                            <x:String>Fritzlar</x:String>
+                            <x:String>Fulda</x:String>
+                            <x:String>Fürth</x:String>
+                            <x:String>Gelsenkirchen</x:String>
+                            <x:String>Gera</x:String>
+                            <x:String>Gießen</x:String>
+                            <x:String>Gotha</x:String>
+                            <x:String>Göttingen</x:String>
+                            <x:String>Greiz</x:String>
+                            <x:String>Gütersloh</x:String>
+                            <x:String>Hagen</x:String>
+                            <x:String>Hamburg</x:String>
+                            <x:String>Hamm</x:String>
+                            <x:String>Hanau</x:String>
+                            <x:String>Hannover</x:String>
+                            <x:String>Heilbad Heiligenstadt</x:String>
+                            <x:String>Hildburghausen</x:String>
+                            <x:String>Hildesheim</x:String>
+                            <x:String>Hof</x:String>
+                            <x:String>Homburg</x:String>
+                            <x:String>Ingolstadt</x:String>
+                            <x:String>Iserlohn</x:String>
+                            <x:String>Jena</x:String>
+                            <x:String>Kaiserslautern</x:String>
+                            <x:String>Kassel</x:String>
+                            <x:String>Kempten (Allgäu)</x:String>
+                            <x:String>Kiel</x:String>
+                            <x:String>Kleve</x:String>
+                            <x:String>Koblenz</x:String>
+                            <x:String>Köln</x:String>
+                            <x:String>Königstein</x:String>
+                            <x:String>Korbach</x:String>
+                            <x:String>Krefeld</x:String>
+                            <x:String>Landau</x:String>
+                            <x:String>Landshut</x:String>
+                            <x:String>Langenfeld</x:String>
+                            <x:String>Lebach</x:String>
+                            <x:String>Leipzig</x:String>
+                            <x:String>Lemgo</x:String>
+                            <x:String>Limburg</x:String>
+                            <x:String>Lübeck</x:String>
+                            <x:String>Ludwigshafen a.Rhein (Ludwigshafen)</x:String>
+                            <x:String>Lüneburg</x:String>
+                            <x:String>Mainz</x:String>
+                            <x:String>Mannheim</x:String>
+                            <x:String>Marburg</x:String>
+                            <x:String>Meiningen</x:String>
+                            <x:String>Memmingen</x:String>
+                            <x:String>Merzig</x:String>
+                            <x:String>Mönchengladbach</x:String>
+                            <x:String>Montabaur</x:String>
+                            <x:String>Mühlhausen</x:String>
+                            <x:String>München</x:String>
+                            <x:String>Münster</x:String>
+                            <x:String>Neubrandenburg</x:String>
+                            <x:String>Neunkirchen</x:String>
+                            <x:String>Neuruppin</x:String>
+                            <x:String>Neuss</x:String>
+                            <x:String>Nordhausen</x:String>
+                            <x:String>Nürnberg</x:String>
+                            <x:String>Offenbach am Main</x:String>
+                            <x:String>Oldenburg (Oldenburg)</x:String>
+                            <x:String>Osnabrück</x:String>
+                            <x:String>Ottweiler</x:String>
+                            <x:String>Paderborn</x:String>
+                            <x:String>Passau</x:String>
+                            <x:String>Pinneberg</x:String>
+                            <x:String>Pößneck</x:String>
+                            <x:String>Pößneck Zweigstelle Bad Lobenstein</x:String>
+                            <x:String>Potsdam</x:String>
+                            <x:String>Recklinghausen</x:String>
+                            <x:String>Regensburg</x:String>
+                            <x:String>Rostock</x:String>
+                            <x:String>Rudolstadt</x:String>
+                            <x:String>Rudolstadt Zweigstelle Saalfeld</x:String>
+                            <x:String>Saarbrücken</x:String>
+                            <x:String>Saarlouis</x:String>
+                            <x:String>Schweinfurt</x:String>
+                            <x:String>Schwerin</x:String>
+                            <x:String>Siegburg</x:String>
+                            <x:String>Siegen</x:String>
+                            <x:String>Sömmerda</x:String>
+                            <x:String>Sondershausen</x:String>
+                            <x:String>Sonneberg</x:String>
+                            <x:String>Stadthagen</x:String>
+                            <x:String>Stadtroda</x:String>
+                            <x:String>Steinfurt</x:String>
+                            <x:String>Stendal</x:String>
+                            <x:String>St. Ingbert (St Ingbert)</x:String>
+                            <x:String>Stralsund</x:String>
+                            <x:String>Straubing</x:String>
+                            <x:String>Stuttgart</x:String>
+                            <x:String>St. Wendel (St Wendel)</x:String>
+                            <x:String>Suhl</x:String>
+                            <x:String>Tostedt</x:String>
+                            <x:String>Traunstein</x:String>
+                            <x:String>Ulm</x:String>
+                            <x:String>Völklingen</x:String>
+                            <x:String>Walsrode</x:String>
+                            <x:String>Weiden i. d. OPf.</x:String>
+                            <x:String>Weimar</x:String>
+                            <x:String>Wetzlar</x:String>
+                            <x:String>Wiesbaden</x:String>
+                            <x:String>Wittlich</x:String>
+                            <x:String>Wuppertal</x:String>
+                            <x:String>Würzburg</x:String>
+                            <x:String>Zweibrücken</x:String>
+                          </scg:List>
+                        </ui:SelectItem.Items>
+                        <ui:SelectItem.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e7d8a9a055de9cedbc075f646e0a7a97" Selector="&lt;webctrl name='registergericht' tag='SELECT' /&gt;" WaitForReady="COMPLETE" />
+                        </ui:SelectItem.Target>
+                      </ui:SelectItem>
                       <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  schlagwortOption1'" sap2010:WorkflowViewState.IdRef="Click_25" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
                         <ui:Click.CursorPosition>
                           <ui:CursorPosition OffsetX="4" OffsetY="5" Position="TopLeft" />
@@ -681,15 +515,22 @@
                             </Sequence>
                             <FlowStep.Next>
                               <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_41">
-                                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Sending Email" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="sendingEmail.xaml">
-                                  <ui:InvokeWorkflowFile.Arguments>
-                                    <InArgument x:TypeArguments="x:String" x:Key="email">[email]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="body">[body]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="path">
-                                      <Literal x:TypeArguments="x:String" Value="" />
-                                    </InArgument>
-                                  </ui:InvokeWorkflowFile.Arguments>
-                                </ui:InvokeWorkflowFile>
+                                <ui:CommentOut DisplayName="CommentOut - SendEmail" sap2010:WorkflowViewState.IdRef="CommentOut_7">
+                                  <ui:CommentOut.Body>
+                                    <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_57">
+                                      <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_16" />
+                                      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Sending Email" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="sendingEmail.xaml">
+                                        <ui:InvokeWorkflowFile.Arguments>
+                                          <InArgument x:TypeArguments="x:String" x:Key="email">[email]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="body">[body]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="path">
+                                            <Literal x:TypeArguments="x:String" Value="" />
+                                          </InArgument>
+                                        </ui:InvokeWorkflowFile.Arguments>
+                                      </ui:InvokeWorkflowFile>
+                                    </Sequence>
+                                  </ui:CommentOut.Body>
+                                </ui:CommentOut>
                               </FlowStep>
                             </FlowStep.Next>
                           </FlowStep>
@@ -711,13 +552,12 @@
                                       <InArgument x:TypeArguments="x:String" xml:space="preserve">Success: Single Result </InArgument>
                                     </Assign.Value>
                                   </Assign>
-                                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_15" Text="Go to download Flowchart" />
                                   <If Condition="[typeReq.ToLower().Equals( &quot;chronological&quot;) or typeReq.ToLower().Equals( &quot;cd&quot;)]" sap2010:WorkflowViewState.IdRef="If_9">
                                     <If.Then>
                                       <Sequence sap2010:WorkflowViewState.IdRef="Sequence_55">
                                         <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
                                           <Assign.To>
-                                            <OutArgument x:TypeArguments="x:String">[typeHra]</OutArgument>
+                                            <OutArgument x:TypeArguments="x:String">[typeReq]</OutArgument>
                                           </Assign.To>
                                           <Assign.Value>
                                             <InArgument x:TypeArguments="x:String">CD</InArgument>
@@ -729,7 +569,7 @@
                                       <Sequence sap2010:WorkflowViewState.IdRef="Sequence_56">
                                         <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
                                           <Assign.To>
-                                            <OutArgument x:TypeArguments="x:String">[typeHra]</OutArgument>
+                                            <OutArgument x:TypeArguments="x:String">[typeReq]</OutArgument>
                                           </Assign.To>
                                           <Assign.Value>
                                             <InArgument x:TypeArguments="x:String">AD</InArgument>
@@ -738,66 +578,60 @@
                                       </Sequence>
                                     </If.Else>
                                   </If>
-                                  <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_6">
-                                    <ui:CommentOut.Body>
-                                      <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_54">
-                                        <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'Registerp Page'" sap2010:WorkflowViewState.IdRef="BrowserScope_14" InformativeScreenshot="4adec27b680b0bdca1465a799a5d7860" Selector="&lt;html title='Registerportal' /&gt;">
-                                          <ui:BrowserScope.Body>
-                                            <ActivityAction x:TypeArguments="x:Object">
-                                              <ActivityAction.Argument>
-                                                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                              </ActivityAction.Argument>
-                                              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_25">
-                                                <Sequence.Variables>
-                                                  <Variable x:TypeArguments="x:String" Name="variable1" />
-                                                </Sequence.Variables>
-                                                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Choosing Type AD or CD" sap2010:WorkflowViewState.IdRef="Click_17" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                  <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'Registerp Page'" sap2010:WorkflowViewState.IdRef="BrowserScope_14" InformativeScreenshot="4adec27b680b0bdca1465a799a5d7860" Selector="&lt;html title='Registerportal' /&gt;">
+                                    <ui:BrowserScope.Body>
+                                      <ActivityAction x:TypeArguments="x:Object">
+                                        <ActivityAction.Argument>
+                                          <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                        </ActivityAction.Argument>
+                                        <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                                          <Sequence.Variables>
+                                            <Variable x:TypeArguments="x:String" Name="variable1" />
+                                          </Sequence.Variables>
+                                          <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Choosing Type AD or CD" sap2010:WorkflowViewState.IdRef="Click_17" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                            <ui:Click.CursorPosition>
+                                              <ui:CursorPosition OffsetX="11" OffsetY="6" Position="TopLeft" />
+                                            </ui:Click.CursorPosition>
+                                            <ui:Click.Target>
+                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3795c6e0ac956371bbd84febd8431df5" Selector="[&quot;&lt;webctrl aaname='&quot;+typeReq.ToUpper+&quot;' parentid='inhalt' tag='A' /&gt;&quot;]" WaitForReady="COMPLETE" />
+                                            </ui:Click.Target>
+                                          </ui:Click>
+                                          <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'INPUT'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_9" SendWindowMessages="False" SimulateType="True" Text="[userNameHandel]">
+                                            <ui:TypeInto.Target>
+                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e0be7b90e546e1dfab60dfc3d5851b23" Selector="&lt;webctrl name='security-loginname' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                                            </ui:TypeInto.Target>
+                                          </ui:TypeInto>
+                                          <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'INPUT'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_10" SendWindowMessages="False" SimulateType="True" Text="[passHandel]">
+                                            <ui:TypeInto.Target>
+                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c2e678c5d84d06a9c78b3f212be2dd56" Selector="&lt;webctrl name='security-password' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                                            </ui:TypeInto.Target>
+                                          </ui:TypeInto>
+                                          <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  nutzungsordnungZ...'" sap2010:WorkflowViewState.IdRef="Click_18" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                            <ui:Click.CursorPosition>
+                                              <ui:CursorPosition OffsetX="8" OffsetY="7" Position="TopLeft" />
+                                            </ui:Click.CursorPosition>
+                                            <ui:Click.Target>
+                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="449882878a26c134815d027d702857a8" Selector="&lt;webctrl id='nutzungsordnungZugestimmt' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                                            </ui:Click.Target>
+                                          </ui:Click>
+                                          <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                                            <ui:CommentOut.Body>
+                                              <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                                                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  submitBtn'" sap2010:WorkflowViewState.IdRef="Click_19" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
                                                   <ui:Click.CursorPosition>
-                                                    <ui:CursorPosition OffsetX="11" OffsetY="6" Position="TopLeft" />
+                                                    <ui:CursorPosition OffsetX="10" OffsetY="7" Position="TopLeft" />
                                                   </ui:Click.CursorPosition>
                                                   <ui:Click.Target>
-                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3795c6e0ac956371bbd84febd8431df5" Selector="[&quot;&lt;webctrl aaname='&quot;+typeHra.ToUpper+&quot;' parentid='inhalt' tag='A' /&gt;&quot;]" WaitForReady="COMPLETE" />
+                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="65a531048fd3dbd1affac11f6b6a87e0" Selector="&lt;webctrl id='submitBtn' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
                                                   </ui:Click.Target>
                                                 </ui:Click>
-                                                <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'INPUT'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_9" SendWindowMessages="False" SimulateType="True" Text="[userNameHandel]">
-                                                  <ui:TypeInto.Target>
-                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e0be7b90e546e1dfab60dfc3d5851b23" Selector="&lt;webctrl name='security-loginname' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                                                  </ui:TypeInto.Target>
-                                                </ui:TypeInto>
-                                                <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'INPUT'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_10" SendWindowMessages="False" SimulateType="True" Text="[passHandel]">
-                                                  <ui:TypeInto.Target>
-                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c2e678c5d84d06a9c78b3f212be2dd56" Selector="&lt;webctrl name='security-password' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                                                  </ui:TypeInto.Target>
-                                                </ui:TypeInto>
-                                                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  nutzungsordnungZ...'" sap2010:WorkflowViewState.IdRef="Click_18" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                                                  <ui:Click.CursorPosition>
-                                                    <ui:CursorPosition OffsetX="8" OffsetY="7" Position="TopLeft" />
-                                                  </ui:Click.CursorPosition>
-                                                  <ui:Click.Target>
-                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="449882878a26c134815d027d702857a8" Selector="&lt;webctrl id='nutzungsordnungZugestimmt' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                                                  </ui:Click.Target>
-                                                </ui:Click>
-                                                <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-                                                  <ui:CommentOut.Body>
-                                                    <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_29">
-                                                      <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  submitBtn'" sap2010:WorkflowViewState.IdRef="Click_19" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                                                        <ui:Click.CursorPosition>
-                                                          <ui:CursorPosition OffsetX="10" OffsetY="7" Position="TopLeft" />
-                                                        </ui:Click.CursorPosition>
-                                                        <ui:Click.Target>
-                                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="65a531048fd3dbd1affac11f6b6a87e0" Selector="&lt;webctrl id='submitBtn' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                                                        </ui:Click.Target>
-                                                      </ui:Click>
-                                                    </Sequence>
-                                                  </ui:CommentOut.Body>
-                                                </ui:CommentOut>
                                               </Sequence>
-                                            </ActivityAction>
-                                          </ui:BrowserScope.Body>
-                                        </ui:BrowserScope>
-                                      </Sequence>
-                                    </ui:CommentOut.Body>
-                                  </ui:CommentOut>
+                                            </ui:CommentOut.Body>
+                                          </ui:CommentOut>
+                                        </Sequence>
+                                      </ActivityAction>
+                                    </ui:BrowserScope.Body>
+                                  </ui:BrowserScope>
                                   <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
                                     <Assign.To>
                                       <OutArgument x:TypeArguments="x:String">[body]</OutArgument>
@@ -806,29 +640,6 @@
                                       <InArgument x:TypeArguments="x:String">["&lt;h2&gt;Your request was processed successfully. You can find the document in the attachemnt. For more info please contact: xx@x.com&lt;/h2&gt; &lt;br&gt; &lt;h3&gt;"+ resultedNames+ "&lt;/h3&gt;"]</InArgument>
                                     </Assign.Value>
                                   </Assign>
-                                  <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_5">
-                                    <ui:CommentOut.Body>
-                                      <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_53">
-                                        <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'iexplore.exe  Registerp...'" sap2010:WorkflowViewState.IdRef="BrowserScope_15" InformativeScreenshot="07452bc249e6a6de2d4a59e303b05f8f" Selector="&lt;html title='Registerportal' /&gt;">
-                                          <ui:BrowserScope.Body>
-                                            <ActivityAction x:TypeArguments="x:Object">
-                                              <ActivityAction.Argument>
-                                                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                              </ActivityAction.Argument>
-                                              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_26">
-                                                <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_7" Text="Here come adding the cost and clicking the button" />
-                                                <If Condition="[debug]" sap2010:WorkflowViewState.IdRef="If_5">
-                                                  <If.Then>
-                                                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="Success: Here comes adding the cost and clicking the download btn!" TopMost="True" />
-                                                  </If.Then>
-                                                </If>
-                                              </Sequence>
-                                            </ActivityAction>
-                                          </ui:BrowserScope.Body>
-                                        </ui:BrowserScope>
-                                      </Sequence>
-                                    </ui:CommentOut.Body>
-                                  </ui:CommentOut>
                                 </Sequence>
                                 <FlowStep.Next>
                                   <x:Reference>__ReferenceID7</x:Reference>
@@ -859,21 +670,27 @@
     <x:Reference>__ReferenceID14</x:Reference>
     <x:Reference>__ReferenceID15</x:Reference>
     <x:Reference>__ReferenceID7</x:Reference>
-    <sads:DebugSymbol.Symbol>dzVEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XFNlYXJjaGluZ1Byb2Nlc3MueGFtbHxyA98GDwIBAXc0dz0CAQR4NHg4AgEDejV6PAIBAn8J+gQVAgFM/AQ8/ARRAgFKrAUhtAU5AgFD/wQR/wSnAQIBPoIFFYkFHgIBOosFSIsFYQIBOLoFS7oFYQIBNr0FIcAGLAIBGI4FHakFKAIBBYYBD4oEIQIBeI0EE5EEKAIBc5MERZMEWgIBcb4ESb4EjgECAW7SBB/oBCoCAWDBBB/KBCoCAVmWBBu6BC0CAU2vBVmvBV8CAUiuBVquBWECAUaxBSexBVYCAUWsBcYBrAXZAQIBRP8EkwH/BKQBAgFB/wQv/wQ+AgE/hwU/hwVXAgE9hAVAhAVQAgE7vwVSvwVdAgEawAVSwAVfAgEZwgUjyQUsAgEyygUjygWYAQIBMMsFI+QFKAIBIuUFI6AGMwIBIaEGI6gGLAIBHKkGI78GMwIBG5AFTpAFWQIBB5EFTpEFWwIBBpMFH5oFKAIBFJsFH5sFzwECARKcBR+jBSgCAQ2kBR+oBSQCAQiGAZ4ChgHFAgMBoAGMARWHBCACAXmPBJEBjwTnAQIBd48E8gGPBPgBAgF2jQRTjQRoAgF00wQh2gQqAgFq2wQh4gQqAgFm4wQh5wQmAgFhwgQhyQQqAgFalgShApYEyAICAVicBCG3BCwCAU7EBU/EBV4CATPKBXvKBZUBAgExywUxywWWAQIBI80FJ9YFMgIBK9kFJ+IFMgIBJqYGTqYGlwICAR+jBk+jBlUCAR2YBUqYBWICAReVBUuVBVoCARWbBXebBcwBAgEToQVKoQX4AQIBEJ4FS54FUQIBDqQFLaQFNgIBCaYFI6YFngICAQuNAReUASIDAZwBlQEXmQElAwGYAZoBF64BHAMBjgGvARf2AxwDAYIB9wMX/gMiAgF+/wMXhgQiAgF62ARM2ARhAgFt1QRN1QRcAgFr4ARM4AS9AQIBad0ETd0EUwIBZ+MEL+MEOAIBYuUEJeUE2wECAWTHBEzHBIUBAgFdxARNxARaAgFbnQQjoQQ0AgFQogQjtgQzAgFPzgUp1QUyAgEs2gUp4QUyAgEnpgW4AaYFjAICAQySAaoBkgHWAQMBnwGPAUOPAUYDAZ4BjwE2jwE6AwGdAZcBqgGXAcwBAwGbAZUBqwKVAboCAwGZAZoBJZoBRAMBjwGcARugASkDAZQBowEbrAEpAwGRAa8BJa8BRwMBgwGxARvRAisDAYkB1AIb9AMrAwGFAfwDqgH8A+ABAwGBAfkDQvkDRQMBgAH5Azb5AzkCAX+EBKoBhATZAQIBfYEEQ4EERwIBfIEENoEEOgIBe+UEugHlBMkBAgFlnQTYA50E3QMCAVefBLYBnwTnAQIBVp0ElAGdBJkBAgFVnQRfnQRlAgFUnQRwnQR/AgFSnQTYAZ0ElAMCAVHTBVTTBVYCAS/QBVXQBV4CAS3fBVTfBVYCASrcBVXcBV4CASieAa4BngHjAQMBlwGcAbACnAG5AgMBlQGlAa4BpQHjAQMBkwGpASGpAVADAZIBsQFnsQFtAwGMAbEBxgGxAeEBAwGKAc8CrgHPAuUBAwGNAdQCZ9QCbQMBhwHUAsYB1ALMAQMBhgHyA64B8gPlAQMBiAE=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dzVEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XFNlYXJjaGluZ1Byb2Nlc3MueGFtbIIBcgOiBQ8CAQF3NHc9AgEDeTV5PAIBAn4J1AMVAgFW1gM81gNRAgFUhgQhlQQxAgFT2QMR2QOnAQIBTtwDFeMDHgIBSuUDSOUDYQIBSJsES5sEYQIBRp4EIYMFLAIBF+gDHYMEKAIBBIUBD+QCIQMBggHnAhPrAigCAX3tAkXtAloCAXuYA0mYA44BAgF4rAMfwgMqAgFqmwMfpAMqAgFj8AIblAMtAgFX2QOTAdkDpAECAVHZAy/ZAz4CAU/hAz/hA1cCAU3eA0DeA1ACAUugBFKgBF0CARmhBFKhBF8CARijBCOqBCwCAUKrBCPEBCgCATTFBCP6BDUCAR/7BCOCBSwCARrqA07qA1kCAQbrA07rA1sCAQXtAx/0AygCARP1Ax/1A88BAgER9gMf/QMoAgEM/gMfggQkAgEHhQGeAoUBxQIDAaoBiwEV4QIgAwGDAekCkQHpAucBAwGBAekC8gHpAvgBAwGAAecCU+cCaAIBfq0DIbQDKgIBdLUDIbwDKgIBcL0DIcEDJgIBa5wDIaMDKgIBZPACoQLwAsgCAgFi9gIhkQMsAgFYpQRPpQReAgFDqwQxqwSWAQIBNa0EJ7YEMgIBPbkEJ8IEMgIBOMUEuwLFBOICAgEzywQp9wQ0AgEggAVOgAWXAgIBHf0ET/0EVQIBG/IDSvIDYgIBFu8DS+8DWgIBFPUDd/UDzAECARL7A0r7A/gBAgEP+ANL+ANRAgEN/gMt/gM2AgEIgAQjgASeAgIBCowBF5MBIgMBpgGUAReYASUDAaIBmQEXowEcAwGZAaQBF68BHAMBkQGwARfQAicDAYwB0QIX2AIiAwGIAdkCF+ACIgMBhAGyA0yyA2ECAXevA02vA1wCAXW6A0y6A70BAgFztwNNtwNTAgFxvQMvvQM4AgFsvwMlvwPbAQIBbqEDTKEDhQECAWeeA02eA1oCAWX3AiP7AjQCAVr8AiOQAzMCAVmuBCm1BDICAT66BCnBBDICATnPBCvWBDYCAS7XBCvbBDkCASrcBCvgBDkCASbhBCvoBDYCASLpBCv2BDsCASGABLgBgASMAgIBC5EBqgGRAdYBAwGpAY4BQ44BRgMBqAGOATaOAToDAacBlgGqAZYBzAEDAaUBlAGrApQBugIDAaMBmQElmQFkAwGaAZsBG6EBJgMBnQGkASWkAWQDAZIBpgEbrQEkAwGVAbABY7ABaQMBjwGwAcIBsAHdAQMBjQHOAqoBzgLhAQMBkAHWAqoB1gLgAQMBiwHTAkLTAkUDAYoB0wI20wI5AwGJAd4CqgHeAtkBAwGHAdsCQ9sCRwMBhgHbAjbbAjoDAYUBvwO6Ab8DyQECAW/3AtgD9wLdAwIBYfkCtgH5AucBAgFg9wKUAfcCmQECAV/3Al/3AmUCAV73AnD3An8CAVz3AtgB9wKUAwIBW7MEVLMEVgIBQbAEVbAEXgIBP78EVL8EVgIBPLwEVbwEXgIBOtQEvgHUBKACAgEx0QRX0QRaAgEw0QRK0QROAgEv2QS+AdkE9wECAS3XBLwC1wTOAgIBK94EvgHeBPYBAgEp3AS9AtwEywICASfmBL4B5gT8AQIBJeMEVuMEWQIBJOMESuMETQIBI5wBHaABKwMBngGrAUarAUoDAZgBqAFHqAFRAwGWAZ4BsAGeAeUBAwGhAZwBsgKcAbsCAwGfAQ==</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="Click_30" sap:VirtualizedContainerService.HintSize="653,106" />
-      <sap2010:ViewStateData Id="TypeInto_12" sap:VirtualizedContainerService.HintSize="653,134" />
+      <sap2010:ViewStateData Id="Click_30" sap:VirtualizedContainerService.HintSize="464,106" />
+      <sap2010:ViewStateData Id="TypeInto_12" sap:VirtualizedContainerService.HintSize="464,134" />
       <sap2010:ViewStateData Id="TypeInto_13" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="TypeInto_14" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="653,281" />
-      <sap2010:ViewStateData Id="SelectItem_10" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="SelectItem_11" sap:VirtualizedContainerService.HintSize="314,134" />
-      <sap2010:ViewStateData Id="If_8" sap:VirtualizedContainerService.HintSize="653,281" />
-      <sap2010:ViewStateData Id="Click_25" sap:VirtualizedContainerService.HintSize="653,106" />
-      <sap2010:ViewStateData Id="Click_26" sap:VirtualizedContainerService.HintSize="653,106" />
-      <sap2010:ViewStateData Id="Sequence_37" sap:VirtualizedContainerService.HintSize="675,1338">
+      <sap2010:ViewStateData Id="Sequence_59" sap:VirtualizedContainerService.HintSize="336,258">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="464,405" />
+      <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_12" sap:VirtualizedContainerService.HintSize="464,207" />
+      <sap2010:ViewStateData Id="SelectItem_10" sap:VirtualizedContainerService.HintSize="464,134" />
+      <sap2010:ViewStateData Id="Click_25" sap:VirtualizedContainerService.HintSize="464,106" />
+      <sap2010:ViewStateData Id="Click_26" sap:VirtualizedContainerService.HintSize="464,106" />
+      <sap2010:ViewStateData Id="Sequence_37" sap:VirtualizedContainerService.HintSize="486,1562">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1029,13 +846,22 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="InvokeWorkflowFile_1" sap:VirtualizedContainerService.HintSize="200,51">
+      <sap2010:ViewStateData Id="WriteLine_16" sap:VirtualizedContainerService.HintSize="314,61" />
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_1" sap:VirtualizedContainerService.HintSize="314,87">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_57" sap:VirtualizedContainerService.HintSize="336,312">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CommentOut_7" sap:VirtualizedContainerService.HintSize="200,51" />
       <sap2010:ViewStateData Id="FlowStep_41">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1053,14 +879,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="697,60" />
-      <sap2010:ViewStateData Id="WriteLine_15" sap:VirtualizedContainerService.HintSize="697,61">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="553,60" />
       <sap2010:ViewStateData Id="Assign_10" sap:VirtualizedContainerService.HintSize="242,60" />
       <sap2010:ViewStateData Id="Sequence_55" sap:VirtualizedContainerService.HintSize="264,184">
         <sap:WorkflowViewStateService.ViewState>
@@ -1077,7 +896,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_9" sap:VirtualizedContainerService.HintSize="697,332" />
+      <sap2010:ViewStateData Id="If_9" sap:VirtualizedContainerService.HintSize="553,332" />
       <sap2010:ViewStateData Id="Click_17" sap:VirtualizedContainerService.HintSize="416,106" />
       <sap2010:ViewStateData Id="TypeInto_9" sap:VirtualizedContainerService.HintSize="416,134" />
       <sap2010:ViewStateData Id="TypeInto_10" sap:VirtualizedContainerService.HintSize="416,134" />
@@ -1098,7 +917,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_14" sap:VirtualizedContainerService.HintSize="200,51">
+      <sap2010:ViewStateData Id="BrowserScope_14" sap:VirtualizedContainerService.HintSize="553,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -1106,35 +925,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_54" sap:VirtualizedContainerService.HintSize="222,175">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_6" sap:VirtualizedContainerService.HintSize="697,253" />
-      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="538,60" />
-      <sap2010:ViewStateData Id="WriteLine_7" sap:VirtualizedContainerService.HintSize="464,61" />
-      <sap2010:ViewStateData Id="MessageBox_1" sap:VirtualizedContainerService.HintSize="314,59" />
-      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="464,207" />
-      <sap2010:ViewStateData Id="Sequence_26" sap:VirtualizedContainerService.HintSize="486,432">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_15" sap:VirtualizedContainerService.HintSize="500,578" />
-      <sap2010:ViewStateData Id="Sequence_53" sap:VirtualizedContainerService.HintSize="522,702">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_5" sap:VirtualizedContainerService.HintSize="538,780" />
-      <sap2010:ViewStateData Id="Sequence_22" sap:VirtualizedContainerService.HintSize="719,1870">
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="553,60" />
+      <sap2010:ViewStateData Id="Sequence_22" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1221,7 +1013,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="SearchingProcess_1" sap:VirtualizedContainerService.HintSize="1088,1281" />
+      <sap2010:ViewStateData Id="SearchingProcess_1" sap:VirtualizedContainerService.HintSize="1088,1081" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
