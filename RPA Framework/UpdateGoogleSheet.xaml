@@ -102,7 +102,6 @@
             <DelegateInArgument x:TypeArguments="ga:GoogleSheetProperty" Name="GoogleSheetScope" />
           </ActivityAction.Argument>
           <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_2">
-            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;here: &quot; + transactionItem.ToString]" />
             <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[params]</OutArgument>
@@ -126,12 +125,11 @@
         </ActivityAction>
       </ga:GoogleSheetApplicationScope.Body>
     </ga:GoogleSheetApplicationScope>
-    <sads:DebugSymbol.Symbol>dzBEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XGdvb2dsZVNoZWV0LnhhbWwcAVsBXwECUgOCAQ4CAQFaBWEOAgEsYgWAASYCAQJfMF8+AgEvXDFcPwIBLWLMAWLxAQIBKmLEAmLsAgIBKGKGAmK1AgIBJmKaAWLCAQIBJGgLfRYCAQNpDWmYAQIBImoNcRYCARlyDXKpAQIBFHMNc9sBAgEKdA10uQECAQV1DXwdAgEEaWRplQECASNvOG99AgEcbDlsQQIBGnKLAXKXAQIBF3KeAXKmAQIBFnJ+coMBAgEVc4IBc44BAgESczhzdwIBC3SyAXS2AQIBCXQmdDICAQd0nAF0pAECAQY=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dzZEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XFVwZGF0ZUdvb2dsZVNoZWV0LnhhbWwaAVsBXwECUgOBAQ4CAQFaBWEOAgEqYgV/JgIBAl8wXz4CAS1cMVw/AgErYswBYvEBAgEoYsQCYuwCAgEmYoYCYrUCAgEkYpoBYsIBAgEiaAt8FgIBA2kNcBYCARlxDXGpAQIBFHINctsBAgEKcw1zuQECAQV0DXsdAgEEbjhufQIBHGs5a0ECARpxiwFxlwECARdxngFxpgECARZxfnGDAQIBFXKCAXKOAQIBEnI4cncCAQtzsgFztgECAQlzJnMyAgEHc5wBc6QBAgEG</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
       <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="452,60" />
-      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="416,61" />
       <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="416,60" />
       <sap2010:ViewStateData Id="ReadRange_1" sap:VirtualizedContainerService.HintSize="416,22" />
       <sap2010:ViewStateData Id="AddDataRow_1" sap:VirtualizedContainerService.HintSize="416,22" />
@@ -146,22 +144,22 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="416,286" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="438,797">
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="438,696">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="GoogleSheetApplicationScope_1" sap:VirtualizedContainerService.HintSize="452,907" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="474,1131">
+      <sap2010:ViewStateData Id="GoogleSheetApplicationScope_1" sap:VirtualizedContainerService.HintSize="452,806" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="474,1030">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="googleSheet_1" sap:VirtualizedContainerService.HintSize="514,2011" />
+      <sap2010:ViewStateData Id="googleSheet_1" sap:VirtualizedContainerService.HintSize="514,1310" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
