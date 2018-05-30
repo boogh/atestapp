@@ -184,6 +184,7 @@
                 <InArgument x:TypeArguments="x:String" x:Key="regCourt">[regCourt]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="email">[email]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="regStatus">[regStatus]</InArgument>
+                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="config">[in_Config]</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
             <ui:CloseApplication DisplayName="Close application 'iexplore.exe  ...'" sap2010:WorkflowViewState.IdRef="CloseApplication_1">
@@ -220,7 +221,7 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
-    <sads:DebugSymbol.Symbol>dyxEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XFByb2Nlc3MueGFtbD5GA+ABDgIBAVQF3gEQAgECWQnSARQCAQbaAQ3aAckBAgEDWgvCARYCAR/DAQvRASMCAQfaAaIB2gG3AQIBBFsNnAEYAgE8nQENpAEWAgE3pQENsAEeAgEysQENvAElAgEivQENwQEjAgEgyQFGyQFTAgEdyAFEyAFLAgEbzgFSzgFmAgEZzwFfzwFqAgEXzAFIzAFTAgEVxwFFxwFNAgETygFEygFLAgERzQFDzQFJAgEPxgFMxgFbAgENxQFBxQFFAgELwwG4AcMB0AECAQrLAUfLAVECAQhcD2MYAgFZZA9rGAIBVWwPcxgCAVF0D3sYAgFNfA+DARgCAUmEAQ+LARgCAUWMAQ+TARgCAUGUAQ+bARgCAT2iATiiAVMCATqfATmfAT4CATilAcIBpQHJAQIBNasBE60BHgIBM7UBT7UBVwIBMLkBRrkBTQIBLrQBTLQBWQIBLLoBSroBVQIBKrcBRrcBTQIBKLYBSLYBTgIBJrEBuQGxAcwBAgEluAFJuAFTAgEjvwGgAb8BxwECASFhOmF2AgFcXjteSAIBWmk6aW8CAVhmO2ZBAgFWcTpxcAIBVG47bkICAVJ5OnlzAgFQdjt2RQIBToEBOoEBcAIBTH47fkICAUqJATqJAW0CAUiGATuGAT8CAUaRATqRAXgCAUSOATuOAUoCAUKZATqZAXQCAUCWATuWAUYCAT6sARWsAY0BAgE0</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dyxEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XFByb2Nlc3MueGFtbD9GA+EBDgIBAVQF3wEQAgECWQnTARQCAQbbAQ3bAckBAgEDWgvDARYCAR/EAQvSASMCAQfbAaIB2wG3AQIBBFsNnAEYAgE+nQENpAEWAgE5pQENsAEeAgE0sQENvQElAgEivgENwgEjAgEgygFGygFTAgEdyQFEyQFLAgEbzwFSzwFmAgEZ0AFf0AFqAgEXzQFIzQFTAgEVyAFFyAFNAgETywFEywFLAgERzgFDzgFJAgEPxwFMxwFbAgENxgFBxgFFAgELxAG4AcQB0AECAQrMAUfMAVECAQhcD2MYAgFbZA9rGAIBV2wPcxgCAVN0D3sYAgFPfA+DARgCAUuEAQ+LARgCAUeMAQ+TARgCAUOUAQ+bARgCAT+iATiiAVMCATyfATmfAT4CATqlAcIBpQHJAQIBN6sBE60BHgIBNbUBT7UBVwIBMrkBRrkBTQIBMLsBYbsBbAIBLrQBTLQBWQIBLLoBSroBVQIBKrcBRrcBTQIBKLYBSLYBTgIBJrEBuQGxAcwBAgEluAFJuAFTAgEjwAGgAcABxwECASFhOmF2AgFeXjteSAIBXGk6aW8CAVpmO2ZBAgFYcTpxcAIBVm47bkICAVR5OnlzAgFSdjt2RQIBUIEBOoEBcAIBTn47fkICAUyJATqJAW0CAUqGATuGAT8CAUiRATqRAXgCAUaOATuOAUoCAUSZATqZAXQCAUKWATuWAUYCAUCsARWsAY0BAgE2</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -296,8 +297,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="418,729" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="478,912">
+      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="418,529" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="440,710">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -305,7 +306,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ProcessTransaction_1" sap:VirtualizedContainerService.HintSize="518,992" />
+      <sap2010:ViewStateData Id="ProcessTransaction_1" sap:VirtualizedContainerService.HintSize="480,790" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
