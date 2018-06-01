@@ -17,6 +17,7 @@
     <x:Property Name="body" Type="InArgument(x:String)" />
     <x:Property Name="pathDownload" Type="InArgument(x:String)" />
     <x:Property Name="filename" Type="InArgument(x:String)" />
+    <x:Property Name="isThereAttachement" Type="InArgument(x:Boolean)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -80,40 +81,55 @@
       <Variable x:TypeArguments="x:String" Name="fileToSend" />
       <Variable x:TypeArguments="x:String" Name="pathToSend" />
     </Sequence.Variables>
-    <Assign sap2010:WorkflowViewState.IdRef="Assign_4">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[pathToSend]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[pathDownload+"tosend\"]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
-      <Assign.To>
-        <OutArgument x:TypeArguments="s:String[]">[downloadedfiles]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(pathDownload,"*.pdf")]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[fileToSend]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[pathToSend +filename+".pdf"]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <ui:MoveFile ContinueOnError="{x:Null}" Destination="[fileToSend]" DisplayName="Move and renaming downloaded file" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="False" Path="[downloadedfiles(0)]" />
-    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;Sending file: &quot; + fileToSend]" />
-    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[body]" DisplayName="Send Outlook Mail Message" sap2010:WorkflowViewState.IdRef="SendOutlookMail_2" IsBodyHtml="True" IsDraft="False" Subject="Results of your request " To="[email]">
-      <ui:SendOutlookMail.Files>
-        <scg1:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-          <InArgument x:TypeArguments="x:String">[fileToSend]</InArgument>
-        </scg1:List>
-      </ui:SendOutlookMail.Files>
-    </ui:SendOutlookMail>
-    <ui:Delete ContinueOnError="{x:Null}" DisplayName="Delete sended file" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[fileToSend]" />
+    <If Condition="[isThereAttachement]" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Assign>
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[pathToSend]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[pathDownload+"tosend\"]</InArgument>
+            </Assign.Value>
+            <sap2010:WorkflowViewState.IdRef>Assign_5</sap2010:WorkflowViewState.IdRef>
+          </Assign>
+          <Assign>
+            <Assign.To>
+              <OutArgument x:TypeArguments="s:String[]">[downloadedfiles]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(pathDownload,"*.pdf")]</InArgument>
+            </Assign.Value>
+            <sap2010:WorkflowViewState.IdRef>Assign_6</sap2010:WorkflowViewState.IdRef>
+          </Assign>
+          <Assign>
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[fileToSend]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[pathToSend +filename+".pdf"]</InArgument>
+            </Assign.Value>
+            <sap2010:WorkflowViewState.IdRef>Assign_7</sap2010:WorkflowViewState.IdRef>
+          </Assign>
+          <ui:MoveFile ContinueOnError="{x:Null}" Destination="[fileToSend]" DisplayName="Move and renaming downloaded file" Overwrite="False" Path="[downloadedfiles(0)]" sap2010:WorkflowViewState.IdRef="MoveFile_2" />
+          <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[body]" DisplayName="Send Outlook Mail Message with attachment" sap2010:WorkflowViewState.IdRef="SendOutlookMail_2" IsBodyHtml="True" IsDraft="False" Subject="Results of your request " To="[email]">
+            <ui:SendOutlookMail.Files>
+              <scg1:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                <InArgument x:TypeArguments="x:String">[fileToSend]</InArgument>
+              </scg1:List>
+            </ui:SendOutlookMail.Files>
+          </ui:SendOutlookMail>
+          <ui:Delete ContinueOnError="{x:Null}" DisplayName="Delete sended file" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[fileToSend]" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[body]" DisplayName="Send Outlook Mail Message without attachmet" sap2010:WorkflowViewState.IdRef="SendOutlookMail_3" IsBodyHtml="True" IsDraft="False" Subject="Results of your request " To="[email]">
+          <ui:SendOutlookMail.Files>
+            <scg1:List x:TypeArguments="InArgument(x:String)" Capacity="4" />
+          </ui:SendOutlookMail.Files>
+        </ui:SendOutlookMail>
+      </If.Else>
+    </If>
     <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_2">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_5">
@@ -139,17 +155,25 @@
         </Sequence>
       </ui:CommentOut.Body>
     </ui:CommentOut>
-    <sads:DebugSymbol.Symbol>dy5EOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XFNlbmRFbWFpbC54YW1sGwGHAQGQAQEFAbEBAdMBAQQBWgFuAQMB8AEB/wEBAkwDjwEOAgEBUwVaDgIBIFsFYg4CARxjBWoOAgEWawVr1QECARFsBWyKAQIBDm0FcxoCAQZ0BXSNAQIBA3UFjQEVAgECWDBYSAIBI1UxVT0CASFgMmBcAgEfXTNdRAIBHWgwaE0CARllMWU9AgEXazlrRwIBFGu8AWvSAQIBEmxcbIcBAgEPbacCbbACAgEMcDJwPgIBCm16bYIBAgEIbYkCbaMCAgEHdHx0igECAQQ=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dy5EOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XFNlbmRFbWFpbC54YW1sIAGHAQGQAQEFAbEBAdMBAQQBWgFuAQMB8AEB/wEBAk0DnwEOAgEBVAWEAQoCAQOFAQWdARUCAQJUE1QpAgEEVgl7FAIBDH4JggEeAgEGVwtfFAIBJ2ALaBQCASNpC3EUAgEdcgty2wECARhzC3kgAgEQegt6kwECAQ1+vQJ+xgICAQp+fn6GAQIBCH6fAn65AgIBB1w2XE4CASpZN1lDAgEoZThlYgIBJmI5YkoCASRuNm5TAgEgazdrQwIBHnI/ck0CARtylQFyqwECARlzvQJzxgICARZ2OHZEAgEUc4ABc4gBAgESc58Cc7kCAgEReoIBepABAgEO</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="456,60" />
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="456,60" />
-      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="456,60" />
-      <sap2010:ViewStateData Id="MoveFile_1" sap:VirtualizedContainerService.HintSize="456,22" />
-      <sap2010:ViewStateData Id="WriteLine_2" sap:VirtualizedContainerService.HintSize="456,61" />
-      <sap2010:ViewStateData Id="SendOutlookMail_2" sap:VirtualizedContainerService.HintSize="456,145" />
-      <sap2010:ViewStateData Id="Delete_1" sap:VirtualizedContainerService.HintSize="456,22" />
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="MoveFile_2" sap:VirtualizedContainerService.HintSize="314,22" />
+      <sap2010:ViewStateData Id="SendOutlookMail_2" sap:VirtualizedContainerService.HintSize="314,145" />
+      <sap2010:ViewStateData Id="Delete_1" sap:VirtualizedContainerService.HintSize="314,22" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="336,693">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg1:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SendOutlookMail_3" sap:VirtualizedContainerService.HintSize="314,145" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="675,841" />
       <sap2010:ViewStateData Id="SendMail_1" sap:VirtualizedContainerService.HintSize="314,145" />
       <sap2010:ViewStateData Id="LogMessage_1" sap:VirtualizedContainerService.HintSize="314,91" />
       <sap2010:ViewStateData Id="Catch`1_1" sap:VirtualizedContainerService.HintSize="404,21">
@@ -168,15 +192,15 @@
           </scg1:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_2" sap:VirtualizedContainerService.HintSize="456,574" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="478,1408">
+      <sap2010:ViewStateData Id="CommentOut_2" sap:VirtualizedContainerService.HintSize="675,574" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="697,1579">
         <sap:WorkflowViewStateService.ViewState>
           <scg1:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg1:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="sendingEmail_1" sap:VirtualizedContainerService.HintSize="518,1688" />
+      <sap2010:ViewStateData Id="sendingEmail_1" sap:VirtualizedContainerService.HintSize="526,1736" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

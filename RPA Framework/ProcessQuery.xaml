@@ -111,6 +111,7 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="SearchingProcess" sap2010:WorkflowViewState.IdRef="Flowchart_3">
@@ -122,558 +123,637 @@
       <Variable x:TypeArguments="x:Boolean" Name="resultTableExists" />
       <Variable x:TypeArguments="x:Boolean" Default="False" Name="debug" />
       <Variable x:TypeArguments="x:String" Name="body" />
+      <Variable x:TypeArguments="x:String" Name="originalReqType" />
+      <Variable x:TypeArguments="x:String" Name="originalReqCourt" />
+      <Variable x:TypeArguments="x:Boolean" Default="False" Name="isThereAttachment" />
+      <Variable x:TypeArguments="x:String" Name="originalCompanyName" />
     </Flowchart.Variables>
     <Flowchart.StartNode>
-      <FlowStep x:Name="__ReferenceID13" sap2010:WorkflowViewState.IdRef="FlowStep_34">
-        <Flowchart DisplayName="Search and scraping data" sap2010:WorkflowViewState.IdRef="Flowchart_6">
-          <Flowchart.Variables>
-            <Variable x:TypeArguments="x:String" Name="variable1" />
-            <Variable x:TypeArguments="x:String" Name="path" />
-          </Flowchart.Variables>
-          <Flowchart.StartNode>
-            <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_33">
-              <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Entering search params" sap2010:WorkflowViewState.IdRef="BrowserScope_19" InformativeScreenshot="8168a323bb8cb63723666c41a5672258" Selector="&lt;html title='Registerportal' /&gt;">
-                <ui:BrowserScope.Body>
-                  <ActivityAction x:TypeArguments="x:Object">
-                    <ActivityAction.Argument>
-                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                    </ActivityAction.Argument>
-                    <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_37">
-                      <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  main.search'" sap2010:WorkflowViewState.IdRef="Click_30" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                        <ui:Click.CursorPosition>
-                          <ui:CursorPosition OffsetX="68" OffsetY="5" Position="TopLeft" />
-                        </ui:Click.CursorPosition>
-                        <ui:Click.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d8b7c8a4dfd6d395308de6ef5d3a42d8" Selector="&lt;webctrl id='main.search' tag='A' /&gt;" WaitForReady="COMPLETE" />
-                        </ui:Click.Target>
-                      </ui:Click>
-                      <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TEXTAREA'" EmptyField="True" sap2010:WorkflowViewState.IdRef="TypeInto_12" SendWindowMessages="False" SimulateType="True" Text="[companyName]">
-                        <ui:TypeInto.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f10c7a027c1d82044327731ef928ed15" Selector="&lt;webctrl tag='TEXTAREA' /&gt;" WaitForReady="COMPLETE" />
-                        </ui:TypeInto.Target>
-                      </ui:TypeInto>
-                      <If Condition="[regNr &lt;&gt; &quot;&quot; and regNr &lt;&gt;&quot;0&quot;]" DisplayName="If - register number is 0 or empty" sap2010:WorkflowViewState.IdRef="If_6">
-                        <If.Then>
-                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_59">
-                            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TEXTAREA'" EmptyField="True" sap2010:WorkflowViewState.IdRef="TypeInto_13" SendWindowMessages="False" SimulateType="False" Text="[regNr]">
-                              <ui:TypeInto.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="948a5bd16f1b07ce49ce812ae31d8fd7" Selector="&lt;webctrl name='registerNummer' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                              </ui:TypeInto.Target>
-                            </ui:TypeInto>
-                          </Sequence>
-                        </If.Then>
-                      </If>
-                      <If Condition="[regCourt = &quot;All&quot;or regCourt = &quot;&quot;]" DisplayName="If - register court is All or empty" sap2010:WorkflowViewState.IdRef="If_12">
-                        <If.Then>
-                          <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:String">[regCourt]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:String">alle</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                        </If.Then>
-                      </If>
-                      <ui:SelectItem DelayAfter="{x:Null}" DelayBefore="{x:Null}" ContinueOnError="True" DisplayName="Select item: entering register court" sap2010:WorkflowViewState.IdRef="SelectItem_10" Item="[regCourt +&quot;*&quot;]">
-                        <ui:SelectItem.Items>
-                          <scg:List x:TypeArguments="x:String" Capacity="256">
-                            <x:String>alle</x:String>
-                            <x:String>Aachen</x:String>
-                            <x:String>Altenburg</x:String>
-                            <x:String>Amberg</x:String>
-                            <x:String>Ansbach</x:String>
-                            <x:String>Apolda</x:String>
-                            <x:String>Arnsberg</x:String>
-                            <x:String>Arnstadt</x:String>
-                            <x:String>Arnstadt Zweigstelle Ilmenau</x:String>
-                            <x:String>Aschaffenburg</x:String>
-                            <x:String>Augsburg</x:String>
-                            <x:String>Aurich</x:String>
-                            <x:String>Bad Hersfeld</x:String>
-                            <x:String>Bad Homburg v.d.H.</x:String>
-                            <x:String>Bad Kreuznach</x:String>
-                            <x:String>Bad Oeynhausen</x:String>
-                            <x:String>Bad Salzungen</x:String>
-                            <x:String>Bamberg</x:String>
-                            <x:String>Bayreuth</x:String>
-                            <x:String>Berlin (Charlottenburg)</x:String>
-                            <x:String>Bielefeld</x:String>
-                            <x:String>Bochum</x:String>
-                            <x:String>Bonn</x:String>
-                            <x:String>Braunschweig</x:String>
-                            <x:String>Bremen</x:String>
-                            <x:String>Chemnitz</x:String>
-                            <x:String>Coburg</x:String>
-                            <x:String>Coesfeld</x:String>
-                            <x:String>Cottbus</x:String>
-                            <x:String>Darmstadt</x:String>
-                            <x:String>Deggendorf</x:String>
-                            <x:String>Dortmund</x:String>
-                            <x:String>Dresden</x:String>
-                            <x:String>Duisburg</x:String>
-                            <x:String>Düren</x:String>
-                            <x:String>Düsseldorf</x:String>
-                            <x:String>Eisenach</x:String>
-                            <x:String>Erfurt</x:String>
-                            <x:String>Eschwege</x:String>
-                            <x:String>Essen</x:String>
-                            <x:String>Flensburg</x:String>
-                            <x:String>Frankfurt am Main</x:String>
-                            <x:String>Frankfurt/Oder</x:String>
-                            <x:String>Freiburg</x:String>
-                            <x:String>Friedberg</x:String>
-                            <x:String>Fritzlar</x:String>
-                            <x:String>Fulda</x:String>
-                            <x:String>Fürth</x:String>
-                            <x:String>Gelsenkirchen</x:String>
-                            <x:String>Gera</x:String>
-                            <x:String>Gießen</x:String>
-                            <x:String>Gotha</x:String>
-                            <x:String>Göttingen</x:String>
-                            <x:String>Greiz</x:String>
-                            <x:String>Gütersloh</x:String>
-                            <x:String>Hagen</x:String>
-                            <x:String>Hamburg</x:String>
-                            <x:String>Hamm</x:String>
-                            <x:String>Hanau</x:String>
-                            <x:String>Hannover</x:String>
-                            <x:String>Heilbad Heiligenstadt</x:String>
-                            <x:String>Hildburghausen</x:String>
-                            <x:String>Hildesheim</x:String>
-                            <x:String>Hof</x:String>
-                            <x:String>Homburg</x:String>
-                            <x:String>Ingolstadt</x:String>
-                            <x:String>Iserlohn</x:String>
-                            <x:String>Jena</x:String>
-                            <x:String>Kaiserslautern</x:String>
-                            <x:String>Kassel</x:String>
-                            <x:String>Kempten (Allgäu)</x:String>
-                            <x:String>Kiel</x:String>
-                            <x:String>Kleve</x:String>
-                            <x:String>Koblenz</x:String>
-                            <x:String>Köln</x:String>
-                            <x:String>Königstein</x:String>
-                            <x:String>Korbach</x:String>
-                            <x:String>Krefeld</x:String>
-                            <x:String>Landau</x:String>
-                            <x:String>Landshut</x:String>
-                            <x:String>Langenfeld</x:String>
-                            <x:String>Lebach</x:String>
-                            <x:String>Leipzig</x:String>
-                            <x:String>Lemgo</x:String>
-                            <x:String>Limburg</x:String>
-                            <x:String>Lübeck</x:String>
-                            <x:String>Ludwigshafen a.Rhein (Ludwigshafen)</x:String>
-                            <x:String>Lüneburg</x:String>
-                            <x:String>Mainz</x:String>
-                            <x:String>Mannheim</x:String>
-                            <x:String>Marburg</x:String>
-                            <x:String>Meiningen</x:String>
-                            <x:String>Memmingen</x:String>
-                            <x:String>Merzig</x:String>
-                            <x:String>Mönchengladbach</x:String>
-                            <x:String>Montabaur</x:String>
-                            <x:String>Mühlhausen</x:String>
-                            <x:String>München</x:String>
-                            <x:String>Münster</x:String>
-                            <x:String>Neubrandenburg</x:String>
-                            <x:String>Neunkirchen</x:String>
-                            <x:String>Neuruppin</x:String>
-                            <x:String>Neuss</x:String>
-                            <x:String>Nordhausen</x:String>
-                            <x:String>Nürnberg</x:String>
-                            <x:String>Offenbach am Main</x:String>
-                            <x:String>Oldenburg (Oldenburg)</x:String>
-                            <x:String>Osnabrück</x:String>
-                            <x:String>Ottweiler</x:String>
-                            <x:String>Paderborn</x:String>
-                            <x:String>Passau</x:String>
-                            <x:String>Pinneberg</x:String>
-                            <x:String>Pößneck</x:String>
-                            <x:String>Pößneck Zweigstelle Bad Lobenstein</x:String>
-                            <x:String>Potsdam</x:String>
-                            <x:String>Recklinghausen</x:String>
-                            <x:String>Regensburg</x:String>
-                            <x:String>Rostock</x:String>
-                            <x:String>Rudolstadt</x:String>
-                            <x:String>Rudolstadt Zweigstelle Saalfeld</x:String>
-                            <x:String>Saarbrücken</x:String>
-                            <x:String>Saarlouis</x:String>
-                            <x:String>Schweinfurt</x:String>
-                            <x:String>Schwerin</x:String>
-                            <x:String>Siegburg</x:String>
-                            <x:String>Siegen</x:String>
-                            <x:String>Sömmerda</x:String>
-                            <x:String>Sondershausen</x:String>
-                            <x:String>Sonneberg</x:String>
-                            <x:String>Stadthagen</x:String>
-                            <x:String>Stadtroda</x:String>
-                            <x:String>Steinfurt</x:String>
-                            <x:String>Stendal</x:String>
-                            <x:String>St. Ingbert (St Ingbert)</x:String>
-                            <x:String>Stralsund</x:String>
-                            <x:String>Straubing</x:String>
-                            <x:String>Stuttgart</x:String>
-                            <x:String>St. Wendel (St Wendel)</x:String>
-                            <x:String>Suhl</x:String>
-                            <x:String>Tostedt</x:String>
-                            <x:String>Traunstein</x:String>
-                            <x:String>Ulm</x:String>
-                            <x:String>Völklingen</x:String>
-                            <x:String>Walsrode</x:String>
-                            <x:String>Weiden i. d. OPf.</x:String>
-                            <x:String>Weimar</x:String>
-                            <x:String>Wetzlar</x:String>
-                            <x:String>Wiesbaden</x:String>
-                            <x:String>Wittlich</x:String>
-                            <x:String>Wuppertal</x:String>
-                            <x:String>Würzburg</x:String>
-                            <x:String>Zweibrücken</x:String>
-                          </scg:List>
-                        </ui:SelectItem.Items>
-                        <ui:SelectItem.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e7d8a9a055de9cedbc075f646e0a7a97" Selector="&lt;webctrl name='registergericht' tag='SELECT' /&gt;" WaitForReady="COMPLETE" />
-                        </ui:SelectItem.Target>
-                      </ui:SelectItem>
-                      <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click : including all keywords" sap2010:WorkflowViewState.IdRef="Click_25" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                        <ui:Click.CursorPosition>
-                          <ui:CursorPosition OffsetX="4" OffsetY="5" Position="TopLeft" />
-                        </ui:Click.CursorPosition>
-                        <ui:Click.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3760de42e20d1e5c3e3dcb507364ef10" Selector="&lt;webctrl id='schlagwortOption1' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                        </ui:Click.Target>
-                      </ui:Click>
-                      <If Condition="[regStatus.ToLower() = &quot;removed&quot;]" DisplayName="If-register status is removed" sap2010:WorkflowViewState.IdRef="If_13">
-                        <If.Then>
-                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_64">
-                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_62">
-                              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  suchOptGeloescht'" sap2010:WorkflowViewState.IdRef="Click_32" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                                <ui:Click.CursorPosition>
-                                  <ui:CursorPosition OffsetX="5" OffsetY="3" Position="TopLeft" />
-                                </ui:Click.CursorPosition>
-                                <ui:Click.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="64459580a80d5aad26b3c8abe6aac7f5" Selector="&lt;webctrl id='suchOptGeloescht' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                                </ui:Click.Target>
-                              </ui:Click>
-                            </Sequence>
-                          </Sequence>
-                        </If.Then>
-                      </If>
-                      <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click: Search button" sap2010:WorkflowViewState.IdRef="Click_26" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                        <ui:Click.CursorPosition>
-                          <ui:CursorPosition OffsetX="23" OffsetY="11" Position="TopLeft" />
-                        </ui:Click.CursorPosition>
-                        <ui:Click.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d1ddcc03f54e0185362840751a32c476" Selector="&lt;webctrl name='btnSuche' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                        </ui:Click.Target>
-                      </ui:Click>
-                    </Sequence>
-                  </ActivityAction>
-                </ui:BrowserScope.Body>
-              </ui:BrowserScope>
-              <FlowStep.Next>
-                <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_32">
-                  <ui:UiElementExists DisplayName="Element Exists 'TABLE'" Exists="[resultTableExists]" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
-                    <ui:UiElementExists.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="539778e36caaabf1624f63e99c543127" Selector="&lt;html title='Registerportal' /&gt;&lt;webctrl parentid='inhalt' tag='TABLE' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
-                    </ui:UiElementExists.Target>
-                  </ui:UiElementExists>
-                  <FlowStep.Next>
-                    <FlowDecision x:Name="__ReferenceID2" Condition="[resultTableExists]" sap2010:WorkflowViewState.IdRef="FlowDecision_4">
-                      <FlowDecision.True>
-                        <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_35">
-                          <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="ScrapingNames" sap2010:WorkflowViewState.IdRef="BrowserScope_20" InformativeScreenshot="43d9dca05176d7b296d18cba37dfd5af" Selector="&lt;html title='Registerportal' /&gt;">
+      <FlowStep x:Name="__ReferenceID17" sap2010:WorkflowViewState.IdRef="FlowStep_45">
+        <Assign sap2010:WorkflowViewState.IdRef="Assign_15">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[originalReqCourt]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[regCourt]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <FlowStep.Next>
+          <FlowStep x:Name="__ReferenceID18" sap2010:WorkflowViewState.IdRef="FlowStep_46">
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[originalReqType]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[typeReq]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <FlowStep.Next>
+              <FlowStep x:Name="__ReferenceID19" sap2010:WorkflowViewState.IdRef="FlowStep_48">
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_19">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[originalCompanyName]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[companyName]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <FlowStep.Next>
+                  <FlowStep x:Name="__ReferenceID13" sap2010:WorkflowViewState.IdRef="FlowStep_34">
+                    <Flowchart DisplayName="Search and scraping data" sap2010:WorkflowViewState.IdRef="Flowchart_6">
+                      <Flowchart.Variables>
+                        <Variable x:TypeArguments="x:String" Name="variable1" />
+                        <Variable x:TypeArguments="x:String" Name="path" />
+                      </Flowchart.Variables>
+                      <Flowchart.StartNode>
+                        <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_33">
+                          <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Entering search params" sap2010:WorkflowViewState.IdRef="BrowserScope_19" InformativeScreenshot="8168a323bb8cb63723666c41a5672258" Selector="&lt;html title='Registerportal' /&gt;">
                             <ui:BrowserScope.Body>
                               <ActivityAction x:TypeArguments="x:Object">
                                 <ActivityAction.Argument>
                                   <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                                 </ActivityAction.Argument>
-                                <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_38">
-                                  <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[extractedDT]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;column attr='text' name='Column1' exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' class='RegPortErg_FirmaKopf' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap2010:WorkflowViewState.IdRef="ExtractData_9" MaxNumberOfResults="100">
-                                    <ui:ExtractData.Target>
-                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d8c5d8e06a70e3a8ea23e499c5c37d43" Selector="&lt;webctrl parentid='inhalt' tag='TBODY' /&gt;" WaitForReady="COMPLETE" />
-                                    </ui:ExtractData.Target>
-                                  </ui:ExtractData>
-                                  <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_3">
-                                    <ui:CommentOut.Body>
-                                      <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_41">
-                                        <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Double Click" sap2010:WorkflowViewState.IdRef="Click_27" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
-                                          <ui:Click.CursorPosition>
-                                            <ui:CursorPosition Position="Center">
-                                              <ui:CursorPosition.OffsetX>
-                                                <InArgument x:TypeArguments="x:Int32" />
-                                              </ui:CursorPosition.OffsetX>
-                                              <ui:CursorPosition.OffsetY>
-                                                <InArgument x:TypeArguments="x:Int32" />
-                                              </ui:CursorPosition.OffsetY>
-                                            </ui:CursorPosition>
-                                          </ui:Click.CursorPosition>
-                                          <ui:Click.Target>
-                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="9b6f04c14691c1bd7e0e324002b79976" Selector="&lt;webctrl id='main.search' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
-                                          </ui:Click.Target>
-                                        </ui:Click>
+                                <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                                  <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  main.search'" sap2010:WorkflowViewState.IdRef="Click_30" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                    <ui:Click.CursorPosition>
+                                      <ui:CursorPosition OffsetX="68" OffsetY="5" Position="TopLeft" />
+                                    </ui:Click.CursorPosition>
+                                    <ui:Click.Target>
+                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d8b7c8a4dfd6d395308de6ef5d3a42d8" Selector="&lt;webctrl id='main.search' tag='A' /&gt;" WaitForReady="COMPLETE" />
+                                    </ui:Click.Target>
+                                  </ui:Click>
+                                  <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TEXTAREA'" EmptyField="True" sap2010:WorkflowViewState.IdRef="TypeInto_12" SendWindowMessages="False" SimulateType="True" Text="[companyName]">
+                                    <ui:TypeInto.Target>
+                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f10c7a027c1d82044327731ef928ed15" Selector="&lt;webctrl tag='TEXTAREA' /&gt;" WaitForReady="COMPLETE" />
+                                    </ui:TypeInto.Target>
+                                  </ui:TypeInto>
+                                  <If Condition="[regNr &lt;&gt; &quot;&quot; and regNr &lt;&gt;&quot;0&quot;]" DisplayName="If - register number is 0 or empty" sap2010:WorkflowViewState.IdRef="If_6">
+                                    <If.Then>
+                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_59">
+                                        <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'TEXTAREA'" EmptyField="True" sap2010:WorkflowViewState.IdRef="TypeInto_13" SendWindowMessages="False" SimulateType="False" Text="[regNr]">
+                                          <ui:TypeInto.Target>
+                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="948a5bd16f1b07ce49ce812ae31d8fd7" Selector="&lt;webctrl name='registerNummer' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                                          </ui:TypeInto.Target>
+                                        </ui:TypeInto>
                                       </Sequence>
-                                    </ui:CommentOut.Body>
-                                  </ui:CommentOut>
+                                    </If.Then>
+                                  </If>
+                                  <If Condition="[regCourt = &quot;All&quot;or regCourt = &quot;&quot;]" DisplayName="If - register court is All or empty" sap2010:WorkflowViewState.IdRef="If_12">
+                                    <If.Then>
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[regCourt]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">alle</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </If.Then>
+                                  </If>
+                                  <ui:SelectItem DelayAfter="{x:Null}" DelayBefore="{x:Null}" ContinueOnError="True" DisplayName="Select item: entering register court" sap2010:WorkflowViewState.IdRef="SelectItem_10" Item="[regCourt +&quot;*&quot;]">
+                                    <ui:SelectItem.Items>
+                                      <scg:List x:TypeArguments="x:String" Capacity="256">
+                                        <x:String>alle</x:String>
+                                        <x:String>Aachen</x:String>
+                                        <x:String>Altenburg</x:String>
+                                        <x:String>Amberg</x:String>
+                                        <x:String>Ansbach</x:String>
+                                        <x:String>Apolda</x:String>
+                                        <x:String>Arnsberg</x:String>
+                                        <x:String>Arnstadt</x:String>
+                                        <x:String>Arnstadt Zweigstelle Ilmenau</x:String>
+                                        <x:String>Aschaffenburg</x:String>
+                                        <x:String>Augsburg</x:String>
+                                        <x:String>Aurich</x:String>
+                                        <x:String>Bad Hersfeld</x:String>
+                                        <x:String>Bad Homburg v.d.H.</x:String>
+                                        <x:String>Bad Kreuznach</x:String>
+                                        <x:String>Bad Oeynhausen</x:String>
+                                        <x:String>Bad Salzungen</x:String>
+                                        <x:String>Bamberg</x:String>
+                                        <x:String>Bayreuth</x:String>
+                                        <x:String>Berlin (Charlottenburg)</x:String>
+                                        <x:String>Bielefeld</x:String>
+                                        <x:String>Bochum</x:String>
+                                        <x:String>Bonn</x:String>
+                                        <x:String>Braunschweig</x:String>
+                                        <x:String>Bremen</x:String>
+                                        <x:String>Chemnitz</x:String>
+                                        <x:String>Coburg</x:String>
+                                        <x:String>Coesfeld</x:String>
+                                        <x:String>Cottbus</x:String>
+                                        <x:String>Darmstadt</x:String>
+                                        <x:String>Deggendorf</x:String>
+                                        <x:String>Dortmund</x:String>
+                                        <x:String>Dresden</x:String>
+                                        <x:String>Duisburg</x:String>
+                                        <x:String>Düren</x:String>
+                                        <x:String>Düsseldorf</x:String>
+                                        <x:String>Eisenach</x:String>
+                                        <x:String>Erfurt</x:String>
+                                        <x:String>Eschwege</x:String>
+                                        <x:String>Essen</x:String>
+                                        <x:String>Flensburg</x:String>
+                                        <x:String>Frankfurt am Main</x:String>
+                                        <x:String>Frankfurt/Oder</x:String>
+                                        <x:String>Freiburg</x:String>
+                                        <x:String>Friedberg</x:String>
+                                        <x:String>Fritzlar</x:String>
+                                        <x:String>Fulda</x:String>
+                                        <x:String>Fürth</x:String>
+                                        <x:String>Gelsenkirchen</x:String>
+                                        <x:String>Gera</x:String>
+                                        <x:String>Gießen</x:String>
+                                        <x:String>Gotha</x:String>
+                                        <x:String>Göttingen</x:String>
+                                        <x:String>Greiz</x:String>
+                                        <x:String>Gütersloh</x:String>
+                                        <x:String>Hagen</x:String>
+                                        <x:String>Hamburg</x:String>
+                                        <x:String>Hamm</x:String>
+                                        <x:String>Hanau</x:String>
+                                        <x:String>Hannover</x:String>
+                                        <x:String>Heilbad Heiligenstadt</x:String>
+                                        <x:String>Hildburghausen</x:String>
+                                        <x:String>Hildesheim</x:String>
+                                        <x:String>Hof</x:String>
+                                        <x:String>Homburg</x:String>
+                                        <x:String>Ingolstadt</x:String>
+                                        <x:String>Iserlohn</x:String>
+                                        <x:String>Jena</x:String>
+                                        <x:String>Kaiserslautern</x:String>
+                                        <x:String>Kassel</x:String>
+                                        <x:String>Kempten (Allgäu)</x:String>
+                                        <x:String>Kiel</x:String>
+                                        <x:String>Kleve</x:String>
+                                        <x:String>Koblenz</x:String>
+                                        <x:String>Köln</x:String>
+                                        <x:String>Königstein</x:String>
+                                        <x:String>Korbach</x:String>
+                                        <x:String>Krefeld</x:String>
+                                        <x:String>Landau</x:String>
+                                        <x:String>Landshut</x:String>
+                                        <x:String>Langenfeld</x:String>
+                                        <x:String>Lebach</x:String>
+                                        <x:String>Leipzig</x:String>
+                                        <x:String>Lemgo</x:String>
+                                        <x:String>Limburg</x:String>
+                                        <x:String>Lübeck</x:String>
+                                        <x:String>Ludwigshafen a.Rhein (Ludwigshafen)</x:String>
+                                        <x:String>Lüneburg</x:String>
+                                        <x:String>Mainz</x:String>
+                                        <x:String>Mannheim</x:String>
+                                        <x:String>Marburg</x:String>
+                                        <x:String>Meiningen</x:String>
+                                        <x:String>Memmingen</x:String>
+                                        <x:String>Merzig</x:String>
+                                        <x:String>Mönchengladbach</x:String>
+                                        <x:String>Montabaur</x:String>
+                                        <x:String>Mühlhausen</x:String>
+                                        <x:String>München</x:String>
+                                        <x:String>Münster</x:String>
+                                        <x:String>Neubrandenburg</x:String>
+                                        <x:String>Neunkirchen</x:String>
+                                        <x:String>Neuruppin</x:String>
+                                        <x:String>Neuss</x:String>
+                                        <x:String>Nordhausen</x:String>
+                                        <x:String>Nürnberg</x:String>
+                                        <x:String>Offenbach am Main</x:String>
+                                        <x:String>Oldenburg (Oldenburg)</x:String>
+                                        <x:String>Osnabrück</x:String>
+                                        <x:String>Ottweiler</x:String>
+                                        <x:String>Paderborn</x:String>
+                                        <x:String>Passau</x:String>
+                                        <x:String>Pinneberg</x:String>
+                                        <x:String>Pößneck</x:String>
+                                        <x:String>Pößneck Zweigstelle Bad Lobenstein</x:String>
+                                        <x:String>Potsdam</x:String>
+                                        <x:String>Recklinghausen</x:String>
+                                        <x:String>Regensburg</x:String>
+                                        <x:String>Rostock</x:String>
+                                        <x:String>Rudolstadt</x:String>
+                                        <x:String>Rudolstadt Zweigstelle Saalfeld</x:String>
+                                        <x:String>Saarbrücken</x:String>
+                                        <x:String>Saarlouis</x:String>
+                                        <x:String>Schweinfurt</x:String>
+                                        <x:String>Schwerin</x:String>
+                                        <x:String>Siegburg</x:String>
+                                        <x:String>Siegen</x:String>
+                                        <x:String>Sömmerda</x:String>
+                                        <x:String>Sondershausen</x:String>
+                                        <x:String>Sonneberg</x:String>
+                                        <x:String>Stadthagen</x:String>
+                                        <x:String>Stadtroda</x:String>
+                                        <x:String>Steinfurt</x:String>
+                                        <x:String>Stendal</x:String>
+                                        <x:String>St. Ingbert (St Ingbert)</x:String>
+                                        <x:String>Stralsund</x:String>
+                                        <x:String>Straubing</x:String>
+                                        <x:String>Stuttgart</x:String>
+                                        <x:String>St. Wendel (St Wendel)</x:String>
+                                        <x:String>Suhl</x:String>
+                                        <x:String>Tostedt</x:String>
+                                        <x:String>Traunstein</x:String>
+                                        <x:String>Ulm</x:String>
+                                        <x:String>Völklingen</x:String>
+                                        <x:String>Walsrode</x:String>
+                                        <x:String>Weiden i. d. OPf.</x:String>
+                                        <x:String>Weimar</x:String>
+                                        <x:String>Wetzlar</x:String>
+                                        <x:String>Wiesbaden</x:String>
+                                        <x:String>Wittlich</x:String>
+                                        <x:String>Wuppertal</x:String>
+                                        <x:String>Würzburg</x:String>
+                                        <x:String>Zweibrücken</x:String>
+                                      </scg:List>
+                                    </ui:SelectItem.Items>
+                                    <ui:SelectItem.Target>
+                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e7d8a9a055de9cedbc075f646e0a7a97" Selector="&lt;webctrl name='registergericht' tag='SELECT' /&gt;" WaitForReady="COMPLETE" />
+                                    </ui:SelectItem.Target>
+                                  </ui:SelectItem>
+                                  <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click : including all keywords" sap2010:WorkflowViewState.IdRef="Click_25" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                    <ui:Click.CursorPosition>
+                                      <ui:CursorPosition OffsetX="4" OffsetY="5" Position="TopLeft" />
+                                    </ui:Click.CursorPosition>
+                                    <ui:Click.Target>
+                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3760de42e20d1e5c3e3dcb507364ef10" Selector="&lt;webctrl id='schlagwortOption1' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                                    </ui:Click.Target>
+                                  </ui:Click>
+                                  <If Condition="[regStatus.ToLower() = &quot;removed&quot;]" DisplayName="If-register status is removed" sap2010:WorkflowViewState.IdRef="If_13">
+                                    <If.Then>
+                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_64">
+                                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_62">
+                                          <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  suchOptGeloescht'" sap2010:WorkflowViewState.IdRef="Click_32" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                            <ui:Click.CursorPosition>
+                                              <ui:CursorPosition OffsetX="5" OffsetY="3" Position="TopLeft" />
+                                            </ui:Click.CursorPosition>
+                                            <ui:Click.Target>
+                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="64459580a80d5aad26b3c8abe6aac7f5" Selector="&lt;webctrl id='suchOptGeloescht' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                                            </ui:Click.Target>
+                                          </ui:Click>
+                                        </Sequence>
+                                      </Sequence>
+                                    </If.Then>
+                                  </If>
+                                  <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click: Search button" sap2010:WorkflowViewState.IdRef="Click_26" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                    <ui:Click.CursorPosition>
+                                      <ui:CursorPosition OffsetX="23" OffsetY="11" Position="TopLeft" />
+                                    </ui:Click.CursorPosition>
+                                    <ui:Click.Target>
+                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d1ddcc03f54e0185362840751a32c476" Selector="&lt;webctrl name='btnSuche' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                                    </ui:Click.Target>
+                                  </ui:Click>
                                 </Sequence>
                               </ActivityAction>
                             </ui:BrowserScope.Body>
                           </ui:BrowserScope>
-                        </FlowStep>
-                      </FlowDecision.True>
-                      <FlowDecision.False>
-                        <FlowDecision x:Name="__ReferenceID5" Condition="[companyName.Contains(&quot; &quot;) and companyName.Length &gt; 0]" sap2010:WorkflowViewState.IdRef="FlowDecision_5">
-                          <FlowDecision.True>
-                            <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_36">
-                              <Sequence DisplayName="Changing Search Params" sap2010:WorkflowViewState.IdRef="Sequence_40">
-                                <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
-                                  <Assign.To>
-                                    <OutArgument x:TypeArguments="x:String">[companyName]</OutArgument>
-                                  </Assign.To>
-                                  <Assign.Value>
-                                    <InArgument x:TypeArguments="x:String">[companyName.Substring(0 , companyName.LastIndexOf(" "))]</InArgument>
-                                  </Assign.Value>
-                                </Assign>
-                              </Sequence>
+                          <FlowStep.Next>
+                            <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_32">
+                              <ui:UiElementExists DisplayName="Element Exists 'TABLE'" Exists="[resultTableExists]" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+                                <ui:UiElementExists.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="539778e36caaabf1624f63e99c543127" Selector="&lt;html title='Registerportal' /&gt;&lt;webctrl parentid='inhalt' tag='TABLE' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+                                </ui:UiElementExists.Target>
+                              </ui:UiElementExists>
                               <FlowStep.Next>
-                                <x:Reference>__ReferenceID0</x:Reference>
+                                <FlowDecision x:Name="__ReferenceID2" Condition="[resultTableExists]" sap2010:WorkflowViewState.IdRef="FlowDecision_4">
+                                  <FlowDecision.True>
+                                    <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_35">
+                                      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="ScrapingNames" sap2010:WorkflowViewState.IdRef="BrowserScope_20" InformativeScreenshot="43d9dca05176d7b296d18cba37dfd5af" Selector="&lt;html title='Registerportal' /&gt;">
+                                        <ui:BrowserScope.Body>
+                                          <ActivityAction x:TypeArguments="x:Object">
+                                            <ActivityAction.Argument>
+                                              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                            </ActivityAction.Argument>
+                                            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                                              <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[extractedDT]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;column attr='text' name='Column1' exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' class='RegPortErg_FirmaKopf' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap2010:WorkflowViewState.IdRef="ExtractData_9" MaxNumberOfResults="100">
+                                                <ui:ExtractData.Target>
+                                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d8c5d8e06a70e3a8ea23e499c5c37d43" Selector="&lt;webctrl parentid='inhalt' tag='TBODY' /&gt;" WaitForReady="COMPLETE" />
+                                                </ui:ExtractData.Target>
+                                              </ui:ExtractData>
+                                              <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+                                                <ui:CommentOut.Body>
+                                                  <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                                                    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Double Click" sap2010:WorkflowViewState.IdRef="Click_27" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                                      <ui:Click.CursorPosition>
+                                                        <ui:CursorPosition Position="Center">
+                                                          <ui:CursorPosition.OffsetX>
+                                                            <InArgument x:TypeArguments="x:Int32" />
+                                                          </ui:CursorPosition.OffsetX>
+                                                          <ui:CursorPosition.OffsetY>
+                                                            <InArgument x:TypeArguments="x:Int32" />
+                                                          </ui:CursorPosition.OffsetY>
+                                                        </ui:CursorPosition>
+                                                      </ui:Click.CursorPosition>
+                                                      <ui:Click.Target>
+                                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="9b6f04c14691c1bd7e0e324002b79976" Selector="&lt;webctrl id='main.search' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
+                                                      </ui:Click.Target>
+                                                    </ui:Click>
+                                                  </Sequence>
+                                                </ui:CommentOut.Body>
+                                              </ui:CommentOut>
+                                            </Sequence>
+                                          </ActivityAction>
+                                        </ui:BrowserScope.Body>
+                                      </ui:BrowserScope>
+                                    </FlowStep>
+                                  </FlowDecision.True>
+                                  <FlowDecision.False>
+                                    <FlowDecision x:Name="__ReferenceID5" Condition="[companyName.Contains(&quot; &quot;) and companyName.Length &gt; 0]" sap2010:WorkflowViewState.IdRef="FlowDecision_5">
+                                      <FlowDecision.True>
+                                        <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_36">
+                                          <Sequence DisplayName="Changing Search Params" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:String">[companyName]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:String">[companyName.Substring(0 , companyName.LastIndexOf(" "))]</InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                          </Sequence>
+                                          <FlowStep.Next>
+                                            <x:Reference>__ReferenceID0</x:Reference>
+                                          </FlowStep.Next>
+                                        </FlowStep>
+                                      </FlowDecision.True>
+                                      <FlowDecision.False>
+                                        <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_40">
+                                          <Sequence DisplayName="Handling Zero Results" sap2010:WorkflowViewState.IdRef="Sequence_49">
+                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_4">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:String">[requestStatus]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:String">Success: Zero Result!</InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_7">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:String">[body]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:String" xml:space="preserve">["&lt;p&gt; Dear Sir/Madam, &lt;/p&gt; &lt;br&gt;" +
+"&lt;p&gt;Regardings your request with following information: &lt;br&gt;" +
+"Type of request:"+ originalReqType + "  exceprt of the company: " + originalCompanyName + "&lt;br&gt;" + 
+"Register status: " + regStatus + "&lt;br&gt;" +
+"Register number: " + regNr + "&lt;br&gt;" +
+"Register court: " + originalReqCourt  +  "&lt;br&gt;" +
+"&lt;p&gt;There was no company matching to the submitted information. Please contact: xx@x.com for more infos.&lt;/p&gt;&lt;br&gt;" +
+" Best Regards,&lt;br&gt;" +
+"Your digital assistance&lt;p&gt;"]</InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <If Condition="[debug]" sap2010:WorkflowViewState.IdRef="If_3">
+                                              <If.Then>
+                                                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_5" Text="Zero results!" TopMost="True" />
+                                              </If.Then>
+                                            </If>
+                                          </Sequence>
+                                        </FlowStep>
+                                      </FlowDecision.False>
+                                    </FlowDecision>
+                                  </FlowDecision.False>
+                                </FlowDecision>
                               </FlowStep.Next>
                             </FlowStep>
-                          </FlowDecision.True>
-                          <FlowDecision.False>
-                            <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_40">
-                              <Sequence DisplayName="Handling Zero Results" sap2010:WorkflowViewState.IdRef="Sequence_49">
-                                <Assign sap2010:WorkflowViewState.IdRef="Assign_4">
-                                  <Assign.To>
-                                    <OutArgument x:TypeArguments="x:String">[requestStatus]</OutArgument>
-                                  </Assign.To>
-                                  <Assign.Value>
-                                    <InArgument x:TypeArguments="x:String">Success: Zero Result!</InArgument>
-                                  </Assign.Value>
-                                </Assign>
-                                <Assign sap2010:WorkflowViewState.IdRef="Assign_7">
-                                  <Assign.To>
-                                    <OutArgument x:TypeArguments="x:String">[body]</OutArgument>
-                                  </Assign.To>
-                                  <Assign.Value>
-                                    <InArgument x:TypeArguments="x:String">["&lt;h2&gt; There was no company matching to the submitted request. For more info contact: xx@x.com&lt;/h2&gt;"]</InArgument>
-                                  </Assign.Value>
-                                </Assign>
-                                <If Condition="[debug]" sap2010:WorkflowViewState.IdRef="If_3">
-                                  <If.Then>
-                                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_5" Text="Zero results!" TopMost="True" />
-                                  </If.Then>
-                                </If>
-                              </Sequence>
-                            </FlowStep>
-                          </FlowDecision.False>
-                        </FlowDecision>
-                      </FlowDecision.False>
-                    </FlowDecision>
-                  </FlowStep.Next>
-                </FlowStep>
-              </FlowStep.Next>
-            </FlowStep>
-          </Flowchart.StartNode>
-          <x:Reference>__ReferenceID1</x:Reference>
-          <x:Reference>__ReferenceID0</x:Reference>
-          <x:Reference>__ReferenceID2</x:Reference>
-          <x:Reference>__ReferenceID3</x:Reference>
-          <x:Reference>__ReferenceID4</x:Reference>
-          <x:Reference>__ReferenceID5</x:Reference>
-          <x:Reference>__ReferenceID6</x:Reference>
-        </Flowchart>
-        <FlowStep.Next>
-          <FlowDecision x:Name="__ReferenceID14" Condition="[resultTableExists]" sap2010:WorkflowViewState.IdRef="FlowDecision_6">
-            <FlowDecision.True>
-              <FlowStep x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="FlowStep_18">
-                <ui:OutputDataTable DataTable="[extractedDT]" DisplayName="Output names" sap2010:WorkflowViewState.IdRef="OutputDataTable_3" Text="[resultedNames]" />
-                <FlowStep.Next>
-                  <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_19">
-                    <Assign DisplayName="Assign : Number of results" sap2010:WorkflowViewState.IdRef="Assign_1">
-                      <Assign.To>
-                        <OutArgument x:TypeArguments="x:Int32">[numberOfResult]</OutArgument>
-                      </Assign.To>
-                      <Assign.Value>
-                        <InArgument x:TypeArguments="x:Int32">[extractedDT.Rows.Count]</InArgument>
-                      </Assign.Value>
-                    </Assign>
+                          </FlowStep.Next>
+                        </FlowStep>
+                      </Flowchart.StartNode>
+                      <x:Reference>__ReferenceID1</x:Reference>
+                      <x:Reference>__ReferenceID0</x:Reference>
+                      <x:Reference>__ReferenceID2</x:Reference>
+                      <x:Reference>__ReferenceID3</x:Reference>
+                      <x:Reference>__ReferenceID4</x:Reference>
+                      <x:Reference>__ReferenceID5</x:Reference>
+                      <x:Reference>__ReferenceID6</x:Reference>
+                    </Flowchart>
                     <FlowStep.Next>
-                      <FlowDecision x:Name="__ReferenceID11" Condition="[numberOfResult &gt; 1]" DisplayName="if multiple results" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+                      <FlowDecision x:Name="__ReferenceID14" Condition="[resultTableExists]" sap2010:WorkflowViewState.IdRef="FlowDecision_6">
                         <FlowDecision.True>
-                          <FlowStep x:Name="__ReferenceID15" sap2010:WorkflowViewState.IdRef="FlowStep_38">
-                            <Sequence DisplayName="Handling Multiple Results" sap2010:WorkflowViewState.IdRef="Sequence_47">
-                              <Sequence.Variables>
-                                <Variable x:TypeArguments="x:String" Default="Hamrisaac" Name="userNameHandel" />
-                                <Variable x:TypeArguments="x:String" Default="Hamerika@11" Name="passHandel" />
-                              </Sequence.Variables>
-                              <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="x:String">[requestStatus]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="x:String">success: Multiple Result</InArgument>
-                                </Assign.Value>
-                              </Assign>
-                              <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_14" Text="[&quot; Multiple result, send an email&quot; + Environment.NewLine + resultedNames]" />
-                              <Assign sap2010:WorkflowViewState.IdRef="Assign_8">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="x:String">[body]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="x:String">["&lt;h2&gt; There were multiple companies matching to the submitted request. For more info contact: xx@x.com&lt;/h2&gt; &lt;br&gt; &lt;h3&gt;"+ resultedNames+ "&lt;/h3&gt;"]</InArgument>
-                                </Assign.Value>
-                              </Assign>
-                              <If Condition="[debug]" sap2010:WorkflowViewState.IdRef="If_4">
-                                <If.Then>
-                                  <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[&quot;Multiple result, send an email&quot; + Environment.NewLine + resultedNames]" TopMost="True" />
-                                </If.Then>
-                              </If>
-                            </Sequence>
+                          <FlowStep x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="FlowStep_18">
+                            <ui:OutputDataTable DataTable="[extractedDT]" DisplayName="Output names" sap2010:WorkflowViewState.IdRef="OutputDataTable_3" Text="[resultedNames]" />
                             <FlowStep.Next>
-                              <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_41">
-                                <ui:CommentOut DisplayName="CommentOut - SendEmail" sap2010:WorkflowViewState.IdRef="CommentOut_7">
-                                  <ui:CommentOut.Body>
-                                    <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_57">
-                                      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Sending Email" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="SendEmail.xaml">
-                                        <ui:InvokeWorkflowFile.Arguments>
-                                          <InArgument x:TypeArguments="x:String" x:Key="email">[email]</InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="body">[body]</InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="pathDownload">[config("DownloadPath").ToString]</InArgument>
-                                          <InArgument x:TypeArguments="x:String" x:Key="filename">[companyName]</InArgument>
-                                        </ui:InvokeWorkflowFile.Arguments>
-                                      </ui:InvokeWorkflowFile>
-                                    </Sequence>
-                                  </ui:CommentOut.Body>
-                                </ui:CommentOut>
+                              <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_19">
+                                <Assign DisplayName="Assign : Number of results" sap2010:WorkflowViewState.IdRef="Assign_1">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Int32">[numberOfResult]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Int32">[extractedDT.Rows.Count]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <FlowStep.Next>
+                                  <FlowStep x:Name="__ReferenceID16" sap2010:WorkflowViewState.IdRef="FlowStep_44">
+                                    <ui:CommentOut sap2010:WorkflowViewState.IdRef="CommentOut_8">
+                                      <ui:CommentOut.Body>
+                                        <Sequence DisplayName="Ignored Activities">
+                                          <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_7" Text="[numberOfResult.ToString + &quot; : &quot; + resultedNames.Substring(8)]" TopMost="True" />
+                                        </Sequence>
+                                      </ui:CommentOut.Body>
+                                    </ui:CommentOut>
+                                    <FlowStep.Next>
+                                      <FlowDecision x:Name="__ReferenceID11" Condition="[numberOfResult &gt; 1]" DisplayName="if multiple results" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+                                        <FlowDecision.True>
+                                          <FlowStep x:Name="__ReferenceID15" sap2010:WorkflowViewState.IdRef="FlowStep_38">
+                                            <Sequence DisplayName="Handling Multiple Results" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                                              <Sequence.Variables>
+                                                <Variable x:TypeArguments="x:String" Default="Hamrisaac" Name="userNameHandel" />
+                                                <Variable x:TypeArguments="x:String" Default="Hamerika@11" Name="passHandel" />
+                                              </Sequence.Variables>
+                                              <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
+                                                <Assign.To>
+                                                  <OutArgument x:TypeArguments="x:String">[requestStatus]</OutArgument>
+                                                </Assign.To>
+                                                <Assign.Value>
+                                                  <InArgument x:TypeArguments="x:String">success: Multiple Result</InArgument>
+                                                </Assign.Value>
+                                              </Assign>
+                                              <Assign sap2010:WorkflowViewState.IdRef="Assign_8">
+                                                <Assign.To>
+                                                  <OutArgument x:TypeArguments="x:String">[body]</OutArgument>
+                                                </Assign.To>
+                                                <Assign.Value>
+                                                  <InArgument x:TypeArguments="x:String" xml:space="preserve">["&lt;p&gt; Dear Sir/Madam, &lt;/p&gt; &lt;br&gt;" +
+"&lt;p&gt;Regardings your request with following information: &lt;br&gt;" +
+"Type of request:"+ originalReqType + "  exceprt of the company: " + originalCompanyName + "&lt;br&gt;" + 
+"Register status: " + regStatus + "&lt;br&gt;" +
+"Register number: " + regNr + "&lt;br&gt;" +
+"Register court: " + originalReqCourt  +  "&lt;br&gt;" +
+"&lt;p&gt;There was multiple companies matching to the submitted information. &lt;/p&gt;&lt;br&gt;" +
+"&lt;p&gt;"+ resultedNames.Substring(8)+ "&lt;/p&gt;"+
+"Please contact: xx@x.com for more infos.&lt;/p&gt;&lt;br&gt;" +
+" Best Regards,&lt;br&gt;" +
+"Your digital assistance&lt;p&gt;"]</InArgument>
+                                                </Assign.Value>
+                                              </Assign>
+                                              <If Condition="[debug]" sap2010:WorkflowViewState.IdRef="If_4">
+                                                <If.Then>
+                                                  <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[&quot;Multiple result, send an email&quot; + Environment.NewLine + resultedNames]" TopMost="True" />
+                                                </If.Then>
+                                              </If>
+                                            </Sequence>
+                                            <FlowStep.Next>
+                                              <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_41">
+                                                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Sending Email" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="SendEmail.xaml">
+                                                  <ui:InvokeWorkflowFile.Arguments>
+                                                    <InArgument x:TypeArguments="x:String" x:Key="email">[email]</InArgument>
+                                                    <InArgument x:TypeArguments="x:String" x:Key="body">[body]</InArgument>
+                                                    <InArgument x:TypeArguments="x:String" x:Key="pathDownload">[config("DownloadPath").ToString]</InArgument>
+                                                    <InArgument x:TypeArguments="x:String" x:Key="filename">[companyName]</InArgument>
+                                                    <InArgument x:TypeArguments="x:Boolean" x:Key="isThereAttachement">[isThereAttachment]</InArgument>
+                                                  </ui:InvokeWorkflowFile.Arguments>
+                                                </ui:InvokeWorkflowFile>
+                                              </FlowStep>
+                                            </FlowStep.Next>
+                                          </FlowStep>
+                                        </FlowDecision.True>
+                                        <FlowDecision.False>
+                                          <FlowDecision x:Name="__ReferenceID9" Condition="[numberOfResult = 1]" DisplayName="if one result" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+                                            <FlowDecision.True>
+                                              <FlowStep x:Name="__ReferenceID12" sap2010:WorkflowViewState.IdRef="FlowStep_24">
+                                                <Sequence DisplayName="Downloading" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                                  <Sequence.Variables>
+                                                    <Variable x:TypeArguments="x:String" Default="Hamrisaac" Name="userNameHandel" />
+                                                    <Variable x:TypeArguments="x:String" Default="Hamerika@11" Name="passHandel" />
+                                                  </Sequence.Variables>
+                                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:String">[requestStatus]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:String" xml:space="preserve">Success: Single Result </InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <If Condition="[typeReq.ToLower().Equals( &quot;chronological&quot;) or typeReq.ToLower().Equals( &quot;cd&quot;)]" sap2010:WorkflowViewState.IdRef="If_9">
+                                                    <If.Then>
+                                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_55">
+                                                        <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
+                                                          <Assign.To>
+                                                            <OutArgument x:TypeArguments="x:String">[typeReq]</OutArgument>
+                                                          </Assign.To>
+                                                          <Assign.Value>
+                                                            <InArgument x:TypeArguments="x:String">CD</InArgument>
+                                                          </Assign.Value>
+                                                        </Assign>
+                                                      </Sequence>
+                                                    </If.Then>
+                                                    <If.Else>
+                                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_56">
+                                                        <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
+                                                          <Assign.To>
+                                                            <OutArgument x:TypeArguments="x:String">[typeReq]</OutArgument>
+                                                          </Assign.To>
+                                                          <Assign.Value>
+                                                            <InArgument x:TypeArguments="x:String">AD</InArgument>
+                                                          </Assign.Value>
+                                                        </Assign>
+                                                      </Sequence>
+                                                    </If.Else>
+                                                  </If>
+                                                  <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'Registerp Page'" sap2010:WorkflowViewState.IdRef="BrowserScope_14" InformativeScreenshot="4adec27b680b0bdca1465a799a5d7860" Selector="&lt;html title='Registerportal' /&gt;">
+                                                    <ui:BrowserScope.Body>
+                                                      <ActivityAction x:TypeArguments="x:Object">
+                                                        <ActivityAction.Argument>
+                                                          <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                                        </ActivityAction.Argument>
+                                                        <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                                                          <Sequence.Variables>
+                                                            <Variable x:TypeArguments="x:String" Name="variable1" />
+                                                          </Sequence.Variables>
+                                                          <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Choosing Type AD or CD" sap2010:WorkflowViewState.IdRef="Click_17" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                                            <ui:Click.CursorPosition>
+                                                              <ui:CursorPosition OffsetX="11" OffsetY="6" Position="TopLeft" />
+                                                            </ui:Click.CursorPosition>
+                                                            <ui:Click.Target>
+                                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3795c6e0ac956371bbd84febd8431df5" Selector="[&quot;&lt;webctrl aaname='&quot;+typeReq.ToUpper+&quot;' parentid='inhalt' tag='A' /&gt;&quot;]" WaitForReady="COMPLETE" />
+                                                            </ui:Click.Target>
+                                                          </ui:Click>
+                                                          <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'INPUT'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_9" SendWindowMessages="False" SimulateType="True" Text="[userNameHandel]">
+                                                            <ui:TypeInto.Target>
+                                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e0be7b90e546e1dfab60dfc3d5851b23" Selector="&lt;webctrl name='security-loginname' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                                                            </ui:TypeInto.Target>
+                                                          </ui:TypeInto>
+                                                          <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'INPUT'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_10" SendWindowMessages="False" SimulateType="True" Text="[passHandel]">
+                                                            <ui:TypeInto.Target>
+                                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c2e678c5d84d06a9c78b3f212be2dd56" Selector="&lt;webctrl name='security-password' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                                                            </ui:TypeInto.Target>
+                                                          </ui:TypeInto>
+                                                          <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  nutzungsordnungZ...'" sap2010:WorkflowViewState.IdRef="Click_18" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                                            <ui:Click.CursorPosition>
+                                                              <ui:CursorPosition OffsetX="8" OffsetY="7" Position="TopLeft" />
+                                                            </ui:Click.CursorPosition>
+                                                            <ui:Click.Target>
+                                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="449882878a26c134815d027d702857a8" Selector="&lt;webctrl id='nutzungsordnungZugestimmt' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                                                            </ui:Click.Target>
+                                                          </ui:Click>
+                                                          <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                                                            <ui:CommentOut.Body>
+                                                              <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                                                                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  submitBtn'" sap2010:WorkflowViewState.IdRef="Click_19" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                                                                  <ui:Click.CursorPosition>
+                                                                    <ui:CursorPosition OffsetX="10" OffsetY="7" Position="TopLeft" />
+                                                                  </ui:Click.CursorPosition>
+                                                                  <ui:Click.Target>
+                                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="65a531048fd3dbd1affac11f6b6a87e0" Selector="&lt;webctrl id='submitBtn' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+                                                                  </ui:Click.Target>
+                                                                </ui:Click>
+                                                              </Sequence>
+                                                            </ui:CommentOut.Body>
+                                                          </ui:CommentOut>
+                                                        </Sequence>
+                                                      </ActivityAction>
+                                                    </ui:BrowserScope.Body>
+                                                  </ui:BrowserScope>
+                                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:String">[body]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:String" xml:space="preserve">["&lt;p&gt; Dear Sir/Madam, &lt;/p&gt; &lt;br&gt;" +
+"&lt;p&gt;Regardings your request with the following information: &lt;br&gt;" +
+"Type of request:"+ originalReqType + "  exceprt of the company: " + originalCompanyName + "&lt;br&gt;" + 
+"Register status: " + regStatus + "&lt;br&gt;" +
+"Register number: " + regNr + "&lt;br&gt;" +
+"Register court: " + originalReqCourt  +  "&lt;br&gt;" +
+"&lt;p&gt;Your request was processed successfully and you can find the document In the attachemnt. For more info please contact: xx@x.com &lt;/p&gt;&lt;br&gt;" +
+" Best Regards,&lt;br&gt;" +
+"Your digital assistance&lt;p&gt;"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_18">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:Boolean">[isThereAttachment]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                                <FlowStep.Next>
+                                                  <x:Reference>__ReferenceID7</x:Reference>
+                                                </FlowStep.Next>
+                                              </FlowStep>
+                                            </FlowDecision.True>
+                                          </FlowDecision>
+                                        </FlowDecision.False>
+                                      </FlowDecision>
+                                    </FlowStep.Next>
+                                  </FlowStep>
+                                </FlowStep.Next>
                               </FlowStep>
                             </FlowStep.Next>
                           </FlowStep>
                         </FlowDecision.True>
                         <FlowDecision.False>
-                          <FlowDecision x:Name="__ReferenceID9" Condition="[numberOfResult = 1]" DisplayName="if one result" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
-                            <FlowDecision.True>
-                              <FlowStep x:Name="__ReferenceID12" sap2010:WorkflowViewState.IdRef="FlowStep_24">
-                                <Sequence DisplayName="Downloading" sap2010:WorkflowViewState.IdRef="Sequence_22">
-                                  <Sequence.Variables>
-                                    <Variable x:TypeArguments="x:String" Default="Hamrisaac" Name="userNameHandel" />
-                                    <Variable x:TypeArguments="x:String" Default="Hamerika@11" Name="passHandel" />
-                                  </Sequence.Variables>
-                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="x:String">[requestStatus]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="x:String" xml:space="preserve">Success: Single Result </InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                  <If Condition="[typeReq.ToLower().Equals( &quot;chronological&quot;) or typeReq.ToLower().Equals( &quot;cd&quot;)]" sap2010:WorkflowViewState.IdRef="If_9">
-                                    <If.Then>
-                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_55">
-                                        <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
-                                          <Assign.To>
-                                            <OutArgument x:TypeArguments="x:String">[typeReq]</OutArgument>
-                                          </Assign.To>
-                                          <Assign.Value>
-                                            <InArgument x:TypeArguments="x:String">CD</InArgument>
-                                          </Assign.Value>
-                                        </Assign>
-                                      </Sequence>
-                                    </If.Then>
-                                    <If.Else>
-                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_56">
-                                        <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
-                                          <Assign.To>
-                                            <OutArgument x:TypeArguments="x:String">[typeReq]</OutArgument>
-                                          </Assign.To>
-                                          <Assign.Value>
-                                            <InArgument x:TypeArguments="x:String">AD</InArgument>
-                                          </Assign.Value>
-                                        </Assign>
-                                      </Sequence>
-                                    </If.Else>
-                                  </If>
-                                  <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'Registerp Page'" sap2010:WorkflowViewState.IdRef="BrowserScope_14" InformativeScreenshot="4adec27b680b0bdca1465a799a5d7860" Selector="&lt;html title='Registerportal' /&gt;">
-                                    <ui:BrowserScope.Body>
-                                      <ActivityAction x:TypeArguments="x:Object">
-                                        <ActivityAction.Argument>
-                                          <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                        </ActivityAction.Argument>
-                                        <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_25">
-                                          <Sequence.Variables>
-                                            <Variable x:TypeArguments="x:String" Name="variable1" />
-                                          </Sequence.Variables>
-                                          <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Choosing Type AD or CD" sap2010:WorkflowViewState.IdRef="Click_17" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                                            <ui:Click.CursorPosition>
-                                              <ui:CursorPosition OffsetX="11" OffsetY="6" Position="TopLeft" />
-                                            </ui:Click.CursorPosition>
-                                            <ui:Click.Target>
-                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3795c6e0ac956371bbd84febd8431df5" Selector="[&quot;&lt;webctrl aaname='&quot;+typeReq.ToUpper+&quot;' parentid='inhalt' tag='A' /&gt;&quot;]" WaitForReady="COMPLETE" />
-                                            </ui:Click.Target>
-                                          </ui:Click>
-                                          <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'INPUT'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_9" SendWindowMessages="False" SimulateType="True" Text="[userNameHandel]">
-                                            <ui:TypeInto.Target>
-                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e0be7b90e546e1dfab60dfc3d5851b23" Selector="&lt;webctrl name='security-loginname' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                                            </ui:TypeInto.Target>
-                                          </ui:TypeInto>
-                                          <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type into 'INPUT'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeInto_10" SendWindowMessages="False" SimulateType="True" Text="[passHandel]">
-                                            <ui:TypeInto.Target>
-                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c2e678c5d84d06a9c78b3f212be2dd56" Selector="&lt;webctrl name='security-password' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                                            </ui:TypeInto.Target>
-                                          </ui:TypeInto>
-                                          <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  nutzungsordnungZ...'" sap2010:WorkflowViewState.IdRef="Click_18" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                                            <ui:Click.CursorPosition>
-                                              <ui:CursorPosition OffsetX="8" OffsetY="7" Position="TopLeft" />
-                                            </ui:Click.CursorPosition>
-                                            <ui:Click.Target>
-                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="449882878a26c134815d027d702857a8" Selector="&lt;webctrl id='nutzungsordnungZugestimmt' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                                            </ui:Click.Target>
-                                          </ui:Click>
-                                          <ui:CommentOut DisplayName="Comment out" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-                                            <ui:CommentOut.Body>
-                                              <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_29">
-                                                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  submitBtn'" sap2010:WorkflowViewState.IdRef="Click_19" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                                                  <ui:Click.CursorPosition>
-                                                    <ui:CursorPosition OffsetX="10" OffsetY="7" Position="TopLeft" />
-                                                  </ui:Click.CursorPosition>
-                                                  <ui:Click.Target>
-                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="65a531048fd3dbd1affac11f6b6a87e0" Selector="&lt;webctrl id='submitBtn' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                                                  </ui:Click.Target>
-                                                </ui:Click>
-                                              </Sequence>
-                                            </ui:CommentOut.Body>
-                                          </ui:CommentOut>
-                                        </Sequence>
-                                      </ActivityAction>
-                                    </ui:BrowserScope.Body>
-                                  </ui:BrowserScope>
-                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="x:String">[body]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="x:String">["&lt;h2&gt;Your request was processed successfully. You can find the document in the attachemnt. For more info please contact: xx@x.com&lt;/h2&gt; &lt;br&gt; &lt;h3&gt;"+ resultedNames+ "&lt;/h3&gt;"]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </Sequence>
-                                <FlowStep.Next>
-                                  <x:Reference>__ReferenceID7</x:Reference>
-                                </FlowStep.Next>
-                              </FlowStep>
-                            </FlowDecision.True>
-                          </FlowDecision>
+                          <x:Reference>__ReferenceID7</x:Reference>
                         </FlowDecision.False>
                       </FlowDecision>
                     </FlowStep.Next>
                   </FlowStep>
                 </FlowStep.Next>
               </FlowStep>
-            </FlowDecision.True>
-            <FlowDecision.False>
-              <x:Reference>__ReferenceID7</x:Reference>
-            </FlowDecision.False>
-          </FlowDecision>
+            </FlowStep.Next>
+          </FlowStep>
         </FlowStep.Next>
       </FlowStep>
     </Flowchart.StartNode>
@@ -686,33 +766,35 @@
     <x:Reference>__ReferenceID14</x:Reference>
     <x:Reference>__ReferenceID15</x:Reference>
     <x:Reference>__ReferenceID7</x:Reference>
-    <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_42">
-      <Sequence DisplayName="Recording Sequence" sap2010:WorkflowViewState.IdRef="Sequence_61">
-        <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'Registerp Page'" sap2010:WorkflowViewState.IdRef="BrowserScope_21" InformativeScreenshot="883fd152b1c5dc55538505ff91fdea3b" Selector="&lt;html title='Registerportal' /&gt;">
-          <ui:BrowserScope.Body>
-            <ActivityAction x:TypeArguments="x:Object">
-              <ActivityAction.Argument>
-                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-              </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_60">
-                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  suchOptGeloescht'" sap2010:WorkflowViewState.IdRef="Click_31" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                  <ui:Click.CursorPosition>
-                    <ui:CursorPosition OffsetX="5" OffsetY="3" Position="TopLeft" />
-                  </ui:Click.CursorPosition>
-                  <ui:Click.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="64459580a80d5aad26b3c8abe6aac7f5" Selector="&lt;webctrl id='suchOptGeloescht' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
-                  </ui:Click.Target>
-                </ui:Click>
-              </Sequence>
-            </ActivityAction>
-          </ui:BrowserScope.Body>
-        </ui:BrowserScope>
-      </Sequence>
-    </FlowStep>
-    <sads:DebugSymbol.Symbol>dzFEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XFByb2Nlc3NRdWVyeS54YW1sigF0A8kFDwIBAXk0eT0CAQN7NXs8AgECgAEJ5gMVAgFW6AM86ANRAgFUmAQhpQQxAgFT6wMR6wOnAQIBTu4DFfUDHgIBSvcDSPcDYQIBSKsES6sEYQIBRq4EIZMFLAIBF/oDHZUEKAIBBIcBD/YCIQMBggH5AhP9AigCAX3/AkX/AloCAXuqA0mqA44BAgF4vgMf1AMqAgFqrQMftgMqAgFjggMbpgMtAgFX6wOTAesDpAECAVHrAy/rAz4CAU/zAz/zA1cCAU3wA0DwA1ACAUuwBFKwBF0CARmxBFKxBF8CARizBCO6BCwCAUK7BCPUBCgCATTVBCOKBTUCAR+LBSOSBSwCARr8A078A1kCAQb9A079A1sCAQX/Ax+GBCgCAROHBB+HBM8BAgERiAQfjwQoAgEMkAQflAQkAgEHhwGeAocBxQIDAbMBjQEV8wIgAwGDAfsCkQH7AucBAwGBAfsC8gH7AvgBAwGAAfkCU/kCaAIBfr8DIcYDKgIBdMcDIc4DKgIBcM8DIdMDJgIBa64DIbUDKgIBZIIDoQKCA8gCAgFiiAMhowMsAgFYtQRPtQReAgFDuwQxuwSWAQIBNb0EJ8YEMgIBPckEJ9IEMgIBONUEuwLVBOICAgEz2wQphwU0AgEgkAVOkAWXAgIBHY0FT40FVQIBG4QESoQEYgIBFoEES4EEWgIBFIcEd4cEzAECARKNBEqNBPgBAgEPigRLigRRAgENkAQtkAQ2AgEIkgQjkgSeAgIBCo4BF5UBIgMBrwGWAReaASUDAasBmwEXpQEcAwGiAaYBF7EBHAMBmgGyARfSAicDAZUB0wIX2gIiAwGRAdsCF+oCHAMBiAHrAhfyAiIDAYQBxANMxANhAgF3wQNNwQNcAgF1zANMzAO9AQIBc8kDTckDUwIBcc8DL88DOAIBbNEDJdED2wECAW6zA0yzA4UBAgFnsANNsANaAgFliQMjjQM0AgFajgMjogMzAgFZvgQpxQQyAgE+ygQp0QQyAgE53wQr5gQ2AgEu5wQr6wQ5AgEq7AQr8AQ5AgEm8QQr+AQ2AgEi+QQrhgU7AgEhkgS4AZIEjAICAQuTAaoBkwHWAQMBsgGQAUOQAUYDAbEBkAE2kAE6AwGwAZgBqgGYAcwBAwGuAZYBqwKWAboCAwGsAZsBJZsBZAMBowGdARujASYDAaYBpgElpgFdAwGbAagBG68BJAMBngGyAWOyAWkDAZgBsgHSAbIB7QEDAZYB0AKqAdAC4QEDAZkB2AKqAdgC4AEDAZQB1QJC1QJFAwGTAdUCNtUCOQMBkgHbAiXbAlIDAYkB3QIb6AImAwGLAfACqgHwAtkBAwGHAe0CQ+0CRwMBhgHtAjbtAjoDAYUB0QO6AdEDyQECAW+JA9gDiQPdAwIBYYsDtgGLA+cBAgFgiQOUAYkDmQECAV+JA1+JA2UCAV6JA3CJA38CAVyJA9gBiQOUAwIBW8MEVMMEVgIBQcAEVcAEXgIBP88EVM8EVgIBPMwEVcwEXgIBOuQEvgHkBKACAgEx4QRX4QRaAgEw4QRK4QROAgEv6QS+AekE9wECAS3nBLwC5wTOAgIBK+4EvgHuBPYBAgEp7AS9AuwEywICASf2BL4B9gT8AQIBJfMEVvMEWQIBJPMESvMETQIBI54BHaIBKwMBpwGtAUatAUoDAaEBqgFHqgFRAwGfAd4CHecCKAMBjAGgAbABoAHlAQMBqgGeAbICngG7AgMBqAHfAh/mAioDAY0B5AKyAeQC5wEDAZAB4QJK4QJNAwGPAeECPuECQQMBjgE=</sads:DebugSymbol.Symbol>
+    <x:Reference>__ReferenceID16</x:Reference>
+    <x:Reference>__ReferenceID17</x:Reference>
+    <x:Reference>__ReferenceID18</x:Reference>
+    <x:Reference>__ReferenceID19</x:Reference>
+    <sads:DebugSymbol.Symbol>dzFEOlxwcm9qZWN0c1xwb2NcUkVGcmFtZXdvcmtUZXN0XFByb2Nlc3NRdWVyeS54YW1smQF1A4YGDwIBAXo0ej0CAQR8NXw8AgEDgAE1gAE8AgEChQEJjAESAwHbAY8BDZYBFgMB1gGZARGgARoDAdEBowEVkQQhAgFukwRIkwRdAgFs1QQx3QRJAgFglgQdlgSzAQIBW5kEIaAEKgIBV6MEJakENQIBVqsEWKsEcQIBVOMEW+MEcQIBUuYEMdsFPAIBG64ELdIEOAIBBYoBNIoBPgMB3gGHATWHAUcDAdwBlAE4lAFBAwHZAZEBOZEBSgMB1wGeATyeAUkDAdQBmwE9mwFSAwHSAaoBG5kDLQMBnwGcAx+gAzQDAZoBogNRogNmAwGYAc0DVc0DmgEDAZUB4QMr/wM2AwGCAdADK9kDNgIBe6UDJ8kDOQIBb9sEeNsEiwECAWrYBGnYBG8CAWjZBHHZBJIBAgFm1wRq1wRxAgFk2gRt2gR6AgFi1QTWAdUE5gECAWGWBJ8BlgSwAQIBXpYEO5YESgIBXJ4ES54EYwIBWpsETJsEXAIBWOgEYugEbQIBHekEYukEbwIBHOsEM/IEPAIBTvMEM4wFOAIBQI0FM8IFRQIBK8MFM9IFPAIBItMFM9oFPAIBHrAEXrAEaQIBB7EEXrEEawIBBrMEL7oEOAIBF7sEL8wEOAIBDc0EL9EENAIBCKoBqgKqAdECAwHQAbABIZYDLAMBoAGeA50BngPzAQMBngGeA/4BngOEAgMBnQGcA1+cA3QDAZsB4gMt6QM2AwGRAeoDLfkDNgMBiAH6Ay3+AzIDAYMB0QMt2AM2AgF8pQOtAqUD1AICAXqrAy3GAzgCAXDtBF/tBG4CAU/zBEHzBKYBAgFB9QQ3/gRCAgFJgQU3igVCAgFEjQXLAo0F8gICAT+TBTm/BUQCASzFBV/FBWUCASPYBV/YBWMCASHVBWDVBXMCAR+4BFq4BHICARq1BFu1BGoCARi9BFu9BGECAQ7NBD3NBEYCAQnPBDPPBK4CAgELsQEjuAEuAwHMAbkBI70BMQMByAG+ASPIASgDAb8ByQEj1AEoAwG3AdUBI/UCMwMBsgH2AiP9Ai4DAa4B/gIjjQMoAwGlAY4DI5UDLgMBoQHnA1jnA20DAZQB5ANZ5ANoAwGSAewDWewDXwMBiQH6Azv6A0QDAYQB/AMx/APnAQMBhgHWA1jWA5EBAgF/0wNZ0wNmAgF9rAMvsANAAgFysQMvxQM/AgFx9gQ5/QRCAgFKggU5iQVCAgFFlwU7ngVGAgE6nwU7owVJAgE2pAU7qAVJAgEyqQU7sAVGAgEusQU7vgVLAgEtzwTIAc8EnAICAQy2AbYBtgHiAQMBzwGzAU+zAVIDAc4BswFCswFGAwHNAbsBtgG7AdgBAwHLAbkBtwK5AcYCAwHJAb4BMb4BcAMBwAHAASfGATIDAcMByQExyQFpAwG4AcsBJ9IBMAMBuwHVAW/VAXUDAbUB1QHeAdUB+QEDAbMB8wK2AfMC7QEDAbYB+wK2AfsC7AEDAbEB+AJO+AJRAwGwAfgCQvgCRQMBrwH+AjH+Al4DAaYBgAMniwMyAwGoAZMDtgGTA+UBAwGkAZADT5ADUwMBowGQA0KQA0YDAaIB/APGAfwD1QEDAYcBrAPkA6wD6QMCAXmuA8IBrgPzAQIBeKwDoAGsA6UBAgF3rANrrANxAgF2rAN8rAOLAQIBdKwD5AGsA6ADAgFz+wRk+wRmAgFN+ARl+ARuAgFLhwVkhwVmAgFIhAVlhAVuAgFGnAXOAZwFsAICAT2ZBWeZBWoCATyZBVqZBV4CATuhBc4BoQWHAgIBOZ8FzAKfBd4CAgE3pgXOAaYFhgICATWkBc0CpAXbAgIBM64FzgGuBYwCAgExqwVmqwVpAgEwqwVaqwVdAgEvwQEpxQE3AwHEAdABUtABVgMBvgHNAVPNAV0DAbwBgQMpigM0AwGpAcMBvAHDAfEBAwHHAcEBvgLBAccCAwHFAYIDK4kDNgMBqgGHA74BhwPzAQMBrQGEA1aEA1kDAawBhANKhANNAwGrAQ==</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Assign_15" sap:VirtualizedContainerService.HintSize="242,60">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="242,60">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_19" sap:VirtualizedContainerService.HintSize="242,60">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Click_30" sap:VirtualizedContainerService.HintSize="483,106" />
       <sap2010:ViewStateData Id="TypeInto_12" sap:VirtualizedContainerService.HintSize="483,134" />
       <sap2010:ViewStateData Id="TypeInto_13" sap:VirtualizedContainerService.HintSize="314,134" />
@@ -723,9 +805,9 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="483,405" />
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="483,406" />
       <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="If_12" sap:VirtualizedContainerService.HintSize="483,207" />
+      <sap2010:ViewStateData Id="If_12" sap:VirtualizedContainerService.HintSize="483,208" />
       <sap2010:ViewStateData Id="SelectItem_10" sap:VirtualizedContainerService.HintSize="483,134" />
       <sap2010:ViewStateData Id="Click_25" sap:VirtualizedContainerService.HintSize="483,106" />
       <sap2010:ViewStateData Id="Click_32" sap:VirtualizedContainerService.HintSize="314,106" />
@@ -743,16 +825,16 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_13" sap:VirtualizedContainerService.HintSize="483,501" />
+      <sap2010:ViewStateData Id="If_13" sap:VirtualizedContainerService.HintSize="483,502" />
       <sap2010:ViewStateData Id="Click_26" sap:VirtualizedContainerService.HintSize="483,106" />
-      <sap2010:ViewStateData Id="Sequence_37" sap:VirtualizedContainerService.HintSize="505,2103">
+      <sap2010:ViewStateData Id="Sequence_37" sap:VirtualizedContainerService.HintSize="505,2106">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_19" sap:VirtualizedContainerService.HintSize="519,2369">
+      <sap2010:ViewStateData Id="BrowserScope_19" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -805,7 +887,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="464,60" />
-      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="464,60" />
+      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="464,64" />
       <sap2010:ViewStateData Id="MessageBox_5" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="464,208" />
       <sap2010:ViewStateData Id="Sequence_49" sap:VirtualizedContainerService.HintSize="200,51">
@@ -883,39 +965,32 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="464,60" />
-      <sap2010:ViewStateData Id="WriteLine_14" sap:VirtualizedContainerService.HintSize="464,61">
+      <sap2010:ViewStateData Id="MessageBox_7" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="464,60" />
+      <sap2010:ViewStateData Id="CommentOut_8" sap:VirtualizedContainerService.HintSize="200,51" />
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="464,60" />
+      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="464,64" />
       <sap2010:ViewStateData Id="MessageBox_3" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="464,208" />
-      <sap2010:ViewStateData Id="Sequence_47" sap:VirtualizedContainerService.HintSize="200,51">
+      <sap2010:ViewStateData Id="Sequence_47" sap:VirtualizedContainerService.HintSize="486,536">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="InvokeWorkflowFile_1" sap:VirtualizedContainerService.HintSize="314,87">
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_1" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_57" sap:VirtualizedContainerService.HintSize="336,211">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CommentOut_7" sap:VirtualizedContainerService.HintSize="416,649" />
       <sap2010:ViewStateData Id="FlowStep_41">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -979,7 +1054,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="553,60" />
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="553,64" />
+      <sap2010:ViewStateData Id="Assign_18" sap:VirtualizedContainerService.HintSize="553,60">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Sequence_22" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1017,12 +1099,21 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_44">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">380,380</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">480,431 480,461 483,461 483,546.5</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="FlowStep_19">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">399,320</av:Point>
+            <av:Point x:Key="ShapeLocation">359,280</av:Point>
             <av:Size x:Key="ShapeSize">242,60</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">520,380 520,410 483,410 483,546.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">480,340 480,380</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -1031,7 +1122,7 @@
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">360,219</av:Point>
             <av:Size x:Key="ShapeSize">200,22</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">460,241 460,271 520,271 520,320</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">460,241 460,271 480,271 480,280</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -1049,33 +1140,36 @@
       <sap2010:ViewStateData Id="FlowStep_34">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">40,74</av:Point>
+            <av:Point x:Key="ShapeLocation">30,104.5</av:Point>
             <av:Size x:Key="ShapeSize">200,51</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">140,125 140,155 137.5,155 137.5,216.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">130,155.5 130,185.5 137.5,185.5 137.5,216.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Click_31" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Sequence_60" sap:VirtualizedContainerService.HintSize="336,230">
+      <sap2010:ViewStateData Id="FlowStep_48">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <av:Point x:Key="ShapeLocation">680.79,150</av:Point>
+            <av:Size x:Key="ShapeSize">242,60</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">680.79,180 650.79,180 650.79,130 230,130</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_21" sap:VirtualizedContainerService.HintSize="414,376" />
-      <sap2010:ViewStateData Id="Sequence_61" sap:VirtualizedContainerService.HintSize="200,51">
+      <sap2010:ViewStateData Id="FlowStep_46">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <av:Point x:Key="ShapeLocation">680.895,50</av:Point>
+            <av:Size x:Key="ShapeSize">242,60</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">801.895,110 801.895,140 801.79,140 801.79,150</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_42">
+      <sap2010:ViewStateData Id="FlowStep_45">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">650,834.5</av:Point>
-            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:Point x:Key="ShapeLocation">379,50</av:Point>
+            <av:Size x:Key="ShapeSize">242,60</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">621,80 680.895,80</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -1085,7 +1179,7 @@
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
             <av:Size x:Key="ShapeSize">60,75</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,99.5 240,99.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,80 379,80</av:PointCollection>
             <x:Double x:Key="Height">965</x:Double>
             <x:Double x:Key="Width">1034</x:Double>
           </scg:Dictionary>
