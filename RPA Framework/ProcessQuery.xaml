@@ -82,6 +82,7 @@
       <x:String>UiPath.XPS.Activities</x:String>
       <x:String>System.Windows.Markup</x:String>
       <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System.Xml.Serialization</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -112,6 +113,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
       <AssemblyReference>UiPath.Python</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="SearchingProcess" sap2010:WorkflowViewState.IdRef="Flowchart_3">
@@ -559,7 +561,29 @@
                                               <Sequence.Variables>
                                                 <Variable x:TypeArguments="x:String" Default="Hamrisaac" Name="userNameHandel" />
                                                 <Variable x:TypeArguments="x:String" Default="Hamerika@11" Name="passHandel" />
+                                                <Variable x:TypeArguments="x:String" Name="tableOfResultedName" />
                                               </Sequence.Variables>
+                                              <ui:ForEachRow DataTable="[extractedDT]" DisplayName="For each row" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                                                <ui:ForEachRow.Body>
+                                                  <ActivityAction x:TypeArguments="sd:DataRow">
+                                                    <ActivityAction.Argument>
+                                                      <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                                                    </ActivityAction.Argument>
+                                                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_66">
+                                                      <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_65">
+                                                        <Assign sap2010:WorkflowViewState.IdRef="Assign_20">
+                                                          <Assign.To>
+                                                            <OutArgument x:TypeArguments="x:String">[tableOfResultedName]</OutArgument>
+                                                          </Assign.To>
+                                                          <Assign.Value>
+                                                            <InArgument x:TypeArguments="x:String">[tableOfResultedName + " &lt;br&gt;" + row("Column1").ToString]</InArgument>
+                                                          </Assign.Value>
+                                                        </Assign>
+                                                      </Sequence>
+                                                    </Sequence>
+                                                  </ActivityAction>
+                                                </ui:ForEachRow.Body>
+                                              </ui:ForEachRow>
                                               <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
                                                 <Assign.To>
                                                   <OutArgument x:TypeArguments="x:String">[requestStatus]</OutArgument>
@@ -579,18 +603,13 @@
 "Register status: " + regStatus + "&lt;br&gt;" +
 "Register number: " + regNr + "&lt;br&gt;" +
 "Register court: " + originalReqCourt  +  "&lt;br&gt;" +
-"&lt;p&gt;There was multiple companies matching to the submitted information. &lt;/p&gt;&lt;br&gt;" +
-"&lt;p&gt;"+ resultedNames.Substring(8)+ "&lt;/p&gt;"+
+"&lt;p&gt;There was multiple companies matching to the submitted information. Here are top "+numberOfResult.ToString +": &lt;/p&gt;&lt;br&gt;" +
+"&lt;p&gt;"+tableOfResultedName+ "&lt;/p&gt;"+
 "Please contact: xx@x.com for more infos.&lt;/p&gt;&lt;br&gt;" +
 " Best Regards,&lt;br&gt;" +
 "Your digital assistance&lt;p&gt;"]</InArgument>
                                                 </Assign.Value>
                                               </Assign>
-                                              <If Condition="[debug]" sap2010:WorkflowViewState.IdRef="If_4">
-                                                <If.Then>
-                                                  <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[&quot;Multiple result, send an email&quot; + Environment.NewLine + resultedNames]" TopMost="True" />
-                                                </If.Then>
-                                              </If>
                                             </Sequence>
                                             <FlowStep.Next>
                                               <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_41">
@@ -770,7 +789,7 @@
     <x:Reference>__ReferenceID17</x:Reference>
     <x:Reference>__ReferenceID18</x:Reference>
     <x:Reference>__ReferenceID19</x:Reference>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -973,11 +992,25 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="CommentOut_8" sap:VirtualizedContainerService.HintSize="200,51" />
-      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="464,60" />
-      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="464,64" />
-      <sap2010:ViewStateData Id="MessageBox_3" sap:VirtualizedContainerService.HintSize="314,59" />
-      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="464,208" />
-      <sap2010:ViewStateData Id="Sequence_47" sap:VirtualizedContainerService.HintSize="486,536">
+      <sap2010:ViewStateData Id="Assign_20" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_65" sap:VirtualizedContainerService.HintSize="264,184">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_66" sap:VirtualizedContainerService.HintSize="286,308">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="316,456" />
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="316,60" />
+      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="316,64" />
+      <sap2010:ViewStateData Id="Sequence_47" sap:VirtualizedContainerService.HintSize="338,784">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
